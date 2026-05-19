@@ -104,52 +104,63 @@ button {
 .brand {
   display: inline-flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 10px;
   min-width: 0;
 }
 
 .brand-mark {
   position: relative;
-  width: 84px;
-  height: 58px;
+  width: 68px;
+  height: 42px;
   display: grid;
   place-items: center;
   flex: 0 0 auto;
-  border: 0;
-  border-radius: 0;
+  border: 1px solid rgba(230, 196, 123, 0.5);
+  border-radius: 999px;
   color: var(--gold-soft);
-  background: transparent;
-  box-shadow: none;
-  overflow: visible;
+  background:
+    linear-gradient(135deg, rgba(255, 244, 214, 0.17), rgba(214, 180, 112, 0.04)),
+    rgba(11, 10, 9, 0.64);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -14px 24px rgba(0, 0, 0, 0.42),
+    0 12px 30px rgba(0, 0, 0, 0.38),
+    0 0 24px rgba(214, 180, 112, 0.13);
+  overflow: hidden;
 }
 
 .brand-mark::before {
   content: "";
   position: absolute;
-  inset: 8px 18px 6px 10px;
-  border-radius: 50%;
-  background: rgba(255, 98, 11, 0.16);
-  filter: blur(16px);
-  opacity: 0.9;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(105deg, transparent 0 24%, rgba(255, 255, 255, 0.18) 36%, transparent 52%),
+    radial-gradient(circle at 78% 72%, rgba(255, 115, 32, 0.18), transparent 46%);
+  opacity: 0.82;
 }
 
-.brand-mark img {
+.brand-initials {
   position: relative;
   z-index: 1;
-  width: 82px;
-  height: 58px;
-  object-fit: contain;
-  filter:
-    drop-shadow(0 8px 16px rgba(0, 0, 0, 0.55))
-    drop-shadow(0 0 14px rgba(255, 98, 11, 0.26));
-  transform: scale(1.22);
-  transform-origin: center;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.08rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  color: #ffe5a6;
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.6),
+    0 0 12px rgba(214, 180, 112, 0.34);
+  line-height: 1;
 }
 
 .brand-name {
+  display: block;
   font-weight: 800;
   color: #fffaf0;
   white-space: nowrap;
+  line-height: 1;
 }
 
 .site-nav {
@@ -1274,24 +1285,25 @@ p {
 
 @media (max-width: 480px) {
   .brand {
-    gap: 4px;
+    gap: 9px;
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .brand-mark {
-    width: 62px;
-    height: 44px;
+    width: 58px;
+    height: 38px;
   }
 
-  .brand-mark img {
-    width: 62px;
-    height: 44px;
-    transform: scale(1.22);
+  .brand-initials {
+    font-size: 0.98rem;
   }
 
   .brand-name {
-    max-width: 136px;
-    white-space: normal;
-    line-height: 1.05;
+    max-width: none;
+    white-space: nowrap;
+    line-height: 1;
+    font-size: 0.98rem;
   }
 
   h1 {
@@ -1323,6 +1335,12 @@ p {
     bottom: 18px;
   }
 
+}
+
+@media (max-width: 360px) {
+  .brand-name {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
