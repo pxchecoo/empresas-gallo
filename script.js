@@ -133,9 +133,36 @@
     }));
   };
 
-  const drawParticles = () => {
+  const drawAuraBands = (time) => {
+    if (!ctx) return;
+    ctx.save();
+    ctx.globalCompositeOperation = "lighter";
+    for (let band = 0; band < 4; band++) {
+      const yBase = canvasHeight * (0.18 + band * 0.2);
+      const drift = Math.sin(time * 0.00028 + band * 1.7) * canvasHeight * 0.055;
+      const gradient = ctx.createLinearGradient(0, yBase, canvasWidth, yBase + 90);
+      gradient.addColorStop(0, "rgba(214, 180, 112, 0)");
+      gradient.addColorStop(0.38, band % 2 ? "rgba(255, 255, 255, 0.045)" : "rgba(255, 112, 24, 0.07)");
+      gradient.addColorStop(0.62, "rgba(214, 180, 112, 0.075)");
+      gradient.addColorStop(1, "rgba(214, 180, 112, 0)");
+
+      ctx.beginPath();
+      ctx.lineWidth = 34 + band * 8;
+      ctx.strokeStyle = gradient;
+      ctx.moveTo(-80, yBase + drift);
+      for (let x = -80; x <= canvasWidth + 80; x += 90) {
+        const y = yBase + drift + Math.sin(x * 0.009 + time * 0.00045 + band) * (30 + band * 8);
+        ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+    ctx.restore();
+  };
+
+  const drawParticles = (time = 0) => {
     if (!canvas || !ctx || prefersReducedMotion) return;
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    drawAuraBands(time);
 
     particles.forEach((particle) => {
       particle.y -= particle.speed;
@@ -160,45 +187,4 @@
     requestAnimationFrame(drawParticles);
   }
 
-  // Gallery modal.
-  const modal = document.querySelector("#galleryModal");
-  const modalImage = modal?.querySelector("img");
-  const modalCaption = modal?.querySelector("figcaption");
-  const closeModal = modal?.querySelector(".modal-close");
-
-  const openGallery = (src, title) => {
-    if (!modal || !modalImage || !modalCaption) return;
-    modalImage.src = src;
-    modalImage.alt = title;
-    modalCaption.textContent = title;
-    modal.classList.add("is-open");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-    closeModal?.focus();
-  };
-
-  const closeGallery = () => {
-    if (!modal) return;
-    modal.classList.remove("is-open");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-  };
-
-  document.querySelectorAll("[data-gallery]").forEach((button) => {
-    button.addEventListener("click", () => {
-      openGallery(button.dataset.gallery, button.dataset.title || "Proyecto Empresas Gallo");
-    });
-  });
-
-  closeModal?.addEventListener("click", closeGallery);
-
-  modal?.addEventListener("click", (event) => {
-    if (event.target === modal) closeGallery();
-  });
-
-  window.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && modal?.classList.contains("is-open")) {
-      closeGallery();
-    }
-  });
 })();
