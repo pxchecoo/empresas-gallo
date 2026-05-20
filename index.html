@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Tecno Mármol, Inc ofrece soluciones premium en Mármol, Inc, granito, cuarzo, porcelana y piedras naturales para espacios residenciales y comerciales."
+      content="Tecno Mármol, Inc ofrece soluciones premium en mármol, granito, cuarzo, porcelana y piedras naturales para espacios residenciales y comerciales."
     />
     <meta
       name="keywords"
-      content="Tecno Mármol, Inc, Mármol, Inc, granito, cuarzo, porcelana, piedra natural, topes, cocinas, baños, pisos, escaleras"
+      content="Tecno Mármol, Inc, mármol, granito, cuarzo, porcelana, piedra natural, topes, cocinas, baños, pisos, escaleras"
     />
     <meta name="theme-color" content="#090807" />
     <meta property="og:title" content="Tecno Mármol, Inc | Superficies premium" />
@@ -20,6 +20,10 @@
     <meta property="og:type" content="website" />
     <meta property="og:image" content="assets/hero-showroom.png" />
     <title>Tecno Mármol, Inc | Superficies premium</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=2" />
+    <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png?v=2" />
+    <link rel="shortcut icon" href="assets/favicon.ico?v=2" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png?v=2" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -33,7 +37,19 @@
     <link rel="preload" as="image" href="assets/hero-showroom.png" />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body class="language-pending">
+    <div class="language-gate" id="languageGate" role="dialog" aria-modal="true" aria-labelledby="languageTitle">
+      <div class="language-panel">
+        <span class="language-kicker">Tecno Mármol, Inc</span>
+        <h2 id="languageTitle">Select your language</h2>
+        <p>Selecciona el idioma para continuar. Choose your preferred language to continue.</p>
+        <div class="language-actions">
+          <button class="language-option" type="button" data-language="en">English</button>
+          <button class="language-option" type="button" data-language="es">Español</button>
+        </div>
+      </div>
+    </div>
+
     <header class="site-header" data-header>
       <a class="brand" href="#inicio" aria-label="Tecno Mármol, Inc inicio">
         <span class="brand-mark" aria-hidden="true">
@@ -42,18 +58,18 @@
         <span class="brand-name">Tecno Mármol, Inc</span>
       </a>
 
-      <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu">
+      <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu" data-i18n-aria="navToggle">
         <span></span>
         <span></span>
       </button>
 
-      <nav class="site-nav" id="navMenu" aria-label="Navegación prIncipal">
-        <a href="#sobre">Sobre</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#proceso">Proceso</a>
-        <a href="#materiales">Materiales</a>
-        <a href="#taller">Taller</a>
-        <a class="nav-cta" href="#contacto">Cotización</a>
+      <nav class="site-nav" id="navMenu" aria-label="Navegación principal">
+        <a href="#sobre" data-i18n="navAbout">Sobre</a>
+        <a href="#servicios" data-i18n="navServices">Servicios</a>
+        <a href="#proceso" data-i18n="navProcess">Proceso</a>
+        <a href="#materiales" data-i18n="navMaterials">Materiales</a>
+        <a href="#taller" data-i18n="navWorkshop">Taller</a>
+        <a class="nav-cta" href="#contacto" data-i18n="navQuote">Cotización</a>
       </nav>
     </header>
 
@@ -69,14 +85,14 @@
         <div class="section-inner hero-grid">
           <div class="hero-copy reveal">
             <h1>Tecno Mármol, Inc</h1>
-            <p class="hero-subtitle">Superficies premium en mármol, granito, cuarzo, porcelana y piedras naturales.</p>
-            <p class="hero-text">
+            <p class="hero-subtitle" data-i18n="heroSubtitle">Superficies premium en mármol, granito, cuarzo, porcelana y piedras naturales.</p>
+            <p class="hero-text" data-i18n="heroText">
               Transformamos cocinas, baños, pisos, paredes, escaleras y espacios comerciales con materiales de alta
               calidad, acabados elegantes e instalación profesional.
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#servicios">Ver servicios</a>
-              <a class="btn btn-ghost" href="#contacto">Solicitar cotización</a>
+              <a class="btn btn-primary" href="#servicios" data-i18n="viewServices">Ver servicios</a>
+              <a class="btn btn-ghost" href="#contacto" data-i18n="requestQuote">Solicitar cotización</a>
             </div>
           </div>
 
@@ -90,8 +106,8 @@
                 <span class="slab-edge slab-edge-side"></span>
               </div>
               <div class="material-note glass-panel">
-                <span>Selección premium</span>
-                <strong>mármol, granito y cuarzo</strong>
+                <span data-i18n="premiumSelection">Selección premium</span>
+                <strong data-i18n="premiumMaterials">mármol, granito y cuarzo</strong>
               </div>
             </div>
           </div>
@@ -104,15 +120,15 @@
       <section class="section about-section" id="sobre">
         <div class="section-inner split-layout">
           <div class="section-copy reveal">
-            <span class="eyebrow">Sobre Tecno Mármol, Inc</span>
-            <h2>Diseño, precisión y materiales nobles para elevar cada espacio.</h2>
-            <p>
-              Tecno Mármol, Inc. es una compañía dedicada a ofrecer soluciones en ,ármol,granito, cuarzo, porcelana y
+            <span class="eyebrow" data-i18n="aboutEyebrow">Sobre Tecno Mármol, Inc</span>
+            <h2 data-i18n="aboutTitle">Diseño, precisión y materiales nobles para elevar cada espacio.</h2>
+            <p data-i18n="aboutText1">
+              Tecno Mármol, Inc. es una compañía dedicada a ofrecer soluciones en mármol, granito, cuarzo, porcelana y
               piedras naturales para espacios residenciales y comerciales. Nos enfocamos en brindar materiales de alta
               calidad, acabados elegantes y un servicio profesional para transformar cocinas, baños, pisos, paredes,
               escaleras y otros espacios.
             </p>
-            <p>
+            <p data-i18n="aboutText2">
               Nuestro trabajo combina experiencia, precisión y diseño para crear superficies duraderas, modernas y
               funcionales. Cada proyecto se trabaja con atención al detalle, desde la selección del material hasta la
               fabricación e instalación final.
@@ -122,10 +138,10 @@
           <div class="about-visual reveal" data-parallax="0.08">
             <img src="assets/about-stone-block.png" alt="Textura premium de piedra natural" loading="lazy" />
             <div class="keyword-card glass-panel">
-              <span>Calidad</span>
-              <span>Precisión</span>
-              <span>Elegancia</span>
-              <span>Durabilidad</span>
+              <span data-i18n="quality">Calidad</span>
+              <span data-i18n="precision">Precisión</span>
+              <span data-i18n="elegance">Elegancia</span>
+              <span data-i18n="durability">Durabilidad</span>
             </div>
           </div>
         </div>
@@ -134,9 +150,9 @@
       <section class="section services-section" id="servicios">
         <div class="section-inner">
           <div class="section-heading reveal">
-            <span class="eyebrow">Servicios</span>
-            <h2>Soluciones completas para superficies residenciales y comerciales.</h2>
-            <p>
+            <span class="eyebrow" data-i18n="servicesEyebrow">Servicios</span>
+            <h2 data-i18n="servicesTitle">Soluciones completas para superficies residenciales y comerciales.</h2>
+            <p data-i18n="servicesIntro">
               Ofrecemos fabricación, diseño e instalación con materiales seleccionados para trabajos que requieren
               presencia, resistencia y acabado premium.
             </p>
@@ -147,48 +163,48 @@
               <span class="service-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M4 5h16v7H4z"></path><path d="M7 12v7"></path><path d="M17 12v7"></path><path d="M4 19h16"></path></svg>
               </span>
-              <h3>Mármol y granito para cocinas y baños</h3>
-              <p>Superficies naturales con carácter, brillo elegante y resistencia para espacios de uso diario.</p>
+              <h3 data-i18n="service1Title">Mármol y granito para cocinas y baños</h3>
+              <p data-i18n="service1Text">Superficies naturales con carácter, brillo elegante y resistencia para espacios de uso diario.</p>
             </article>
 
             <article class="service-card tilt-card reveal" data-tilt>
               <span class="service-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M5 8h14l2 4-9 8-9-8z"></path><path d="M8 8l4 12 4-12"></path><path d="M3 12h18"></path></svg>
               </span>
-              <h3>Topes de cuarzo y porcelana</h3>
-              <p>Topes modernos, uniformes y fáciles de mantener para cocinas, baños y áreas de trabajo.</p>
+              <h3 data-i18n="service2Title">Topes de cuarzo y porcelana</h3>
+              <p data-i18n="service2Text">Topes modernos, uniformes y fáciles de mantener para cocinas, baños y áreas de trabajo.</p>
             </article>
 
             <article class="service-card tilt-card reveal" data-tilt>
               <span class="service-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M4 19h16"></path><path d="M6 15h12"></path><path d="M8 11h8"></path><path d="M10 7h4"></path></svg>
               </span>
-              <h3>Pisos, paredes y escaleras en piedra natural</h3>
-              <p>Revestimientos resistentes y expresivos para crear continuidad visual y valor arquitectónico.</p>
+              <h3 data-i18n="service3Title">Pisos, paredes y escaleras en piedra natural</h3>
+              <p data-i18n="service3Text">Revestimientos resistentes y expresivos para crear continuidad visual y valor arquitectónico.</p>
             </article>
 
             <article class="service-card tilt-card reveal" data-tilt>
               <span class="service-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M4 20L20 4"></path><path d="M4 4h8v8H4z"></path><path d="M12 12h8v8h-8z"></path></svg>
               </span>
-              <h3>Corte y fabricación a la medida</h3>
-              <p>Piezas trabajadas con precisión para lograr cortes, formas, cantos y acabados personalizados.</p>
+              <h3 data-i18n="service4Title">Corte y fabricación a la medida</h3>
+              <p data-i18n="service4Text">Piezas trabajadas con precisión para lograr cortes, formas, cantos y acabados personalizados.</p>
             </article>
 
             <article class="service-card tilt-card reveal" data-tilt>
               <span class="service-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M14 4l6 6"></path><path d="M5 19l9-9 2 2-9 9H5z"></path><path d="M4 8l4-4 3 3-4 4z"></path></svg>
               </span>
-              <h3>Instalación profesional</h3>
-              <p>Montaje limpio, cuidadoso y orientado a resultados sólidos, duraderos y visualmente impecables.</p>
+              <h3 data-i18n="service5Title">Instalación profesional</h3>
+              <p data-i18n="service5Text">Montaje limpio, cuidadoso y orientado a resultados sólidos, duraderos y visualmente impecables.</p>
             </article>
 
             <article class="service-card tilt-card reveal" data-tilt>
               <span class="service-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"></path><path d="M4 10h16"></path><path d="M9 10v9"></path><path d="M15 10v9"></path></svg>
               </span>
-              <h3>Diseño de superficies para hogares y negocios</h3>
-              <p>Propuestas funcionales y elegantes adaptadas al estilo, uso y necesidades de cada proyecto.</p>
+              <h3 data-i18n="service6Title">Diseño de superficies para hogares y negocios</h3>
+              <p data-i18n="service6Text">Propuestas funcionales y elegantes adaptadas al estilo, uso y necesidades de cada proyecto.</p>
             </article>
           </div>
         </div>
@@ -197,35 +213,35 @@
       <section class="section process-section" id="proceso">
         <div class="section-inner">
           <div class="section-heading reveal">
-            <span class="eyebrow">Proceso de trabajo</span>
-            <h2>Una experiencia clara desde la idea inicial hasta la instalación final.</h2>
+            <span class="eyebrow" data-i18n="processEyebrow">Proceso de trabajo</span>
+            <h2 data-i18n="processTitle">Una experiencia clara desde la idea inicial hasta la instalación final.</h2>
           </div>
 
           <div class="process-track">
             <article class="process-step reveal">
               <span>01</span>
-              <h3>Consulta inicial</h3>
-              <p>Escuchamos las ideas del cliente y evaluamos las necesidades del proyecto.</p>
+              <h3 data-i18n="step1Title">Consulta inicial</h3>
+              <p data-i18n="step1Text">Escuchamos las ideas del cliente y evaluamos las necesidades del proyecto.</p>
             </article>
             <article class="process-step reveal">
               <span>02</span>
-              <h3>Selección de material</h3>
-              <p>Ayudamos a escoger entre mármol, granito, cuarzo, porcelana o piedra natural según el estilo y uso.</p>
+              <h3 data-i18n="step2Title">Selección de material</h3>
+              <p data-i18n="step2Text">Ayudamos a escoger entre mármol, granito, cuarzo, porcelana o piedra natural según el estilo y uso.</p>
             </article>
             <article class="process-step reveal">
               <span>03</span>
-              <h3>Medidas y fabricación</h3>
-              <p>Trabajamos cada pieza con precisión para lograr cortes, formas y acabados a la medida.</p>
+              <h3 data-i18n="step3Title">Medidas y fabricación</h3>
+              <p data-i18n="step3Text">Trabajamos cada pieza con precisión para lograr cortes, formas y acabados a la medida.</p>
             </article>
             <article class="process-step reveal">
               <span>04</span>
-              <h3>Instalación final</h3>
-              <p>Instalamos con cuidado profesional para asegurar un resultado resistente, limpio y elegante.</p>
+              <h3 data-i18n="step4Title">Instalación final</h3>
+              <p data-i18n="step4Text">Instalamos con cuidado profesional para asegurar un resultado resistente, limpio y elegante.</p>
             </article>
             <article class="process-step reveal">
               <span>05</span>
-              <h3>Resultado premium</h3>
-              <p>Entregamos espacios modernos, funcionales y duraderos con acabado de alta calidad.</p>
+              <h3 data-i18n="step5Title">Resultado premium</h3>
+              <p data-i18n="step5Text">Entregamos espacios modernos, funcionales y duraderos con acabado de alta calidad.</p>
             </article>
           </div>
         </div>
@@ -234,39 +250,39 @@
       <section class="section materials-section" id="materiales">
         <div class="section-inner">
           <div class="section-heading reveal">
-            <span class="eyebrow">Materiales</span>
-            <h2>Texturas naturales, acabados precisos y presencia arquitectónica.</h2>
+            <span class="eyebrow" data-i18n="materialsEyebrow">Materiales</span>
+            <h2 data-i18n="materialsTitle">Texturas naturales, acabados precisos y presencia arquitectónica.</h2>
           </div>
 
           <div class="material-grid">
             <article class="material-card reveal" style="--image: url('assets/material-marble.png')">
               <div>
-                <h3>Mármol</h3>
-                <p>Elegante, natural y sofisticado. Ideal para espacios con presencia premium.</p>
+                <h3 data-i18n="material1Title">Mármol</h3>
+                <p data-i18n="material1Text">Elegante, natural y sofisticado. Ideal para espacios con presencia premium.</p>
               </div>
             </article>
             <article class="material-card reveal" style="--image: url('assets/material-granite.png')">
               <div>
-                <h3>Granito</h3>
-                <p>Resistente, duradero y perfecto para cocinas, baños y superficies de alto uso.</p>
+                <h3 data-i18n="material2Title">Granito</h3>
+                <p data-i18n="material2Text">Resistente, duradero y perfecto para cocinas, baños y superficies de alto uso.</p>
               </div>
             </article>
             <article class="material-card reveal" style="--image: url('assets/material-quartz.png')">
               <div>
-                <h3>Cuarzo</h3>
-                <p>Moderno, uniforme y fácil de mantener. Excelente para topes contemporáneos.</p>
+                <h3 data-i18n="material3Title">Cuarzo</h3>
+                <p data-i18n="material3Text">Moderno, uniforme y fácil de mantener. Excelente para topes contemporáneos.</p>
               </div>
             </article>
             <article class="material-card reveal" style="--image: url('assets/material-porcelain.png')">
               <div>
-                <h3>Porcelana</h3>
-                <p>Versátil, elegante y resistente. Ideal para diseños modernos.</p>
+                <h3 data-i18n="material4Title">Porcelana</h3>
+                <p data-i18n="material4Text">Versátil, elegante y resistente. Ideal para diseños modernos.</p>
               </div>
             </article>
             <article class="material-card reveal material-card-wide" style="--image: url('assets/material-natural-stone.png')">
               <div>
-                <h3>Piedras naturales</h3>
-                <p>Texturas únicas, belleza natural y acabados personalizados para resultados con identidad propia.</p>
+                <h3 data-i18n="material5Title">Piedras naturales</h3>
+                <p data-i18n="material5Text">Texturas únicas, belleza natural y acabados personalizados para resultados con identidad propia.</p>
               </div>
             </article>
           </div>
@@ -276,9 +292,9 @@
       <section class="section workshop-section" id="taller">
         <div class="section-inner workshop-grid">
           <div class="workshop-copy reveal">
-            <span class="eyebrow">Conoce nuestro taller</span>
-            <h2>Fabricación precisa, pulido profesional y tecnología para piezas a la medida.</h2>
-            <p>
+            <span class="eyebrow" data-i18n="workshopEyebrow">Conoce nuestro taller</span>
+            <h2 data-i18n="workshopTitle">Fabricación precisa, pulido profesional y tecnología para piezas a la medida.</h2>
+            <p data-i18n="workshopText">
               Somos uno de los pocos talleres especializados donde se cortan piezas, se pulen superficies, se trabaja
               con medición láser y se cuida cada detalle desde la plantilla inicial hasta el acabado final. Nuestro
               proceso combina maquinaria, experiencia artesanal y control profesional para lograr piezas limpias,
@@ -286,7 +302,7 @@
             </p>
           </div>
 
-          <div class="workshop-gallery" aria-label="Fotos del taller">
+          <div class="workshop-gallery" aria-label="Fotos del taller" data-i18n-aria="workshopGallery">
             <figure class="workshop-photo workshop-photo-large reveal">
               <img src="assets/taller1" alt="" loading="lazy" decoding="async" />
             </figure>
@@ -315,9 +331,9 @@
       <section class="section mission-section">
         <div class="section-inner mission-inner reveal">
           <div class="mission-card glass-panel">
-            <span class="eyebrow">Misión</span>
-            <h2>Nuestra misión es ofrecer calidad, confianza y elegancia en cada proyecto.</h2>
-            <p>
+            <span class="eyebrow" data-i18n="missionEyebrow">Misión</span>
+            <h2 data-i18n="missionTitle">Nuestra misión es ofrecer calidad, confianza y elegancia en cada proyecto.</h2>
+            <p data-i18n="missionText">
               En Tecno Mármol, Inc. ayudamos a cada cliente a mejorar sus espacios con productos resistentes, estéticos y
               adaptados a sus necesidades. Combinamos experiencia, precisión y diseño para crear superficies modernas,
               duraderas y funcionales.
@@ -328,15 +344,15 @@
 
       <section class="section final-cta" id="contacto">
         <div class="section-inner cta-inner reveal">
-          <span class="eyebrow">Cotización</span>
-          <h2>¿Listo para transformar tu espacio?</h2>
-          <p>
+          <span class="eyebrow" data-i18n="quoteEyebrow">Cotización</span>
+          <h2 data-i18n="quoteTitle">¿Listo para transformar tu espacio?</h2>
+          <p data-i18n="quoteText">
             Solicita una cotización y descubre cómo Tecno Mármol, Inc puede ayudarte a crear superficies modernas,
             resistentes y con acabado premium.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="mailto:info@tecnomarmolpr.com?subject=Cotización%20para%20proyecto">Contactar ahora</a>
-            <a class="btn btn-ghost" href="#servicios">Ver servicios</a>
+            <a class="btn btn-primary" href="mailto:info@tecnomarmolpr.com?subject=Cotización%20para%20proyecto" data-i18n="contactNow" data-i18n-href="quoteEmail">Contactar ahora</a>
+            <a class="btn btn-ghost" href="#servicios" data-i18n="viewServices">Ver servicios</a>
           </div>
         </div>
       </section>
@@ -351,34 +367,34 @@
             </span>
             <span class="brand-name">Tecno Mármol, Inc</span>
           </a>
-          <p>
+          <p data-i18n="footerDescription">
             Soluciones premium en mármol, granito, cuarzo, porcelana y piedras naturales para espacios residenciales y
             comerciales.
           </p>
         </div>
         <div class="footer-column">
-          <h3>Servicios</h3>
-          <a href="#servicios">Cocinas y baños</a>
-          <a href="#servicios">Topes a la medida</a>
-          <a href="#servicios">Instalación profesional</a>
+          <h3 data-i18n="footerServicesTitle">Servicios</h3>
+          <a href="#servicios" data-i18n="footerService1">Cocinas y baños</a>
+          <a href="#servicios" data-i18n="footerService2">Topes a la medida</a>
+          <a href="#servicios" data-i18n="footerService3">Instalación profesional</a>
         </div>
         <div class="footer-column">
-          <h3>Contacto</h3>
+          <h3 data-i18n="footerContactTitle">Contacto</h3>
           <a href="mailto:info@tecnomarmolpr.com">info@tecnomarmolpr.com</a>
           <a href="tel:+10000000000">(000) 000-0000</a>
-          <span>Servicio por cita</span>
+          <span data-i18n="appointmentOnly">Servicio por cita</span>
         </div>
         <div class="footer-column">
-          <h3>Redes sociales</h3>
+          <h3 data-i18n="footerSocialTitle">Redes sociales</h3>
           <div class="social-links">
             <a href="#" aria-label="Instagram">
-              <i class="fa-brands fa-instagram" style="color: rgb(233, 209, 154);"></i>
+              <i class="fa-brands fa-instagram" style="color: rgb(216, 96, 24);"></i>
             </a>
             <a href="#" aria-label="Facebook">
-              <i class="fa-brands fa-facebook" style="color: rgb(233, 209, 154);"></i>
+              <i class="fa-brands fa-facebook" style="color: rgb(216, 96, 24);"></i>
             </a>
             <a href="#" aria-label="WhatsApp">
-              <i class="fa-brands fa-whatsapp" style="color: rgb(233, 209, 154);"></i>
+              <i class="fa-brands fa-whatsapp" style="color: rgb(216, 96, 24);"></i>
             </a>
           </div>
         </div>
@@ -386,7 +402,7 @@
       <div class="footer-bottom">
         <div class="section-inner footer-bottom-inner">
           <span>© <span id="year"></span></span>
-          <span>Tecno Mármol, Inc. Derechos reservados.</span>
+          <span data-i18n="rights">Tecno Mármol, Inc. Derechos reservados.</span>
         </div>
       </div>
     </footer>
