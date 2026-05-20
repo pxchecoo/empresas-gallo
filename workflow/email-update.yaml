@@ -1,0 +1,38 @@
+name: Send Update Email
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.mail.me.com
+          server_port: 587
+          secure: true
+
+          username: pxcheco@pxwebshop.com
+          password: ${{ secrets.ICLOUD_APP_PASSWORD }}
+
+          from: PXWebShop <pxcheco@pxwebshop.com>
+          to: pachecofabian764@gmail.com
+
+          subject: 🚀 Update completado
+
+          body: |
+            Se completo un update.
+
+            Repo:
+            ${{ github.repository }}
+
+            Commit:
+            ${{ github.event.head_commit.message }}
+
+            Autor:
+            ${{ github.actor }}
