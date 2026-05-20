@@ -7,8 +7,11 @@
   --line: rgba(255, 255, 255, 0.12);
   --glass: rgba(255, 255, 255, 0.08);
   --glass-strong: rgba(255, 255, 255, 0.13);
-  --gold: #d6b470;
-  --gold-soft: #f0d9a4;
+  --pantone-1595c: #d86018;
+  --gold: var(--pantone-1595c);
+  --gold-soft: #ff8a3d;
+  --gold-pale: #ffb56b;
+  --gold-deep: #8f360e;
   --charcoal: #171514;
   --shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
   --shadow-soft: 0 18px 44px rgba(0, 0, 0, 0.32);
@@ -38,6 +41,109 @@ body {
   overflow-x: hidden;
 }
 
+body.language-pending {
+  overflow: hidden;
+}
+
+body.language-pending .site-header,
+body.language-pending main,
+body.language-pending .site-footer {
+  pointer-events: none;
+  user-select: none;
+}
+
+.language-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(216, 96, 24, 0.18), transparent 34%),
+    linear-gradient(180deg, rgba(5, 5, 4, 0.82), rgba(5, 5, 4, 0.96));
+  backdrop-filter: blur(18px);
+  opacity: 1;
+  transition: opacity 520ms var(--ease-premium), visibility 520ms var(--ease-premium);
+}
+
+.language-gate.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.language-panel {
+  position: relative;
+  width: min(520px, 100%);
+  overflow: hidden;
+  padding: 38px;
+  border: 1px solid rgba(216, 96, 24, 0.34);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.045)),
+    rgba(10, 9, 8, 0.88);
+  box-shadow: 0 36px 90px rgba(0, 0, 0, 0.58), 0 0 60px rgba(216, 96, 24, 0.12);
+  text-align: center;
+}
+
+.language-panel::before {
+  content: "";
+  position: absolute;
+  inset: -45% -20% auto;
+  height: 180px;
+  background: linear-gradient(90deg, transparent, rgba(216, 96, 24, 0.26), transparent);
+  transform: rotate(-8deg);
+  filter: blur(16px);
+}
+
+.language-kicker {
+  position: relative;
+  display: inline-flex;
+  margin-bottom: 18px;
+  color: var(--gold-pale);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+.language-panel h2 {
+  position: relative;
+  margin-bottom: 14px;
+  font-size: clamp(2.35rem, 8vw, 4.4rem);
+}
+
+.language-panel p {
+  position: relative;
+  max-width: 380px;
+  margin: 0 auto 26px;
+}
+
+.language-actions {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.language-option {
+  min-height: 52px;
+  border: 1px solid rgba(216, 96, 24, 0.46);
+  border-radius: var(--radius);
+  color: #fffaf0;
+  background: rgba(255, 255, 255, 0.075);
+  cursor: pointer;
+  font-weight: 800;
+  transition: transform 360ms var(--ease-premium), background 360ms var(--ease-premium), border-color 360ms var(--ease-premium);
+}
+
+.language-option:hover,
+.language-option:focus-visible {
+  border-color: rgba(255, 138, 61, 0.82);
+  background: rgba(216, 96, 24, 0.2);
+  transform: translateY(-2px);
+}
+
 main {
   overflow: hidden;
 }
@@ -48,7 +154,7 @@ body::before {
   inset: 0;
   z-index: -2;
   background:
-    linear-gradient(90deg, rgba(214, 180, 112, 0.04), transparent 35%, rgba(255, 255, 255, 0.035)),
+    linear-gradient(90deg, rgba(216, 96, 24, 0.04), transparent 35%, rgba(255, 255, 255, 0.035)),
     url("assets/material-natural-stone.png");
   background-size: cover;
   opacity: 0.13;
@@ -98,7 +204,7 @@ button {
 .site-header.is-scrolled {
   top: 10px;
   background: rgba(9, 8, 7, 0.84);
-  border-color: rgba(214, 180, 112, 0.22);
+  border-color: rgba(216, 96, 24, 0.22);
 }
 
 .brand {
@@ -120,13 +226,13 @@ button {
   border-radius: 999px;
   color: var(--gold-soft);
   background:
-    linear-gradient(135deg, rgba(255, 244, 214, 0.17), rgba(214, 180, 112, 0.04)),
+    linear-gradient(135deg, rgba(255, 225, 196, 0.17), rgba(216, 96, 24, 0.04)),
     rgba(11, 10, 9, 0.64);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.2),
     inset 0 -14px 24px rgba(0, 0, 0, 0.42),
     0 12px 30px rgba(0, 0, 0, 0.38),
-    0 0 24px rgba(214, 180, 112, 0.13);
+    0 0 24px rgba(216, 96, 24, 0.13);
   overflow: hidden;
 }
 
@@ -148,10 +254,10 @@ button {
   font-size: 1.08rem;
   font-weight: 800;
   letter-spacing: 0;
-  color: #ffe5a6;
+  color: var(--gold-pale);
   text-shadow:
     0 1px 0 rgba(0, 0, 0, 0.6),
-    0 0 12px rgba(214, 180, 112, 0.34);
+    0 0 12px rgba(216, 96, 24, 0.34);
   line-height: 1;
 }
 
@@ -191,8 +297,8 @@ button {
 .site-nav .nav-cta {
   margin-left: 4px;
   color: #11100e;
-  background: linear-gradient(135deg, #f6e4b6, #caa45e);
-  box-shadow: 0 12px 26px rgba(214, 180, 112, 0.24);
+  background: linear-gradient(135deg, var(--gold-pale), var(--gold));
+  box-shadow: 0 12px 26px rgba(216, 96, 24, 0.24);
 }
 
 .nav-toggle {
@@ -324,7 +430,7 @@ p {
   height: 28%;
   border-radius: 999px;
   background:
-    linear-gradient(90deg, transparent, rgba(214, 180, 112, 0.16), rgba(255, 102, 18, 0.12), transparent);
+    linear-gradient(90deg, transparent, rgba(216, 96, 24, 0.16), rgba(255, 102, 18, 0.12), transparent);
   transform: rotate(-13deg);
   animation: auraDrift 13s var(--ease-premium) infinite alternate;
   mix-blend-mode: screen;
@@ -339,7 +445,7 @@ p {
   top: 44%;
   left: 8%;
   height: 34%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), rgba(214, 180, 112, 0.12), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), rgba(216, 96, 24, 0.12), transparent);
   animation-duration: 18s;
   animation-delay: -5s;
   transform: rotate(9deg);
@@ -368,7 +474,7 @@ p {
   inset: 0;
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.28), transparent 45%, rgba(0, 0, 0, 0.52)),
-    linear-gradient(120deg, rgba(214, 180, 112, 0.13), transparent 38%);
+    linear-gradient(120deg, rgba(216, 96, 24, 0.13), transparent 38%);
   pointer-events: none;
 }
 
@@ -441,14 +547,14 @@ p {
 
 .btn-primary {
   color: #11100e;
-  background: linear-gradient(135deg, #fff2c9 0%, #d6b470 54%, #a98442 100%);
-  border-color: rgba(255, 240, 194, 0.65);
-  box-shadow: 0 18px 38px rgba(214, 180, 112, 0.26);
+  background: linear-gradient(135deg, #ffbd82 0%, var(--gold) 54%, var(--gold-deep) 100%);
+  border-color: rgba(255, 172, 103, 0.65);
+  box-shadow: 0 18px 38px rgba(216, 96, 24, 0.26);
 }
 
 .btn-primary:hover,
 .btn-primary:focus-visible {
-  box-shadow: 0 24px 52px rgba(214, 180, 112, 0.34);
+  box-shadow: 0 24px 52px rgba(216, 96, 24, 0.34);
 }
 
 .btn-ghost {
@@ -459,7 +565,7 @@ p {
 
 .btn-ghost:hover,
 .btn-ghost:focus-visible {
-  border-color: rgba(214, 180, 112, 0.48);
+  border-color: rgba(216, 96, 24, 0.48);
   background: rgba(255, 255, 255, 0.12);
 }
 
@@ -527,7 +633,7 @@ p {
   display: block;
   border: 1px solid rgba(255, 255, 255, 0.22);
   background-image:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.03) 48%, rgba(214, 180, 112, 0.2)),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.03) 48%, rgba(216, 96, 24, 0.2)),
     url("assets/material-marble.png");
   background-size: cover;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
@@ -658,7 +764,7 @@ p {
   min-height: 42px;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(214, 180, 112, 0.2);
+  border: 1px solid rgba(216, 96, 24, 0.2);
   border-radius: 6px;
   color: #fffaf0;
   background: rgba(0, 0, 0, 0.22);
@@ -707,11 +813,11 @@ p {
 }
 
 .service-card:hover {
-  border-color: rgba(214, 180, 112, 0.36);
+  border-color: rgba(216, 96, 24, 0.36);
   background:
     linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.045)),
     rgba(255, 255, 255, 0.055);
-  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.46), 0 0 42px rgba(214, 180, 112, 0.08);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.46), 0 0 42px rgba(216, 96, 24, 0.08);
 }
 
 .service-card:hover::after {
@@ -728,10 +834,10 @@ p {
   display: grid;
   place-items: center;
   margin-bottom: 26px;
-  border: 1px solid rgba(214, 180, 112, 0.36);
+  border: 1px solid rgba(216, 96, 24, 0.36);
   border-radius: var(--radius);
   color: var(--gold-soft);
-  background: rgba(214, 180, 112, 0.08);
+  background: rgba(216, 96, 24, 0.08);
   transform: translateZ(34px);
 }
 
@@ -776,14 +882,14 @@ p {
   left: 7%;
   right: 7%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(214, 180, 112, 0.58), transparent);
+  background: linear-gradient(90deg, transparent, rgba(216, 96, 24, 0.58), transparent);
 }
 
 .process-step {
   position: relative;
   min-height: 270px;
   padding: 86px 20px 22px;
-  border-top: 1px solid rgba(214, 180, 112, 0.24);
+  border-top: 1px solid rgba(216, 96, 24, 0.24);
 }
 
 .process-step span {
@@ -794,11 +900,11 @@ p {
   height: 68px;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(214, 180, 112, 0.36);
+  border: 1px solid rgba(216, 96, 24, 0.36);
   border-radius: 50%;
   color: var(--gold-soft);
   background: rgba(7, 6, 5, 0.86);
-  box-shadow: 0 0 0 9px rgba(214, 180, 112, 0.05), var(--shadow-soft);
+  box-shadow: 0 0 0 9px rgba(216, 96, 24, 0.05), var(--shadow-soft);
   font-family: "Playfair Display", serif;
   font-size: 1.28rem;
   font-weight: 700;
@@ -875,7 +981,7 @@ p {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at 18% 12%, rgba(214, 180, 112, 0.16), transparent 34%),
+    radial-gradient(circle at 18% 12%, rgba(216, 96, 24, 0.16), transparent 34%),
     radial-gradient(circle at 82% 76%, rgba(255, 113, 28, 0.11), transparent 38%),
     linear-gradient(180deg, #080706, #11100e 46%, #070605);
 }
@@ -936,7 +1042,7 @@ p {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.11), rgba(214, 180, 112, 0.04)),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.11), rgba(216, 96, 24, 0.04)),
     url("assets/material-granite.png") center / cover no-repeat;
   box-shadow: 0 22px 48px rgba(0, 0, 0, 0.42);
   transform: translateZ(0) rotateX(0deg) rotateY(0deg);
@@ -948,7 +1054,7 @@ p {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 42%, rgba(214, 180, 112, 0.12));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 42%, rgba(216, 96, 24, 0.12));
   opacity: 0.5;
   transition: opacity 700ms var(--ease-premium);
 }
@@ -967,7 +1073,7 @@ p {
 }
 
 .workshop-photo:hover {
-  border-color: rgba(214, 180, 112, 0.32);
+  border-color: rgba(216, 96, 24, 0.32);
   box-shadow: 0 32px 70px rgba(0, 0, 0, 0.52);
   transform: translateY(-8px) rotateX(3deg) rotateY(-3deg);
 }
@@ -1033,7 +1139,7 @@ p {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, transparent 0%, rgba(214, 180, 112, 0.16) 44%, transparent 74%);
+  background: linear-gradient(120deg, transparent 0%, rgba(216, 96, 24, 0.16) 44%, transparent 74%);
   pointer-events: none;
 }
 
@@ -1129,8 +1235,8 @@ p {
 
 .social-links a:hover,
 .social-links a:focus-visible {
-  border-color: rgba(233, 209, 154, 0.45);
-  background: rgba(233, 209, 154, 0.09);
+  border-color: rgba(216, 96, 24, 0.45);
+  background: rgba(216, 96, 24, 0.09);
   transform: translateY(-2px);
 }
 
@@ -1257,7 +1363,7 @@ p {
     right: auto;
     width: 1px;
     height: auto;
-    background: linear-gradient(180deg, transparent, rgba(214, 180, 112, 0.58), transparent);
+    background: linear-gradient(180deg, transparent, rgba(216, 96, 24, 0.58), transparent);
   }
 
   .process-step {
