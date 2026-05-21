@@ -76,14 +76,26 @@
       materialsTitle: "Texturas naturales, acabados precisos y presencia arquitectónica.",
       material1Title: "Mármol",
       material1Text: "Elegante, natural y sofisticado. Ideal para espacios con presencia premium.",
+      material1Action: "Ver tipos",
+      openMarbleCollection: "Abrir tipos de mármol",
+      marbleModalClose: "Cerrar tipos de mármol",
+      marbleModalEyebrow: "Mármoles disponibles",
+      marbleModalTitle: "Tipos de mármol",
+      marbleModalIntro:
+        "Explora las opciones de mármol disponibles para cocinas, baños, paredes, pisos y piezas a la medida.",
       material2Title: "Granito",
       material2Text: "Resistente, duradero y perfecto para cocinas, baños y superficies de alto uso.",
       material3Title: "Cuarzo",
       material3Text: "Moderno, uniforme y fácil de mantener. Excelente para topes contemporáneos.",
+      material3Action: "Ver tipos",
+      openQuartzCollection: "Abrir tipos de cuarzo",
+      quartzModalClose: "Cerrar tipos de cuarzo",
+      quartzModalEyebrow: "Cuarzos disponibles",
+      quartzModalTitle: "Tipos de cuarzo",
+      quartzModalIntro:
+        "Explora las opciones de cuarzo disponibles para topes modernos, superficies resistentes y proyectos a la medida.",
       material4Title: "Porcelana",
       material4Text: "Versátil, elegante y resistente. Ideal para diseños modernos.",
-      material5Title: "Piedras naturales",
-      material5Text: "Texturas únicas, belleza natural y acabados personalizados para resultados con identidad propia.",
       paletteEyebrow: "Paletas de materiales",
       paletteTitle: "Panel de paletas para seleccionar acabados.",
       paletteIntro:
@@ -102,10 +114,6 @@
       workshopTitle: "Fabricación precisa, pulido profesional y tecnología para piezas a la medida.",
       workshopText:
         "Somos uno de los pocos talleres especializados donde se cortan piezas, se pulen superficies, se trabaja con medición láser y se cuida cada detalle desde la plantilla inicial hasta el acabado final. Nuestro proceso combina maquinaria, experiencia artesanal y control profesional para lograr piezas limpias, resistentes y listas para instalación.",
-      missionEyebrow: "Misión",
-      missionTitle: "Nuestra misión es ofrecer calidad, confianza y elegancia en cada proyecto.",
-      missionText:
-        "En TecnoMármol, Inc. ayudamos a cada cliente a mejorar sus espacios con productos resistentes, estéticos y adaptados a sus necesidades. Combinamos experiencia, precisión y diseño para crear superficies modernas, duraderas y funcionales.",
       quoteEyebrow: "Cotización",
       quoteTitle: "¿Listo para transformar tu espacio?",
       quoteText:
@@ -219,14 +227,26 @@
       materialsTitle: "Natural textures, precise finishes and architectural presence.",
       material1Title: "Marble",
       material1Text: "Elegant, natural and sophisticated. Ideal for spaces with premium presence.",
+      material1Action: "View types",
+      openMarbleCollection: "Open marble types",
+      marbleModalClose: "Close marble types",
+      marbleModalEyebrow: "Available marbles",
+      marbleModalTitle: "Marble types",
+      marbleModalIntro:
+        "Explore marble options available for kitchens, bathrooms, walls, floors and custom pieces.",
       material2Title: "Granite",
       material2Text: "Resistant, durable and perfect for kitchens, bathrooms and high-use surfaces.",
       material3Title: "Quartz",
       material3Text: "Modern, uniform and easy to maintain. Excellent for contemporary countertops.",
+      material3Action: "View types",
+      openQuartzCollection: "Open quartz types",
+      quartzModalClose: "Close quartz types",
+      quartzModalEyebrow: "Available quartz",
+      quartzModalTitle: "Quartz types",
+      quartzModalIntro:
+        "Explore quartz options available for modern countertops, resistant surfaces and custom projects.",
       material4Title: "Porcelain",
       material4Text: "Versatile, elegant and resistant. Ideal for modern designs.",
-      material5Title: "Natural stone",
-      material5Text: "Unique textures, natural beauty and custom finishes for results with their own identity.",
       paletteEyebrow: "Material palettes",
       paletteTitle: "A palette panel for selecting finishes.",
       paletteIntro:
@@ -245,10 +265,6 @@
       workshopTitle: "Precise fabrication, professional polishing and technology for custom pieces.",
       workshopText:
         "We are one of the few specialized workshops where pieces are cut, surfaces are polished, laser measurement is used and every detail is cared for from the initial template to the final finish. Our process combines machinery, craftsmanship and professional control to create clean, resistant pieces ready for installation.",
-      missionEyebrow: "Mission",
-      missionTitle: "Our mission is to deliver quality, trust and elegance in every project.",
-      missionText:
-        "At TecnoMármol, Inc. we help every client improve their spaces with resistant, aesthetic products adapted to their needs. We combine experience, precision and design to create modern, durable and functional surfaces.",
       quoteEyebrow: "Quote",
       quoteTitle: "Ready to transform your space?",
       quoteText:
@@ -376,6 +392,48 @@
 
   document.querySelectorAll(".palette-card[href='#']").forEach((link) => {
     link.addEventListener("click", (event) => event.preventDefault());
+  });
+
+  const materialModalOpenButtons = document.querySelectorAll("[data-material-modal-open]");
+  const materialModalCloseButtons = document.querySelectorAll("[data-material-modal-close]");
+  let materialLastFocusedElement = null;
+
+  const closeMaterialModal = (modal = document.querySelector(".material-modal.is-open")) => {
+    if (!modal || !modal.classList.contains("is-open")) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+    if (materialLastFocusedElement instanceof HTMLElement) {
+      materialLastFocusedElement.focus();
+    }
+  };
+
+  const openMaterialModal = (modal) => {
+    if (!modal) return;
+    closeMaterialModal();
+    materialLastFocusedElement = document.activeElement;
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+    modal.querySelector(".modal-close")?.focus();
+  };
+
+  materialModalOpenButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      openMaterialModal(document.querySelector(button.dataset.materialModalOpen));
+    });
+  });
+
+  materialModalCloseButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      closeMaterialModal(button.closest(".material-modal"));
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeMaterialModal();
+    }
   });
 
   // Keep workshop photo slots clean until the real image files are added.
