@@ -35,7 +35,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
     <link rel="preload" as="image" href="assets/hero-showroom.png" />
-    <link rel="stylesheet" href="style.css?v=13" />
+    <link rel="stylesheet" href="style.css?v=19" />
   </head>
   <body class="language-pending">
     <div class="language-gate" id="languageGate" role="dialog" aria-modal="true" aria-labelledby="languageTitle">
@@ -415,29 +415,43 @@
               proceso combina maquinaria, experiencia artesanal y control profesional para lograr piezas limpias,
               resistentes y listas para instalación.
             </p>
+            <div class="workshop-highlights">
+              <span data-i18n="workshopPoint1">Corte de piezas en máquina</span>
+              <span data-i18n="workshopPoint2">Pulido y brillo profesional</span>
+              <span data-i18n="workshopPoint3">Cantos y terminaciones a la medida</span>
+              <span data-i18n="workshopPoint4">Medición láser y control final</span>
+            </div>
+          </div>
+
+          <div class="workshop-video-card reveal" data-video-rotator data-parallax="0.04" aria-label="Videos del taller" data-i18n-aria="workshopVideoLabel">
+            <div class="workshop-video-frame">
+              <video class="workshop-video is-active" src="assets/videotaller1.mp4" muted playsinline preload="metadata"></video>
+              <video class="workshop-video" src="assets/videotaller2.mp4" muted playsinline preload="metadata"></video>
+              <video class="workshop-video" src="assets/videotaller3.mp4" muted playsinline preload="metadata"></video>
+              <video class="workshop-video" src="assets/videotaller4.mp4" muted playsinline preload="metadata"></video>
+              <div class="workshop-video-fallback" aria-hidden="true"></div>
+              <div class="workshop-video-meta">
+                <span data-i18n="workshopVideoEyebrow">Video del taller</span>
+                <strong data-i18n="workshopVideoTitle">Corte, pulido y acabado en movimiento</strong>
+              </div>
+              <div class="workshop-video-dots" aria-hidden="true">
+                <span class="is-active"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
           </div>
 
           <div class="workshop-gallery" aria-label="Fotos del taller" data-i18n-aria="workshopGallery">
-            <figure class="workshop-photo workshop-photo-large reveal">
-              <img src="assets/taller1" alt="" loading="lazy" decoding="async" />
+            <figure class="workshop-photo reveal">
+              <img src="assets/taller1.jpeg" alt="" loading="lazy" decoding="async" />
             </figure>
             <figure class="workshop-photo reveal">
-              <img src="assets/taller2" alt="" loading="lazy" decoding="async" />
+              <img src="assets/taller2.jpeg" alt="" loading="lazy" decoding="async" />
             </figure>
             <figure class="workshop-photo reveal">
-              <img src="assets/taller3" alt="" loading="lazy" decoding="async" />
-            </figure>
-            <figure class="workshop-photo workshop-photo-tall reveal">
-              <img src="assets/taller4" alt="" loading="lazy" decoding="async" />
-            </figure>
-            <figure class="workshop-photo reveal">
-              <img src="assets/taller5" alt="" loading="lazy" decoding="async" />
-            </figure>
-            <figure class="workshop-photo reveal">
-              <img src="assets/taller6" alt="" loading="lazy" decoding="async" />
-            </figure>
-            <figure class="workshop-photo workshop-photo-wide reveal">
-              <img src="assets/taller7" alt="" loading="lazy" decoding="async" />
+              <img src="assets/taller3.jpeg" alt="" loading="lazy" decoding="async" />
             </figure>
           </div>
         </div>
@@ -597,6 +611,6 @@
       </div>
     </footer>
 
-    <script src="script.js?v=8"></script>
+    <script src="script.js?v=10"></script>
   </body>
 </html>
