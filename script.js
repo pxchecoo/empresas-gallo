@@ -119,7 +119,12 @@
       formDetailsPlaceholder:
         "Medidas, material deseado, ubicación, tiempo estimado y cualquier detalle importante.",
       formPlans: "Planos o referencias",
-      formPlansHelp: "Puedes adjuntar varios archivos PDF, imágenes o planos. Límite total recomendado: 10MB.",
+      formPlan1: "Archivo 1",
+      formPlan2: "Archivo 2",
+      formPlan3: "Archivo 3",
+      formPlan4: "Archivo 4",
+      formPlan5: "Archivo 5",
+      formPlansHelp: "Puedes adjuntar hasta 5 archivos PDF, imágenes o planos. Límite total recomendado: 10MB.",
       formSend: "Send",
       footerDescription:
         "Soluciones premium en mármol, granito, cuarzo, porcelana y piedras naturales para espacios residenciales y comerciales.",
@@ -243,7 +248,12 @@
       formDetailsPlaceholder:
         "Measurements, desired material, location, estimated timeline and any important details.",
       formPlans: "Plans or references",
-      formPlansHelp: "You may attach multiple PDF, image or plan files. Recommended total limit: 10MB.",
+      formPlan1: "File 1",
+      formPlan2: "File 2",
+      formPlan3: "File 3",
+      formPlan4: "File 4",
+      formPlan5: "File 5",
+      formPlansHelp: "You may attach up to 5 PDF, image or plan files. Recommended total limit: 10MB.",
       formSend: "Send",
       footerDescription:
         "Premium marble, granite, quartz, porcelain and natural stone solutions for residential and commercial spaces.",
