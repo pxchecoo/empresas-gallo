@@ -1252,10 +1252,6 @@ p {
   box-shadow: 0 0 0 4px rgba(216, 96, 24, 0.12);
 }
 
-.file-field input {
-  padding: 13px 14px;
-}
-
 .file-field {
   display: grid;
   gap: 10px;
@@ -1267,10 +1263,61 @@ p {
   font-weight: 800;
 }
 
-.file-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.quote-form .file-picker {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
   gap: 12px;
+  width: 100%;
+  min-width: 0;
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: var(--radius);
+  background: rgba(7, 6, 5, 0.72);
+  cursor: pointer;
+  transition: border-color 240ms ease, background 240ms ease, box-shadow 240ms ease;
+}
+
+.quote-form .file-picker:hover,
+.quote-form .file-picker:focus-within {
+  border-color: rgba(216, 96, 24, 0.64);
+  background: rgba(7, 6, 5, 0.88);
+  box-shadow: 0 0 0 4px rgba(216, 96, 24, 0.12);
+}
+
+.quote-form .file-picker input,
+.file-slots {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.quote-form .file-picker-button {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 6px;
+  color: #11100e;
+  background: linear-gradient(135deg, #ffbd82, var(--gold));
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.quote-form .file-picker-text {
+  min-width: 0;
+  overflow: hidden;
+  color: rgba(247, 243, 234, 0.74);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .file-field small {
@@ -1731,9 +1778,6 @@ p {
     grid-template-columns: 1fr;
   }
 
-  .file-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 480px) {
@@ -1812,6 +1856,20 @@ p {
 
   .form-submit {
     width: 100%;
+  }
+
+  .quote-form .file-picker {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .quote-form .file-picker-button {
+    width: 100%;
+  }
+
+  .quote-form .file-picker-text {
+    width: 100%;
+    text-align: center;
   }
 
 }
