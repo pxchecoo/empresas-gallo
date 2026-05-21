@@ -35,7 +35,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
     <link rel="preload" as="image" href="assets/hero-showroom.png" />
-    <link rel="stylesheet" href="style.css?v=7" />
+    <link rel="stylesheet" href="style.css?v=13" />
   </head>
   <body class="language-pending">
     <div class="language-gate" id="languageGate" role="dialog" aria-modal="true" aria-labelledby="languageTitle">
@@ -262,39 +262,111 @@
           </div>
 
           <div class="material-grid">
-            <article class="material-card reveal" style="--image: url('assets/material-marble.png')">
+            <button class="material-card material-trigger reveal" type="button" style="--image: url('assets/material-marble.png')" data-material-modal-open="#marbleModal" aria-controls="marbleModal" data-i18n-aria="openMarbleCollection">
               <div>
                 <h3 data-i18n="material1Title">Mármol</h3>
                 <p data-i18n="material1Text">Elegante, natural y sofisticado. Ideal para espacios con presencia premium.</p>
+                <span class="material-card-action" data-i18n="material1Action">Ver tipos</span>
               </div>
-            </article>
-            <article class="material-card reveal" style="--image: url('assets/material-granite.png')">
-              <div>
-                <h3 data-i18n="material2Title">Granito</h3>
-                <p data-i18n="material2Text">Resistente, duradero y perfecto para cocinas, baños y superficies de alto uso.</p>
-              </div>
-            </article>
-            <article class="material-card reveal" style="--image: url('assets/material-quartz.png')">
+            </button>
+            <button class="material-card material-trigger reveal" type="button" style="--image: url('assets/material-quartz.png')" data-material-modal-open="#quartzModal" aria-controls="quartzModal" data-i18n-aria="openQuartzCollection">
               <div>
                 <h3 data-i18n="material3Title">Cuarzo</h3>
                 <p data-i18n="material3Text">Moderno, uniforme y fácil de mantener. Excelente para topes contemporáneos.</p>
+                <span class="material-card-action" data-i18n="material3Action">Ver tipos</span>
               </div>
-            </article>
+            </button>
             <article class="material-card reveal" style="--image: url('assets/material-porcelain.png')">
               <div>
                 <h3 data-i18n="material4Title">Porcelana</h3>
                 <p data-i18n="material4Text">Versátil, elegante y resistente. Ideal para diseños modernos.</p>
               </div>
             </article>
-            <article class="material-card reveal material-card-wide" style="--image: url('assets/material-natural-stone.png')">
-              <div>
-                <h3 data-i18n="material5Title">Piedras naturales</h3>
-                <p data-i18n="material5Text">Texturas únicas, belleza natural y acabados personalizados para resultados con identidad propia.</p>
-              </div>
-            </article>
           </div>
         </div>
       </section>
+
+      <div class="material-modal" id="marbleModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="marbleModalTitle">
+        <button class="material-modal-backdrop" type="button" data-material-modal-close data-i18n-aria="marbleModalClose"></button>
+        <div class="material-modal-panel" role="document" style="--sample-fallback: url('assets/material-marble.png')">
+          <button class="modal-close" type="button" data-material-modal-close data-i18n-aria="marbleModalClose">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+          <span class="eyebrow" data-i18n="marbleModalEyebrow">Mármoles disponibles</span>
+          <h2 id="marbleModalTitle" data-i18n="marbleModalTitle">Tipos de mármol</h2>
+          <p data-i18n="marbleModalIntro">
+            Explora las opciones de mármol disponibles para cocinas, baños, paredes, pisos y piezas a la medida.
+          </p>
+
+          <div class="marble-types-grid">
+            <article class="marble-type-card" style="--marble-image: url('assets/Blanco Carrara.jpg')" aria-label="Blanco Carrara">
+              <span>Blanco Carrara</span>
+            </article>
+            <article class="marble-type-card" style="--marble-image: url('assets/Fior Di Pesco.jpg')" aria-label="Fior Di Pesco">
+              <span>Fior Di Pesco</span>
+            </article>
+            <article class="marble-type-card" style="--marble-image: url('assets/Marron Emperador.jpg')" aria-label="Marron Emperador">
+              <span>Marron Emperador</span>
+            </article>
+            <article class="marble-type-card" style="--marble-image: url('assets/Onix Verde.jpg')" aria-label="Onix Verde">
+              <span>Onix Verde</span>
+            </article>
+            <article class="marble-type-card" style="--marble-image: url('assets/Tarvertino Romano.jpg')" aria-label="Tarvertino Romano">
+              <span>Tarvertino Romano</span>
+            </article>
+            <article class="marble-type-card" style="--marble-image: url('assets/thumb-forest-green-orizz.jpg')" aria-label="Forest Green Orizz">
+              <span>Forest Green Orizz</span>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="material-modal" id="quartzModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="quartzModalTitle">
+        <button class="material-modal-backdrop" type="button" data-material-modal-close data-i18n-aria="quartzModalClose"></button>
+        <div class="material-modal-panel" role="document" style="--sample-fallback: url('assets/material-quartz.png')">
+          <button class="modal-close" type="button" data-material-modal-close data-i18n-aria="quartzModalClose">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+          <span class="eyebrow" data-i18n="quartzModalEyebrow">Cuarzos disponibles</span>
+          <h2 id="quartzModalTitle" data-i18n="quartzModalTitle">Tipos de cuarzo</h2>
+          <p data-i18n="quartzModalIntro">
+            Explora las opciones de cuarzo disponibles para topes modernos, superficies resistentes y proyectos a la medida.
+          </p>
+
+          <div class="marble-types-grid">
+            <article class="marble-type-card" style="--marble-image: url('assets/Vega.jpg')" aria-label="Vega">
+              <span>Vega</span>
+            </article>
+            <article class="marble-type-card" style="--marble-image: url('assets/Vermont.jpg')" aria-label="Vermont">
+              <span>Vermont</span>
+            </article>
+            <article class="marble-type-card" style="--marble-image: url('assets/Bianco Stardust.jpg')" aria-label="Bianco Stardust">
+              <span>Bianco Stardust</span>
+            </article>
+            <article class="marble-type-card" style="--marble-image: url('assets/Carnia.jpg')" aria-label="Carnia">
+              <span>Carnia</span>
+            </article>
+            <article class="marble-type-card" style="--marble-image: url('assets/Elba.jpg')" aria-label="Elba">
+              <span>Elba</span>
+            </article>
+            <article class="marble-type-card" style="--marble-image: url('assets/Grecale.jpg')" aria-label="Grecale">
+              <span>Grecale</span>
+            </article>
+            <article class="marble-type-card" style="--marble-image: url('assets/Maui.jpg')" aria-label="Maui">
+              <span>Maui</span>
+            </article>
+            <article class="marble-type-card" style="--marble-image: url('assets/Nero Stardust.jpg')" aria-label="Nero Stardust">
+              <span>Nero Stardust</span>
+            </article>
+            <article class="marble-type-card" style="--marble-image: url('assets/Silver.jpg')" aria-label="Silver">
+              <span>Silver</span>
+            </article>
+            <article class="marble-type-card" style="--marble-image: url('assets/Tago.jpg')" aria-label="Tago">
+              <span>Tago</span>
+            </article>
+          </div>
+        </div>
+      </div>
 
       <section class="section palette-section" id="paletas">
         <div class="section-inner">
@@ -367,20 +439,6 @@
             <figure class="workshop-photo workshop-photo-wide reveal">
               <img src="assets/taller7" alt="" loading="lazy" decoding="async" />
             </figure>
-          </div>
-        </div>
-      </section>
-
-      <section class="section mission-section">
-        <div class="section-inner mission-inner reveal">
-          <div class="mission-card glass-panel">
-            <span class="eyebrow" data-i18n="missionEyebrow">Misión</span>
-            <h2 data-i18n="missionTitle">Nuestra misión es ofrecer calidad, confianza y elegancia en cada proyecto.</h2>
-            <p data-i18n="missionText">
-              En TecnoMármol, Inc. ayudamos a cada cliente a mejorar sus espacios con productos resistentes, estéticos y
-              adaptados a sus necesidades. Combinamos experiencia, precisión y diseño para crear superficies modernas,
-              duraderas y funcionales.
-            </p>
           </div>
         </div>
       </section>
@@ -539,6 +597,6 @@
       </div>
     </footer>
 
-    <script src="script.js?v=4"></script>
+    <script src="script.js?v=8"></script>
   </body>
 </html>
