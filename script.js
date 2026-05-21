@@ -114,6 +114,13 @@
       workshopTitle: "Fabricación precisa, pulido profesional y tecnología para piezas a la medida.",
       workshopText:
         "Somos uno de los pocos talleres especializados donde se cortan piezas, se pulen superficies, se trabaja con medición láser y se cuida cada detalle desde la plantilla inicial hasta el acabado final. Nuestro proceso combina maquinaria, experiencia artesanal y control profesional para lograr piezas limpias, resistentes y listas para instalación.",
+      workshopPoint1: "Corte de piezas en máquina",
+      workshopPoint2: "Pulido y brillo profesional",
+      workshopPoint3: "Cantos y terminaciones a la medida",
+      workshopPoint4: "Medición láser y control final",
+      workshopVideoLabel: "Videos del taller",
+      workshopVideoEyebrow: "Video del taller",
+      workshopVideoTitle: "Corte, pulido y acabado en movimiento",
       quoteEyebrow: "Cotización",
       quoteTitle: "¿Listo para transformar tu espacio?",
       quoteText:
@@ -265,6 +272,13 @@
       workshopTitle: "Precise fabrication, professional polishing and technology for custom pieces.",
       workshopText:
         "We are one of the few specialized workshops where pieces are cut, surfaces are polished, laser measurement is used and every detail is cared for from the initial template to the final finish. Our process combines machinery, craftsmanship and professional control to create clean, resistant pieces ready for installation.",
+      workshopPoint1: "Machine cutting for custom pieces",
+      workshopPoint2: "Professional polishing and shine",
+      workshopPoint3: "Custom edges and finishing",
+      workshopPoint4: "Laser measurement and final control",
+      workshopVideoLabel: "Workshop videos",
+      workshopVideoEyebrow: "Workshop video",
+      workshopVideoTitle: "Cutting, polishing and finishing in motion",
       quoteEyebrow: "Quote",
       quoteTitle: "Ready to transform your space?",
       quoteText:
@@ -434,6 +448,72 @@
     if (event.key === "Escape") {
       closeMaterialModal();
     }
+  });
+
+  document.querySelectorAll("[data-video-rotator]").forEach((rotator) => {
+    const videos = [...rotator.querySelectorAll(".workshop-video")];
+    const dots = [...rotator.querySelectorAll(".workshop-video-dots span")];
+    let activeIndex = 0;
+    let rotationTimer = null;
+
+    const availableVideos = () => videos.filter((video) => !video.dataset.failed);
+
+    const setActiveVideo = (index) => {
+      const available = availableVideos();
+      if (!available.length) {
+        rotator.classList.add("has-no-videos");
+        videos.forEach((video) => {
+          video.classList.remove("is-active");
+          video.pause();
+        });
+        dots.forEach((dot) => dot.classList.remove("is-active"));
+        return;
+      }
+
+      activeIndex = ((index % videos.length) + videos.length) % videos.length;
+      let guard = 0;
+      while (videos[activeIndex]?.dataset.failed && guard < videos.length) {
+        activeIndex = (activeIndex + 1) % videos.length;
+        guard += 1;
+      }
+
+      videos.forEach((video, videoIndex) => {
+        const isActive = videoIndex === activeIndex && !video.dataset.failed;
+        video.classList.toggle("is-active", isActive);
+        if (isActive) {
+          video.currentTime = 0;
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+
+      dots.forEach((dot, dotIndex) => {
+        dot.classList.toggle("is-active", dotIndex === activeIndex);
+      });
+    };
+
+    videos.forEach((video, index) => {
+      video.addEventListener("error", () => {
+        video.dataset.failed = "true";
+        video.classList.add("is-missing");
+        if (index === activeIndex) setActiveVideo(activeIndex + 1);
+      });
+
+      video.addEventListener("ended", () => {
+        setActiveVideo(index + 1);
+      });
+    });
+
+    if (!prefersReducedMotion && videos.length > 1) {
+      rotationTimer = window.setInterval(() => setActiveVideo(activeIndex + 1), 8500);
+      rotator.addEventListener("mouseenter", () => window.clearInterval(rotationTimer));
+      rotator.addEventListener("mouseleave", () => {
+        rotationTimer = window.setInterval(() => setActiveVideo(activeIndex + 1), 8500);
+      });
+    }
+
+    setActiveVideo(0);
   });
 
   // Keep workshop photo slots clean until the real image files are added.
