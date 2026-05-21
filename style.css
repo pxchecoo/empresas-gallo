@@ -977,6 +977,208 @@ p {
   grid-column: span 2;
 }
 
+.palette-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 16%, rgba(216, 96, 24, 0.2), transparent 28%),
+    radial-gradient(circle at 82% 84%, rgba(255, 113, 28, 0.12), transparent 34%),
+    linear-gradient(180deg, #090807, #11100f 48%, #080706);
+}
+
+.palette-section::before,
+.palette-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.palette-section::before {
+  background:
+    linear-gradient(110deg, transparent 0 22%, rgba(255, 255, 255, 0.055) 28%, transparent 38%),
+    url("assets/material-natural-stone.png") center / cover fixed;
+  opacity: 0.14;
+  mix-blend-mode: screen;
+}
+
+.palette-section::after {
+  inset: 10% -12% auto auto;
+  width: min(640px, 82vw);
+  height: min(640px, 82vw);
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(216, 96, 24, 0.18), transparent 62%);
+  filter: blur(18px);
+  animation: auraDrift 12s ease-in-out infinite alternate;
+}
+
+.palette-heading {
+  position: relative;
+  z-index: 1;
+}
+
+.palette-heading p {
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.palette-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  perspective: 1400px;
+}
+
+.palette-card {
+  position: relative;
+  min-height: 285px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius);
+  color: var(--stone);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(216, 96, 24, 0.05)),
+    url("assets/material-marble.png") center / cover no-repeat;
+  box-shadow: 0 24px 62px rgba(0, 0, 0, 0.42);
+  isolation: isolate;
+  transform-style: preserve-3d;
+  transition:
+    transform 700ms var(--ease-premium),
+    border-color 700ms var(--ease-premium),
+    box-shadow 700ms var(--ease-premium);
+}
+
+.palette-card:nth-child(2) {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(216, 96, 24, 0.05)),
+    url("assets/material-quartz.png") center / cover no-repeat;
+}
+
+.palette-card:nth-child(3) {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(216, 96, 24, 0.06)),
+    url("assets/material-granite.png") center / cover no-repeat;
+}
+
+.palette-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: inherit;
+  transform: scale(1.04);
+  transition: transform 800ms var(--ease-premium), filter 800ms var(--ease-premium);
+}
+
+.palette-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.78)),
+    radial-gradient(circle at 74% 16%, rgba(216, 96, 24, 0.24), transparent 28%);
+}
+
+.palette-card:hover,
+.palette-card:focus-visible {
+  border-color: rgba(216, 96, 24, 0.46);
+  box-shadow: 0 34px 78px rgba(0, 0, 0, 0.54), 0 0 0 1px rgba(216, 96, 24, 0.12) inset;
+}
+
+.palette-card:hover::before,
+.palette-card:focus-visible::before {
+  transform: scale(1.11);
+  filter: contrast(1.08) saturate(1.1);
+}
+
+.palette-index {
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(216, 96, 24, 0.34);
+  border-radius: 50%;
+  color: var(--gold-soft);
+  background: rgba(7, 6, 5, 0.74);
+  font-family: "Playfair Display", serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.34);
+  transform: translateZ(34px);
+}
+
+.palette-glow {
+  position: absolute;
+  right: -70px;
+  top: -82px;
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(216, 96, 24, 0.38), transparent 62%);
+  filter: blur(6px);
+  opacity: 0.72;
+  transition: transform 800ms var(--ease-premium), opacity 800ms var(--ease-premium);
+}
+
+.palette-card:hover .palette-glow,
+.palette-card:focus-visible .palette-glow {
+  opacity: 0.96;
+  transform: translate3d(-22px, 20px, 0) scale(1.12);
+}
+
+.palette-card h3,
+.palette-card p,
+.palette-link-label {
+  transform: translateZ(44px);
+}
+
+.palette-card h3 {
+  margin-bottom: 10px;
+  font-size: clamp(1.52rem, 2vw, 2.15rem);
+}
+
+.palette-card p {
+  max-width: 330px;
+  margin-bottom: 22px;
+  color: rgba(247, 243, 234, 0.72);
+}
+
+.palette-link-label {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--gold-soft);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.palette-link-label::after {
+  content: "";
+  width: 34px;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left center;
+  transition: transform 450ms var(--ease-premium);
+}
+
+.palette-card:hover .palette-link-label::after,
+.palette-card:focus-visible .palette-link-label::after {
+  transform: scaleX(1.45);
+}
+
 .workshop-section {
   position: relative;
   overflow: hidden;
@@ -1450,6 +1652,10 @@ p {
   filter: blur(0);
 }
 
+.reveal.is-visible[data-tilt] {
+  transform: perspective(1040px) translate3d(0, var(--raise, 0px), 0) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+}
+
 @keyframes auraDrift {
   0% {
     transform: translate3d(-5%, -6%, 0) rotate(-13deg) scaleX(0.96);
@@ -1557,6 +1763,10 @@ p {
 
   .material-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .palette-card {
+    min-height: 255px;
   }
 
   .workshop-grid {
@@ -1720,6 +1930,14 @@ p {
     grid-template-columns: 1fr;
   }
 
+  .palette-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .palette-card {
+    min-height: 245px;
+  }
+
   .service-card {
     min-height: 245px;
   }
@@ -1801,6 +2019,18 @@ p {
     white-space: nowrap;
     line-height: 1;
     font-size: 0.98rem;
+  }
+
+  .palette-card {
+    min-height: 235px;
+    padding: 24px 22px;
+  }
+
+  .palette-index {
+    top: 18px;
+    left: 18px;
+    width: 42px;
+    height: 42px;
   }
 
   .workshop-gallery {
