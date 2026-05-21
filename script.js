@@ -22,6 +22,7 @@
       navServices: "Servicios",
       navProcess: "Proceso",
       navMaterials: "Materiales",
+      navPalettes: "Paletas",
       navWorkshop: "Taller",
       navQuote: "Cotización",
       heroSubtitle: "Superficies premium en mármol, granito, cuarzo, porcelana y piedras naturales.",
@@ -83,6 +84,20 @@
       material4Text: "Versátil, elegante y resistente. Ideal para diseños modernos.",
       material5Title: "Piedras naturales",
       material5Text: "Texturas únicas, belleza natural y acabados personalizados para resultados con identidad propia.",
+      paletteEyebrow: "Paletas de materiales",
+      paletteTitle: "Panel de paletas para seleccionar acabados.",
+      paletteIntro:
+        "Dejamos estos espacios listos para enlazar las paletas oficiales de materiales cuando las compartas.",
+      paletteCard1Aria: "Abrir paleta de materiales 1",
+      paletteCard1Title: "Paleta 01",
+      paletteCard1Text: "Enlace pendiente para colección de materiales.",
+      paletteCard2Aria: "Abrir paleta de materiales 2",
+      paletteCard2Title: "Paleta 02",
+      paletteCard2Text: "Enlace pendiente para catálogo de superficies.",
+      paletteCard3Aria: "Abrir paleta de materiales 3",
+      paletteCard3Title: "Paleta 03",
+      paletteCard3Text: "Enlace pendiente para opciones premium.",
+      paletteOpen: "Abrir enlace",
       workshopEyebrow: "Conoce nuestro taller",
       workshopTitle: "Fabricación precisa, pulido profesional y tecnología para piezas a la medida.",
       workshopText:
@@ -150,6 +165,7 @@
       navServices: "Services",
       navProcess: "Process",
       navMaterials: "Materials",
+      navPalettes: "Palettes",
       navWorkshop: "Workshop",
       navQuote: "Quote",
       heroSubtitle: "Premium surfaces in marble, granite, quartz, porcelain and natural stone.",
@@ -211,6 +227,20 @@
       material4Text: "Versatile, elegant and resistant. Ideal for modern designs.",
       material5Title: "Natural stone",
       material5Text: "Unique textures, natural beauty and custom finishes for results with their own identity.",
+      paletteEyebrow: "Material palettes",
+      paletteTitle: "A palette panel for selecting finishes.",
+      paletteIntro:
+        "These spaces are ready for the official material palette links when you send them.",
+      paletteCard1Aria: "Open material palette 1",
+      paletteCard1Title: "Palette 01",
+      paletteCard1Text: "Pending link for a material collection.",
+      paletteCard2Aria: "Open material palette 2",
+      paletteCard2Title: "Palette 02",
+      paletteCard2Text: "Pending link for a surface catalog.",
+      paletteCard3Aria: "Open material palette 3",
+      paletteCard3Title: "Palette 03",
+      paletteCard3Text: "Pending link for premium options.",
+      paletteOpen: "Open link",
       workshopEyebrow: "Meet our workshop",
       workshopTitle: "Precise fabrication, professional polishing and technology for custom pieces.",
       workshopText:
@@ -342,6 +372,10 @@
       navToggle?.classList.remove("is-open");
       navToggle?.setAttribute("aria-expanded", "false");
     });
+  });
+
+  document.querySelectorAll(".palette-card[href='#']").forEach((link) => {
+    link.addEventListener("click", (event) => event.preventDefault());
   });
 
   // Keep workshop photo slots clean until the real image files are added.
