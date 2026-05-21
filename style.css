@@ -1001,13 +1001,13 @@ p {
 .workshop-grid {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
-  gap: 34px;
+  grid-template-columns: minmax(520px, 0.9fr) minmax(0, 1.1fr);
+  gap: 28px;
   align-items: center;
 }
 
 .workshop-copy {
-  padding: 34px;
+  padding: 34px 38px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.055);
@@ -1017,12 +1017,20 @@ p {
 
 .workshop-copy h2 {
   margin-bottom: 18px;
-  font-size: clamp(2.2rem, 4vw, 4rem);
+  max-width: 520px;
+  font-size: clamp(2.08rem, 2.45vw, 2.85rem);
+  line-height: 1.08;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 .workshop-copy p {
+  max-width: 560px;
   margin-bottom: 0;
   color: rgba(247, 243, 234, 0.72);
+  font-size: 0.98rem;
+  line-height: 1.68;
 }
 
 .workshop-gallery {
@@ -1157,6 +1165,113 @@ p {
 .cta-inner p {
   max-width: 680px;
   font-size: 1.08rem;
+}
+
+.contact-panel-section {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(216, 96, 24, 0.13), transparent 34%),
+    linear-gradient(180deg, #070605, #100e0c 48%, #050504);
+}
+
+.contact-panel-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1.22fr);
+  gap: 34px;
+  align-items: start;
+}
+
+.contact-panel-copy {
+  position: sticky;
+  top: 120px;
+}
+
+.contact-panel-copy h2 {
+  max-width: 560px;
+  font-size: clamp(2.35rem, 4vw, 4.15rem);
+}
+
+.contact-panel-copy p {
+  max-width: 520px;
+}
+
+.quote-form {
+  display: grid;
+  gap: 18px;
+  padding: 28px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.quote-form label {
+  display: grid;
+  gap: 8px;
+}
+
+.quote-form label span {
+  color: rgba(247, 243, 234, 0.84);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.quote-form input,
+.quote-form select,
+.quote-form textarea {
+  width: 100%;
+  min-height: 52px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: var(--radius);
+  color: var(--ink);
+  background: rgba(7, 6, 5, 0.72);
+  padding: 0 14px;
+  outline: none;
+  font: inherit;
+  transition: border-color 240ms ease, background 240ms ease, box-shadow 240ms ease;
+}
+
+.quote-form textarea {
+  min-height: 138px;
+  padding: 14px;
+  resize: vertical;
+}
+
+.quote-form input::placeholder,
+.quote-form textarea::placeholder {
+  color: rgba(247, 243, 234, 0.38);
+}
+
+.quote-form input:focus,
+.quote-form select:focus,
+.quote-form textarea:focus {
+  border-color: rgba(216, 96, 24, 0.64);
+  background: rgba(7, 6, 5, 0.88);
+  box-shadow: 0 0 0 4px rgba(216, 96, 24, 0.12);
+}
+
+.file-field input {
+  padding: 13px 14px;
+}
+
+.file-field small {
+  color: rgba(247, 243, 234, 0.54);
+  line-height: 1.6;
+}
+
+.form-submit {
+  width: fit-content;
+  min-width: 150px;
+  border: 0;
+  cursor: pointer;
+}
+
+.form-honey {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
 }
 
 .site-footer {
@@ -1384,8 +1499,21 @@ p {
     grid-template-columns: 1fr;
   }
 
+  .workshop-copy h2 {
+    max-width: 720px;
+    font-size: 2.6rem;
+  }
+
   .workshop-gallery {
     grid-auto-rows: 112px;
+  }
+
+  .contact-panel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-panel-copy {
+    position: static;
   }
 
   .footer-grid {
@@ -1542,6 +1670,15 @@ p {
     padding: 28px 22px;
   }
 
+  .workshop-copy h2 {
+    font-size: 2.28rem;
+    line-height: 1.06;
+  }
+
+  .workshop-copy p {
+    font-size: 0.96rem;
+  }
+
   .workshop-gallery {
     grid-template-columns: repeat(6, minmax(0, 1fr));
     grid-auto-rows: 118px;
@@ -1567,6 +1704,14 @@ p {
 
   .cta-inner {
     padding: 64px 0;
+  }
+
+  .quote-form {
+    padding: 22px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1638,6 +1783,14 @@ p {
   .footer-bottom-inner {
     flex-direction: column;
     gap: 8px;
+  }
+
+  .contact-panel-copy h2 {
+    font-size: 2rem;
+  }
+
+  .form-submit {
+    width: 100%;
   }
 
 }
