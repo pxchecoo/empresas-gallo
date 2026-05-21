@@ -382,7 +382,6 @@
           >
             <input type="hidden" name="_subject" value="Nueva solicitud de cotización - Tecno Mármol" />
             <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_captcha" value="false" />
             <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="form-honey" />
 
             <div class="form-row">
@@ -426,11 +425,32 @@
               ></textarea>
             </label>
 
-            <label class="file-field">
+            <div class="file-field">
               <span data-i18n="formPlans">Planos o referencias</span>
-              <input type="file" name="attachment[]" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf" multiple />
-              <small data-i18n="formPlansHelp">Puedes adjuntar varios archivos PDF, imágenes o planos. Límite total recomendado: 10MB.</small>
-            </label>
+              <div class="file-grid">
+                <label>
+                  <span data-i18n="formPlan1">Archivo 1</span>
+                  <input type="file" name="attachment1" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf" />
+                </label>
+                <label>
+                  <span data-i18n="formPlan2">Archivo 2</span>
+                  <input type="file" name="attachment2" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf" />
+                </label>
+                <label>
+                  <span data-i18n="formPlan3">Archivo 3</span>
+                  <input type="file" name="attachment3" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf" />
+                </label>
+                <label>
+                  <span data-i18n="formPlan4">Archivo 4</span>
+                  <input type="file" name="attachment4" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf" />
+                </label>
+                <label>
+                  <span data-i18n="formPlan5">Archivo 5</span>
+                  <input type="file" name="attachment5" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf" />
+                </label>
+              </div>
+              <small data-i18n="formPlansHelp">Puedes adjuntar hasta 5 archivos PDF, imágenes o planos. Límite total recomendado: 10MB.</small>
+            </div>
 
             <button class="btn btn-primary form-submit" type="submit" data-i18n="formSend">Send</button>
           </form>
