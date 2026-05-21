@@ -119,11 +119,10 @@
       formDetailsPlaceholder:
         "Medidas, material deseado, ubicación, tiempo estimado y cualquier detalle importante.",
       formPlans: "Planos o referencias",
-      formPlan1: "Archivo 1",
-      formPlan2: "Archivo 2",
-      formPlan3: "Archivo 3",
-      formPlan4: "Archivo 4",
-      formPlan5: "Archivo 5",
+      formChooseFiles: "Seleccionar archivos",
+      formNoFiles: "Ningún archivo seleccionado",
+      formFileSingle: "1 archivo seleccionado",
+      formFileMultiple: "{count} archivos seleccionados",
       formPlansHelp: "Puedes adjuntar hasta 5 archivos PDF, imágenes o planos. Límite total recomendado: 10MB.",
       formSend: "Send",
       footerDescription:
@@ -248,11 +247,10 @@
       formDetailsPlaceholder:
         "Measurements, desired material, location, estimated timeline and any important details.",
       formPlans: "Plans or references",
-      formPlan1: "File 1",
-      formPlan2: "File 2",
-      formPlan3: "File 3",
-      formPlan4: "File 4",
-      formPlan5: "File 5",
+      formChooseFiles: "Select files",
+      formNoFiles: "No files selected",
+      formFileSingle: "1 file selected",
+      formFileMultiple: "{count} files selected",
       formPlansHelp: "You may attach up to 5 PDF, image or plan files. Recommended total limit: 10MB.",
       formSend: "Send",
       footerDescription:
@@ -275,6 +273,7 @@
 
   const applyLanguage = (language) => {
     const copy = translations[language] || translations.es;
+    document.documentElement.dataset.lang = language;
     document.documentElement.lang = language;
     document.title = copy.title;
     setMeta('meta[name="description"]', copy.metaDescription);
@@ -306,6 +305,9 @@
   languageOptions.forEach((button) => {
     button.addEventListener("click", () => {
       applyLanguage(button.dataset.language);
+      if (filePicker) {
+        updateFileSummary([...filePicker.files].slice(0, attachmentSlots.length));
+      }
       languageGate?.classList.add("is-hidden");
       document.body.classList.remove("language-pending");
       window.setTimeout(() => {
@@ -347,6 +349,62 @@
     image.addEventListener("error", () => {
       image.classList.add("is-missing");
     });
+  });
+
+  // One polished upload control, split into separate attachment fields for FormSubmit.
+  const filePicker = document.querySelector("[data-file-picker]");
+  const fileSummary = document.querySelector("[data-file-summary]");
+  const attachmentSlots = [...document.querySelectorAll(".file-slots input[type='file']")];
+
+  const activeCopy = () => translations[document.documentElement.dataset.lang || document.documentElement.lang] || translations.es;
+
+  const clearAttachmentSlots = () => {
+    attachmentSlots.forEach((slot) => {
+      slot.value = "";
+    });
+  };
+
+  const syncAttachmentSlots = (files) => {
+    clearAttachmentSlots();
+    filePicker?.removeAttribute("name");
+    const canSplitFiles = () => {
+      try {
+        return typeof DataTransfer !== "undefined" && new DataTransfer();
+      } catch {
+        return null;
+      }
+    };
+    if (!canSplitFiles()) {
+      filePicker?.setAttribute("name", "attachment");
+      return;
+    }
+    files.slice(0, attachmentSlots.length).forEach((file, index) => {
+      const transfer = new DataTransfer();
+      transfer.items.add(file);
+      attachmentSlots[index].files = transfer.files;
+    });
+  };
+
+  const updateFileSummary = (files = []) => {
+    if (!fileSummary) return;
+    const copy = activeCopy();
+    if (!files.length) {
+      fileSummary.textContent = copy.formNoFiles;
+      return;
+    }
+    if (files.length === 1) {
+      fileSummary.textContent = files[0].name;
+      return;
+    }
+    const label = copy.formFileMultiple.replace("{count}", String(files.length));
+    const names = files.map((file) => file.name).join(", ");
+    fileSummary.textContent = `${label}: ${names}`;
+  };
+
+  filePicker?.addEventListener("change", () => {
+    const files = [...filePicker.files].slice(0, attachmentSlots.length);
+    syncAttachmentSlots(files);
+    updateFileSummary(files);
   });
 
   // Scroll reveal with IntersectionObserver.
