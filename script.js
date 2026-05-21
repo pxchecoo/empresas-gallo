@@ -9,11 +9,11 @@
 
   const translations = {
     es: {
-      title: "Tecno Mármol, Inc | Superficies premium",
+      title: "TecnoMármol, Inc | Superficies premium",
       metaDescription:
-        "Tecno Mármol, Inc ofrece soluciones premium en mármol, granito, cuarzo, porcelana y piedras naturales para espacios residenciales y comerciales.",
+        "TecnoMármol, Inc ofrece soluciones premium en mármol, granito, cuarzo, porcelana y piedras naturales para espacios residenciales y comerciales.",
       metaKeywords:
-        "Tecno Mármol, Inc, mármol, granito, cuarzo, porcelana, piedra natural, topes, cocinas, baños, pisos, escaleras",
+        "TecnoMármol, Inc, mármol, granito, cuarzo, porcelana, piedra natural, topes, cocinas, baños, pisos, escaleras",
       ogDescription:
         "Transformamos cocinas, baños, pisos, paredes, escaleras y espacios comerciales con materiales de alta calidad.",
       navToggle: "Abrir menú",
@@ -31,12 +31,14 @@
       requestQuote: "Solicitar cotización",
       premiumSelection: "Selección premium",
       premiumMaterials: "mármol, granito y cuarzo",
-      aboutEyebrow: "Sobre Tecno Mármol, Inc",
-      aboutTitle: "Diseño, precisión y materiales nobles para elevar cada espacio.",
+      aboutEyebrow: "Sobre TecnoMármol, Inc",
+      aboutTitle: "50 años de tradición, artesanía y tecnología en piedra.",
       aboutText1:
-        "Tecno Mármol, Inc. es una compañía dedicada a ofrecer soluciones en mármol, granito, cuarzo, porcelana y piedras naturales para espacios residenciales y comerciales. Nos enfocamos en brindar materiales de alta calidad, acabados elegantes y un servicio profesional para transformar cocinas, baños, pisos, paredes, escaleras y otros espacios.",
+        "TecnoMármol, Inc. es parte de Empresas Gallo y ha sido un nombre confiable en el negocio del mármol, granito y piedra en Puerto Rico durante los últimos 50 años. La familia Gallo proviene de maestros artesanos italianos que aprendieron a trabajar con la piedra caliza extraída en su natal Padula, Salerno, a una edad temprana.",
       aboutText2:
-        "Nuestro trabajo combina experiencia, precisión y diseño para crear superficies duraderas, modernas y funcionales. Cada proyecto se trabaja con atención al detalle, desde la selección del material hasta la fabricación e instalación final.",
+        "Su conocimiento adquirido ha sido pasado de generación en generación y hoy ese conocimiento se ha combinado efectivamente con tecnología moderna para enfrentar los desafíos más exigentes en las industrias locales de piedra de Puerto Rico, así como en los mercados de piedra del Caribe desde sus facilidades de 40,000 pies cuadrados ubicada en Río Piedras, Puerto Rico. En esta instalación, TecnoMármol ofrece un taller de piedra con todos los servicios.",
+      aboutText3:
+        "TecnoMármol se ha ganado la confianza y el respeto de arquitectos, ingenieros, contratistas generales y desarrolladores debido a su excelente mano de obra, servicio confiable y estrategias de gestión efectivas.",
       quality: "Calidad",
       precision: "Precisión",
       elegance: "Elegancia",
@@ -88,13 +90,37 @@
       missionEyebrow: "Misión",
       missionTitle: "Nuestra misión es ofrecer calidad, confianza y elegancia en cada proyecto.",
       missionText:
-        "En Tecno Mármol, Inc. ayudamos a cada cliente a mejorar sus espacios con productos resistentes, estéticos y adaptados a sus necesidades. Combinamos experiencia, precisión y diseño para crear superficies modernas, duraderas y funcionales.",
+        "En TecnoMármol, Inc. ayudamos a cada cliente a mejorar sus espacios con productos resistentes, estéticos y adaptados a sus necesidades. Combinamos experiencia, precisión y diseño para crear superficies modernas, duraderas y funcionales.",
       quoteEyebrow: "Cotización",
       quoteTitle: "¿Listo para transformar tu espacio?",
       quoteText:
-        "Solicita una cotización y descubre cómo Tecno Mármol, Inc puede ayudarte a crear superficies modernas, resistentes y con acabado premium.",
+        "Solicita una cotización y descubre cómo TecnoMármol, Inc puede ayudarte a crear superficies modernas, resistentes y con acabado premium.",
       contactNow: "Contactar ahora",
-      quoteEmail: "mailto:info@tecnomarmolpr.com?subject=Cotización%20para%20proyecto",
+      quotePanelHref: "#cotizacion-panel",
+      formEyebrow: "Panel de cotización",
+      formTitle: "Cuéntanos los detalles de tu proyecto.",
+      formIntro:
+        "Completa la información del cliente, adjunta planos si los tienes y nuestro equipo revisará los detalles para preparar una respuesta precisa.",
+      formName: "Nombre completo",
+      formNamePlaceholder: "Nombre y apellido",
+      formEmail: "Email",
+      formEmailPlaceholder: "correo@ejemplo.com",
+      formPhone: "Número de teléfono",
+      formPhonePlaceholder: "787-000-0000",
+      formProjectType: "Tipo de proyecto",
+      formProjectPlaceholder: "Selecciona una opción",
+      formProjectKitchen: "Cocina",
+      formProjectBath: "Baño",
+      formProjectFloors: "Pisos o paredes",
+      formProjectStairs: "Escaleras",
+      formProjectCommercial: "Comercial",
+      formProjectOther: "Otro",
+      formDetails: "Información del proyecto",
+      formDetailsPlaceholder:
+        "Medidas, material deseado, ubicación, tiempo estimado y cualquier detalle importante.",
+      formPlans: "Planos o referencias",
+      formPlansHelp: "Puedes adjuntar varios archivos PDF, imágenes o planos. Límite total recomendado: 10MB.",
+      formSend: "Send",
       footerDescription:
         "Soluciones premium en mármol, granito, cuarzo, porcelana y piedras naturales para espacios residenciales y comerciales.",
       footerServicesTitle: "Servicios",
@@ -104,14 +130,14 @@
       footerContactTitle: "Contacto",
       appointmentOnly: "Servicio por cita",
       footerSocialTitle: "Redes sociales",
-      rights: "Tecno Mármol, Inc. Derechos reservados."
+      rights: "TecnoMármol, Inc. Derechos reservados."
     },
     en: {
-      title: "Tecno Mármol, Inc | Premium Surfaces",
+      title: "TecnoMármol, Inc | Premium Surfaces",
       metaDescription:
-        "Tecno Mármol, Inc offers premium marble, granite, quartz, porcelain and natural stone solutions for residential and commercial spaces.",
+        "TecnoMármol, Inc offers premium marble, granite, quartz, porcelain and natural stone solutions for residential and commercial spaces.",
       metaKeywords:
-        "Tecno Mármol, Inc, marble, granite, quartz, porcelain, natural stone, countertops, kitchens, bathrooms, floors, stairs",
+        "TecnoMármol, Inc, marble, granite, quartz, porcelain, natural stone, countertops, kitchens, bathrooms, floors, stairs",
       ogDescription:
         "We transform kitchens, bathrooms, floors, walls, stairs and commercial spaces with high quality materials.",
       navToggle: "Open menu",
@@ -129,12 +155,14 @@
       requestQuote: "Request a quote",
       premiumSelection: "Premium selection",
       premiumMaterials: "marble, granite and quartz",
-      aboutEyebrow: "About Tecno Mármol, Inc",
-      aboutTitle: "Design, precision and noble materials to elevate every space.",
+      aboutEyebrow: "About TecnoMármol, Inc",
+      aboutTitle: "50 years of tradition, craftsmanship and stone technology.",
       aboutText1:
-        "Tecno Mármol, Inc. is a company dedicated to offering marble, granite, quartz, porcelain and natural stone solutions for residential and commercial spaces. We focus on high quality materials, elegant finishes and professional service to transform kitchens, bathrooms, floors, walls, stairs and other spaces.",
+        "TecnoMármol, Inc. is part of Empresas Gallo and has been a trusted name in the marble, granite and stone business in Puerto Rico for the last 50 years. The Gallo family comes from Italian master artisans who learned to work with limestone quarried in their native Padula, Salerno, at an early age.",
       aboutText2:
-        "Our work combines experience, precision and design to create durable, modern and functional surfaces. Every project is handled with attention to detail, from material selection to fabrication and final installation.",
+        "Their acquired knowledge has been passed down from generation to generation, and today that knowledge has been effectively combined with modern technology to meet the most demanding challenges in Puerto Rico's local stone industries, as well as in Caribbean stone markets, from their 40,000-square-foot facilities located in Río Piedras, Puerto Rico. In this facility, TecnoMármol offers a full-service stone workshop.",
+      aboutText3:
+        "TecnoMármol has earned the trust and respect of architects, engineers, general contractors and developers because of its excellent craftsmanship, reliable service and effective management strategies.",
       quality: "Quality",
       precision: "Precision",
       elegance: "Elegance",
@@ -186,13 +214,37 @@
       missionEyebrow: "Mission",
       missionTitle: "Our mission is to deliver quality, trust and elegance in every project.",
       missionText:
-        "At Tecno Mármol, Inc. we help every client improve their spaces with resistant, aesthetic products adapted to their needs. We combine experience, precision and design to create modern, durable and functional surfaces.",
+        "At TecnoMármol, Inc. we help every client improve their spaces with resistant, aesthetic products adapted to their needs. We combine experience, precision and design to create modern, durable and functional surfaces.",
       quoteEyebrow: "Quote",
       quoteTitle: "Ready to transform your space?",
       quoteText:
-        "Request a quote and discover how Tecno Mármol, Inc can help you create modern, resistant surfaces with a premium finish.",
+        "Request a quote and discover how TecnoMármol, Inc can help you create modern, resistant surfaces with a premium finish.",
       contactNow: "Contact now",
-      quoteEmail: "mailto:info@tecnomarmolpr.com?subject=Project%20quote",
+      quotePanelHref: "#cotizacion-panel",
+      formEyebrow: "Quote panel",
+      formTitle: "Tell us about your project.",
+      formIntro:
+        "Complete the client information, attach plans if available, and our team will review the details to prepare an accurate response.",
+      formName: "Full name",
+      formNamePlaceholder: "First and last name",
+      formEmail: "Email",
+      formEmailPlaceholder: "email@example.com",
+      formPhone: "Phone number",
+      formPhonePlaceholder: "787-000-0000",
+      formProjectType: "Project type",
+      formProjectPlaceholder: "Select an option",
+      formProjectKitchen: "Kitchen",
+      formProjectBath: "Bathroom",
+      formProjectFloors: "Floors or walls",
+      formProjectStairs: "Stairs",
+      formProjectCommercial: "Commercial",
+      formProjectOther: "Other",
+      formDetails: "Project information",
+      formDetailsPlaceholder:
+        "Measurements, desired material, location, estimated timeline and any important details.",
+      formPlans: "Plans or references",
+      formPlansHelp: "You may attach multiple PDF, image or plan files. Recommended total limit: 10MB.",
+      formSend: "Send",
       footerDescription:
         "Premium marble, granite, quartz, porcelain and natural stone solutions for residential and commercial spaces.",
       footerServicesTitle: "Services",
@@ -202,7 +254,7 @@
       footerContactTitle: "Contact",
       appointmentOnly: "By appointment",
       footerSocialTitle: "Social media",
-      rights: "Tecno Mármol, Inc. All rights reserved."
+      rights: "TecnoMármol, Inc. All rights reserved."
     }
   };
 
@@ -228,6 +280,11 @@
     document.querySelectorAll("[data-i18n-aria]").forEach((element) => {
       const key = element.dataset.i18nAria;
       if (copy[key]) element.setAttribute("aria-label", copy[key]);
+    });
+
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+      const key = element.dataset.i18nPlaceholder;
+      if (copy[key]) element.setAttribute("placeholder", copy[key]);
     });
 
     document.querySelectorAll("[data-i18n-href]").forEach((element) => {
