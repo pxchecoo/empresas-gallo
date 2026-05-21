@@ -35,7 +35,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
     <link rel="preload" as="image" href="assets/hero-showroom.png" />
-    <link rel="stylesheet" href="style.css?v=4" />
+    <link rel="stylesheet" href="style.css?v=6" />
   </head>
   <body class="language-pending">
     <div class="language-gate" id="languageGate" role="dialog" aria-modal="true" aria-labelledby="languageTitle">
@@ -427,27 +427,22 @@
 
             <div class="file-field">
               <span data-i18n="formPlans">Planos o referencias</span>
-              <div class="file-grid">
-                <label>
-                  <span data-i18n="formPlan1">Archivo 1</span>
-                  <input type="file" name="attachment1" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf" />
-                </label>
-                <label>
-                  <span data-i18n="formPlan2">Archivo 2</span>
-                  <input type="file" name="attachment2" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf" />
-                </label>
-                <label>
-                  <span data-i18n="formPlan3">Archivo 3</span>
-                  <input type="file" name="attachment3" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf" />
-                </label>
-                <label>
-                  <span data-i18n="formPlan4">Archivo 4</span>
-                  <input type="file" name="attachment4" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf" />
-                </label>
-                <label>
-                  <span data-i18n="formPlan5">Archivo 5</span>
-                  <input type="file" name="attachment5" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf" />
-                </label>
+              <label class="file-picker">
+                <input
+                  type="file"
+                  data-file-picker
+                  accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf"
+                  multiple
+                />
+                <span class="file-picker-button" data-i18n="formChooseFiles">Seleccionar archivos</span>
+                <span class="file-picker-text" data-file-summary data-i18n="formNoFiles">Ningún archivo seleccionado</span>
+              </label>
+              <div class="file-slots" aria-hidden="true">
+                <input type="file" name="attachment1" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf" tabindex="-1" />
+                <input type="file" name="attachment2" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf" tabindex="-1" />
+                <input type="file" name="attachment3" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf" tabindex="-1" />
+                <input type="file" name="attachment4" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf" tabindex="-1" />
+                <input type="file" name="attachment5" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf" tabindex="-1" />
               </div>
               <small data-i18n="formPlansHelp">Puedes adjuntar hasta 5 archivos PDF, imágenes o planos. Límite total recomendado: 10MB.</small>
             </div>
@@ -507,6 +502,6 @@
       </div>
     </footer>
 
-    <script src="script.js?v=2"></script>
+    <script src="script.js?v=3"></script>
   </body>
 </html>
