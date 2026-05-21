@@ -45,6 +45,10 @@ body.language-pending {
   overflow: hidden;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 body.language-pending .site-header,
 body.language-pending main,
 body.language-pending .site-footer {
@@ -923,7 +927,7 @@ p {
 
 .material-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
 }
 
@@ -933,9 +937,19 @@ p {
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: var(--radius);
+  color: var(--ink);
   background: var(--image) center / cover no-repeat;
   box-shadow: var(--shadow-soft);
   isolation: isolate;
+}
+
+button.material-card {
+  width: 100%;
+  padding: 0;
+  appearance: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
 }
 
 .material-card::before {
@@ -956,9 +970,15 @@ p {
   pointer-events: none;
 }
 
-.material-card:hover::before {
+.material-card:hover::before,
+.material-card:focus-visible::before {
   transform: scale(1.11);
   filter: contrast(1.06) saturate(1.08);
+}
+
+.material-card:focus-visible {
+  outline: 2px solid rgba(216, 96, 24, 0.8);
+  outline-offset: 4px;
 }
 
 .material-card div {
@@ -973,8 +993,233 @@ p {
   color: rgba(247, 243, 234, 0.76);
 }
 
-.material-card-wide {
-  grid-column: span 2;
+.material-card-action {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  color: var(--gold-soft);
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.material-card-action::after {
+  content: "";
+  width: 32px;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left center;
+  transition: transform 420ms var(--ease-premium);
+}
+
+.material-trigger:hover .material-card-action::after,
+.material-trigger:focus-visible .material-card-action::after {
+  transform: scaleX(1.45);
+}
+
+.material-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1600;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 420ms var(--ease-premium), visibility 420ms var(--ease-premium);
+}
+
+.material-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.material-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background:
+    radial-gradient(circle at 50% 34%, rgba(216, 96, 24, 0.22), transparent 36%),
+    rgba(4, 4, 3, 0.76);
+  backdrop-filter: blur(18px);
+  cursor: pointer;
+}
+
+.material-modal-panel {
+  position: relative;
+  width: min(1120px, 100%);
+  max-height: min(86vh, 820px);
+  overflow: auto;
+  padding: clamp(26px, 4vw, 46px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.035)),
+    linear-gradient(180deg, rgba(18, 16, 14, 0.96), rgba(8, 7, 6, 0.98));
+  box-shadow: 0 38px 110px rgba(0, 0, 0, 0.64), 0 0 80px rgba(216, 96, 24, 0.08);
+  transform: translateY(22px) scale(0.98);
+  transition: transform 520ms var(--ease-premium);
+  scrollbar-color: rgba(216, 96, 24, 0.62) rgba(255, 255, 255, 0.08);
+  scrollbar-width: thin;
+}
+
+.material-modal-panel::-webkit-scrollbar {
+  width: 10px;
+}
+
+.material-modal-panel::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.material-modal-panel::-webkit-scrollbar-thumb {
+  border: 2px solid rgba(12, 10, 8, 0.92);
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+}
+
+.material-modal.is-open .material-modal-panel {
+  transform: translateY(0) scale(1);
+}
+
+.material-modal-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(120deg, transparent 0 18%, rgba(255, 255, 255, 0.06) 26%, transparent 34%),
+    radial-gradient(circle at 80% 8%, rgba(216, 96, 24, 0.18), transparent 26%);
+  opacity: 0.82;
+}
+
+.modal-close {
+  position: sticky;
+  top: 0;
+  float: right;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 50%;
+  color: var(--gold-soft);
+  background: rgba(5, 5, 4, 0.78);
+  cursor: pointer;
+  transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+}
+
+.modal-close:hover,
+.modal-close:focus-visible {
+  border-color: rgba(216, 96, 24, 0.5);
+  background: rgba(216, 96, 24, 0.13);
+  transform: translateY(-2px);
+}
+
+.material-modal-panel > .eyebrow,
+.material-modal-panel > h2,
+.material-modal-panel > p,
+.marble-types-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.material-modal-panel > h2 {
+  max-width: 700px;
+  margin-bottom: 14px;
+}
+
+.material-modal-panel > p {
+  max-width: 680px;
+  color: rgba(247, 243, 234, 0.72);
+}
+
+.marble-types-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.marble-type-card {
+  position: relative;
+  min-height: 286px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: var(--radius);
+  background: #11100e;
+  box-shadow: 0 26px 62px rgba(0, 0, 0, 0.46), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  isolation: isolate;
+  transform: translateZ(0);
+  transition: transform 620ms var(--ease-premium), border-color 620ms var(--ease-premium), box-shadow 620ms var(--ease-premium);
+}
+
+.marble-type-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    var(--marble-image) center / cover no-repeat,
+    var(--sample-fallback, url("assets/material-marble.png")) center / cover no-repeat;
+  filter: brightness(1.08) contrast(1.16) saturate(1.14);
+  pointer-events: none;
+  transform: scale(1.018);
+  transition: transform 780ms var(--ease-premium), filter 780ms var(--ease-premium);
+}
+
+.marble-type-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.06) 42%, rgba(0, 0, 0, 0.52) 100%),
+    radial-gradient(circle at 72% 12%, rgba(255, 255, 255, 0.22), transparent 30%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.16), transparent 34%);
+  opacity: 0.9;
+  pointer-events: none;
+  transition: opacity 620ms var(--ease-premium);
+}
+
+.marble-type-card:hover {
+  border-color: rgba(216, 96, 24, 0.42);
+  box-shadow: 0 36px 82px rgba(0, 0, 0, 0.58), 0 0 42px rgba(216, 96, 24, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transform: translateY(-7px) perspective(900px) rotateX(2deg) rotateY(-2deg);
+}
+
+.marble-type-card:hover::before {
+  filter: brightness(1.14) contrast(1.2) saturate(1.18);
+  transform: scale(1.075);
+}
+
+.marble-type-card:hover::after {
+  opacity: 0.72;
+}
+
+.marble-type-card span {
+  position: relative;
+  z-index: 2;
+  width: calc(100% - 28px);
+  margin: 0 14px 14px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 7px;
+  color: var(--ink);
+  background: linear-gradient(135deg, rgba(5, 5, 4, 0.64), rgba(5, 5, 4, 0.24));
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(12px);
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.2rem, 1.6vw, 1.62rem);
+  font-weight: 700;
+  line-height: 1.08;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.62);
 }
 
 .palette-section {
@@ -1309,33 +1554,6 @@ p {
 
 .workshop-photo-wide {
   grid-column: span 8;
-}
-
-.mission-section {
-  background:
-    linear-gradient(180deg, rgba(17, 16, 14, 0.9), rgba(7, 6, 5, 0.95)),
-    url("assets/material-natural-stone.png") center / cover fixed;
-}
-
-.mission-inner {
-  min-height: 520px;
-  display: grid;
-  place-items: center;
-}
-
-.mission-card {
-  width: min(880px, 100%);
-  padding: 56px;
-  text-align: center;
-}
-
-.mission-card .eyebrow::before {
-  display: none;
-}
-
-.mission-card p {
-  max-width: 720px;
-  margin: 0 auto;
 }
 
 .final-cta {
@@ -1765,6 +1983,10 @@ p {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .marble-types-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .palette-card {
     min-height: 255px;
   }
@@ -1942,10 +2164,25 @@ p {
     min-height: 245px;
   }
 
-  .material-card,
-  .material-card-wide {
+  .material-card {
     grid-column: auto;
     min-height: 360px;
+  }
+
+  .material-modal {
+    padding: 16px;
+  }
+
+  .material-modal-panel {
+    max-height: 88vh;
+  }
+
+  .marble-types-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .marble-type-card {
+    min-height: 260px;
   }
 
   .workshop-copy {
@@ -1978,10 +2215,6 @@ p {
   .workshop-photo-large,
   .workshop-photo-wide {
     grid-column: span 6;
-  }
-
-  .mission-card {
-    padding: 34px 22px;
   }
 
   .cta-inner {
@@ -2024,6 +2257,23 @@ p {
   .palette-card {
     min-height: 235px;
     padding: 24px 22px;
+  }
+
+  .material-modal {
+    padding: 10px;
+  }
+
+  .material-modal-panel {
+    padding: 24px 18px;
+  }
+
+  .modal-close {
+    width: 38px;
+    height: 38px;
+  }
+
+  .marble-type-card {
+    min-height: 238px;
   }
 
   .palette-index {
