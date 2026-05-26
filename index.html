@@ -35,7 +35,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
     <link rel="preload" as="image" href="assets/hero-showroom.png" />
-    <link rel="stylesheet" href="style.css?v=19" />
+    <link rel="stylesheet" href="style.css?v=22" />
   </head>
   <body class="language-pending">
     <div class="language-gate" id="languageGate" role="dialog" aria-modal="true" aria-labelledby="languageTitle">
@@ -485,18 +485,20 @@
 
           <form
             class="quote-form glass-panel reveal"
-            action="https://formsubmit.co/pachecofabian764@gmail.com"
+            action="#"
             method="POST"
             enctype="multipart/form-data"
+            data-quote-form
+            data-api-endpoint=""
+            data-whatsapp-number="17877522795"
           >
-            <input type="hidden" name="_subject" value="Nueva solicitud de cotización - Tecno Mármol" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="form-honey" />
+            <input type="hidden" name="language" value="es" data-language-field />
+            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="form-honey" />
 
             <div class="form-row">
               <label>
                 <span data-i18n="formName">Nombre completo</span>
-                <input type="text" name="Nombre" autocomplete="name" required data-i18n-placeholder="formNamePlaceholder" placeholder="Nombre y apellido" />
+                <input type="text" name="name" autocomplete="name" required maxlength="120" data-i18n-placeholder="formNamePlaceholder" placeholder="Nombre y apellido" />
               </label>
               <label>
                 <span data-i18n="formEmail">Email</span>
@@ -507,18 +509,18 @@
             <div class="form-row">
               <label>
                 <span data-i18n="formPhone">Número de teléfono</span>
-                <input type="tel" name="Telefono" autocomplete="tel" required data-i18n-placeholder="formPhonePlaceholder" placeholder="787-000-0000" />
+                <input type="tel" name="phone" autocomplete="tel" required maxlength="40" data-i18n-placeholder="formPhonePlaceholder" placeholder="787-000-0000" />
               </label>
               <label>
                 <span data-i18n="formProjectType">Tipo de proyecto</span>
-                <select name="Tipo de proyecto" required>
+                <select name="project_type" required>
                   <option value="" data-i18n="formProjectPlaceholder">Selecciona una opción</option>
-                  <option value="Cocina" data-i18n="formProjectKitchen">Cocina</option>
-                  <option value="Baño" data-i18n="formProjectBath">Baño</option>
-                  <option value="Pisos o paredes" data-i18n="formProjectFloors">Pisos o paredes</option>
-                  <option value="Escaleras" data-i18n="formProjectStairs">Escaleras</option>
-                  <option value="Comercial" data-i18n="formProjectCommercial">Comercial</option>
-                  <option value="Otro" data-i18n="formProjectOther">Otro</option>
+                  <option value="kitchen" data-i18n="formProjectKitchen">Cocina</option>
+                  <option value="bathroom" data-i18n="formProjectBath">Baño</option>
+                  <option value="floors_walls" data-i18n="formProjectFloors">Pisos o paredes</option>
+                  <option value="stairs" data-i18n="formProjectStairs">Escaleras</option>
+                  <option value="commercial" data-i18n="formProjectCommercial">Comercial</option>
+                  <option value="other" data-i18n="formProjectOther">Otro</option>
                 </select>
               </label>
             </div>
@@ -526,9 +528,10 @@
             <label>
               <span data-i18n="formDetails">Información del proyecto</span>
               <textarea
-                name="Informacion del proyecto"
+                name="message"
                 rows="6"
                 required
+                maxlength="3000"
                 data-i18n-placeholder="formDetailsPlaceholder"
                 placeholder="Medidas, material deseado, ubicación, tiempo estimado y cualquier detalle importante."
               ></textarea>
@@ -539,24 +542,24 @@
               <label class="file-picker">
                 <input
                   type="file"
+                  name="attachments"
                   data-file-picker
+                  data-max-files="5"
+                  data-max-total="10485760"
                   accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf"
                   multiple
                 />
                 <span class="file-picker-button" data-i18n="formChooseFiles">Seleccionar archivos</span>
                 <span class="file-picker-text" data-file-summary data-i18n="formNoFiles">Ningún archivo seleccionado</span>
               </label>
-              <div class="file-slots" aria-hidden="true">
-                <input type="file" name="attachment1" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf" tabindex="-1" />
-                <input type="file" name="attachment2" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf" tabindex="-1" />
-                <input type="file" name="attachment3" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf" tabindex="-1" />
-                <input type="file" name="attachment4" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf" tabindex="-1" />
-                <input type="file" name="attachment5" accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf" tabindex="-1" />
-              </div>
-              <small data-i18n="formPlansHelp">Puedes adjuntar hasta 5 archivos PDF, imágenes o planos. Límite total recomendado: 10MB.</small>
+              <small data-i18n="formPlansHelp">Puedes adjuntar hasta 5 archivos PDF, imágenes o planos. Se enviarán junto con tu solicitud.</small>
             </div>
 
-            <button class="btn btn-primary form-submit" type="submit" data-i18n="formSend">Send</button>
+            <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+            <div class="form-actions">
+              <button class="btn btn-primary form-submit" type="submit" data-i18n="formSend">Send</button>
+              <a class="btn btn-ghost form-whatsapp" href="https://wa.me/17877522795" target="_blank" rel="noopener" data-whatsapp-submit data-i18n="formWhatsapp">WhatsApp</a>
+            </div>
           </form>
         </div>
       </section>
@@ -611,6 +614,6 @@
       </div>
     </footer>
 
-    <script src="script.js?v=10"></script>
+    <script src="script.js?v=13"></script>
   </body>
 </html>
