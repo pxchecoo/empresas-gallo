@@ -1841,8 +1841,7 @@ button.material-card {
   box-shadow: 0 0 0 4px rgba(216, 96, 24, 0.12);
 }
 
-.quote-form .file-picker input,
-.file-slots {
+.quote-form .file-picker input {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -1886,6 +1885,43 @@ button.material-card {
   min-width: 150px;
   border: 0;
   cursor: pointer;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.form-actions .btn {
+  min-height: 48px;
+}
+
+.form-submit:disabled {
+  cursor: wait;
+  opacity: 0.62;
+}
+
+.form-status {
+  min-height: 22px;
+  margin: 0;
+  color: rgba(247, 243, 234, 0.68);
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.form-status[data-status="success"] {
+  color: #bde7c9;
+}
+
+.form-status[data-status="error"] {
+  color: #ffb3a6;
+}
+
+.form-status[data-status="loading"] {
+  color: var(--gold-pale);
 }
 
 .form-honey {
