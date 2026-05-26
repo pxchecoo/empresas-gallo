@@ -153,8 +153,18 @@
       formNoFiles: "Ningún archivo seleccionado",
       formFileSingle: "1 archivo seleccionado",
       formFileMultiple: "{count} archivos seleccionados",
-      formPlansHelp: "Puedes adjuntar hasta 5 archivos PDF, imágenes o planos. Límite total recomendado: 10MB.",
-      formSend: "Send",
+      formPlansHelp: "Puedes adjuntar hasta 5 archivos PDF, imágenes o planos. Se enviarán junto con tu solicitud.",
+      formSending: "Enviando solicitud...",
+      formSuccess: "Solicitud enviada. Nuestro equipo revisará la información y te contactará pronto.",
+      formShareSuccess: "Se abrió WhatsApp con los detalles preparados.",
+      formError: "No se pudo enviar la solicitud. Intenta nuevamente o usa WhatsApp.",
+      formEndpointMissing: "El backend de cotizaciones todavía no está configurado. Agrega el URL del API en index.html.",
+      formFileTooMany: "Solo puedes adjuntar hasta {count} archivos.",
+      formFileTooLarge: "Los archivos no pueden pasar de 10MB en total.",
+      formMailSubject: "Nueva solicitud de cotización - TecnoMármol, Inc",
+      formSelectedFiles: "Archivos seleccionados",
+      formWhatsapp: "WhatsApp",
+      formSend: "Enviar solicitud",
       footerDescription:
         "Soluciones premium en mármol, granito, cuarzo, porcelana y piedras naturales para espacios residenciales y comerciales.",
       footerServicesTitle: "Servicios",
@@ -311,8 +321,18 @@
       formNoFiles: "No files selected",
       formFileSingle: "1 file selected",
       formFileMultiple: "{count} files selected",
-      formPlansHelp: "You may attach up to 5 PDF, image or plan files. Recommended total limit: 10MB.",
-      formSend: "Send",
+      formPlansHelp: "You may attach up to 5 PDF, image or plan files. They will be sent with your request.",
+      formSending: "Sending request...",
+      formSuccess: "Request sent. Our team will review the information and contact you soon.",
+      formShareSuccess: "WhatsApp opened with the details prepared.",
+      formError: "The request could not be sent. Please try again or use WhatsApp.",
+      formEndpointMissing: "The quote backend is not configured yet. Add the API URL in index.html.",
+      formFileTooMany: "You may attach up to {count} files.",
+      formFileTooLarge: "Files cannot exceed 10MB total.",
+      formMailSubject: "New quote request - TecnoMármol, Inc",
+      formSelectedFiles: "Selected files",
+      formWhatsapp: "WhatsApp",
+      formSend: "Send request",
       footerDescription:
         "Premium marble, granite, quartz, porcelain and natural stone solutions for residential and commercial spaces.",
       footerServicesTitle: "Services",
@@ -360,13 +380,16 @@
       const key = element.dataset.i18nHref;
       if (copy[key]) element.setAttribute("href", copy[key]);
     });
+
+    const languageField = document.querySelector("[data-language-field]");
+    if (languageField) languageField.value = language;
   };
 
   languageOptions.forEach((button) => {
     button.addEventListener("click", () => {
       applyLanguage(button.dataset.language);
       if (filePicker) {
-        updateFileSummary([...filePicker.files].slice(0, attachmentSlots.length));
+        updateFileSummary([...filePicker.files].slice(0, maxFiles));
       }
       languageGate?.classList.add("is-hidden");
       document.body.classList.remove("language-pending");
@@ -523,38 +546,36 @@
     });
   });
 
-  // One polished upload control, split into separate attachment fields for FormSubmit.
+  // Quote form flow: sends multipart data to the separate backend API.
+  const quoteForm = document.querySelector("[data-quote-form]");
   const filePicker = document.querySelector("[data-file-picker]");
   const fileSummary = document.querySelector("[data-file-summary]");
-  const attachmentSlots = [...document.querySelectorAll(".file-slots input[type='file']")];
+  const formStatus = document.querySelector("[data-form-status]");
+  const submitButton = quoteForm?.querySelector(".form-submit");
+  const whatsappSubmit = document.querySelector("[data-whatsapp-submit]");
+  const maxFiles = Number(filePicker?.dataset.maxFiles || 5);
+  const maxTotalBytes = Number(filePicker?.dataset.maxTotal || 10485760);
 
   const activeCopy = () => translations[document.documentElement.dataset.lang || document.documentElement.lang] || translations.es;
 
-  const clearAttachmentSlots = () => {
-    attachmentSlots.forEach((slot) => {
-      slot.value = "";
-    });
+  const cleanFormText = (value) => String(value).replace(/\s+/g, " ").trim();
+
+  const formValue = (name) => cleanFormText(quoteForm?.elements?.[name]?.value || "");
+
+  const setFormStatus = (message = "", type = "") => {
+    if (!formStatus) return;
+    formStatus.textContent = message;
+    formStatus.dataset.status = type;
   };
 
-  const syncAttachmentSlots = (files) => {
-    clearAttachmentSlots();
-    filePicker?.removeAttribute("name");
-    const canSplitFiles = () => {
-      try {
-        return typeof DataTransfer !== "undefined" && new DataTransfer();
-      } catch {
-        return null;
-      }
-    };
-    if (!canSplitFiles()) {
-      filePicker?.setAttribute("name", "attachment");
-      return;
-    }
-    files.slice(0, attachmentSlots.length).forEach((file, index) => {
-      const transfer = new DataTransfer();
-      transfer.items.add(file);
-      attachmentSlots[index].files = transfer.files;
-    });
+  const totalFileSize = (files = []) => files.reduce((total, file) => total + file.size, 0);
+
+  const limitFileList = (files) => {
+    if (!filePicker || files.length <= maxFiles || typeof DataTransfer === "undefined") return files.slice(0, maxFiles);
+    const transfer = new DataTransfer();
+    files.slice(0, maxFiles).forEach((file) => transfer.items.add(file));
+    filePicker.files = transfer.files;
+    return [...filePicker.files];
   };
 
   const updateFileSummary = (files = []) => {
@@ -574,9 +595,145 @@
   };
 
   filePicker?.addEventListener("change", () => {
-    const files = [...filePicker.files].slice(0, attachmentSlots.length);
-    syncAttachmentSlots(files);
+    let files = [...filePicker.files];
+    const copy = activeCopy();
+    if (files.length > maxFiles) {
+      setFormStatus(copy.formFileTooMany.replace("{count}", String(maxFiles)), "error");
+      files = limitFileList(files);
+    } else {
+      setFormStatus();
+    }
+
+    if (totalFileSize(files) > maxTotalBytes) {
+      setFormStatus(copy.formFileTooLarge, "error");
+    }
+
     updateFileSummary(files);
+  });
+
+  const selectedFilesText = (files, copy) => {
+    if (!files.length) return copy.formNoFiles;
+    return files.map((file) => `- ${file.name}`).join("\n");
+  };
+
+  const buildQuoteMessage = (copy, files = []) => {
+    const language = document.documentElement.lang === "en" ? "English" : "Español";
+    const lines = [
+      copy.formMailSubject,
+      "",
+      `${copy.formName}: ${formValue("name")}`,
+      `${copy.formEmail}: ${formValue("email")}`,
+      `${copy.formPhone}: ${formValue("phone")}`,
+      `${copy.formProjectType}: ${formValue("project_type")}`,
+      `Idioma / Language: ${language}`,
+      "",
+      `${copy.formDetails}:`,
+      cleanFormText(quoteForm?.elements?.message?.value || ""),
+      "",
+      `${copy.formSelectedFiles}:`,
+      selectedFilesText(files, copy)
+    ];
+
+    return lines.join("\n");
+  };
+
+  const getQuoteEndpoint = () => {
+    const configured = quoteForm?.dataset.apiEndpoint || "";
+    if (configured) return configured;
+
+    const localHosts = new Set(["localhost", "127.0.0.1", ""]);
+    if (localHosts.has(window.location.hostname)) {
+      return "http://localhost:8787/api/quote";
+    }
+
+    return "";
+  };
+
+  const buildWhatsappUrl = () => {
+    const copy = activeCopy();
+    const phone = quoteForm?.dataset.whatsappNumber || "17877522795";
+    const files = filePicker ? [...filePicker.files].slice(0, maxFiles) : [];
+    return `https://wa.me/${phone}?text=${encodeURIComponent(buildQuoteMessage(copy, files))}`;
+  };
+
+  const updateWhatsappHref = () => {
+    if (whatsappSubmit) whatsappSubmit.href = buildWhatsappUrl();
+  };
+
+  quoteForm?.addEventListener("input", updateWhatsappHref);
+  quoteForm?.addEventListener("change", updateWhatsappHref);
+  updateWhatsappHref();
+
+  whatsappSubmit?.addEventListener("click", (event) => {
+    if (!quoteForm?.checkValidity()) {
+      event.preventDefault();
+      quoteForm?.reportValidity();
+      return;
+    }
+    whatsappSubmit.href = buildWhatsappUrl();
+    setFormStatus(activeCopy().formShareSuccess, "success");
+  });
+
+  quoteForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const copy = activeCopy();
+    const files = filePicker ? [...filePicker.files] : [];
+
+    if (!quoteForm.checkValidity()) {
+      quoteForm.reportValidity();
+      return;
+    }
+
+    if (quoteForm.elements.website?.value) {
+      setFormStatus(copy.formSuccess, "success");
+      quoteForm.reset();
+      updateFileSummary([]);
+      updateWhatsappHref();
+      return;
+    }
+
+    if (files.length > maxFiles) {
+      setFormStatus(copy.formFileTooMany.replace("{count}", String(maxFiles)), "error");
+      return;
+    }
+
+    if (totalFileSize(files) > maxTotalBytes) {
+      setFormStatus(copy.formFileTooLarge, "error");
+      return;
+    }
+
+    const endpoint = getQuoteEndpoint();
+    if (!endpoint) {
+      setFormStatus(copy.formEndpointMissing, "error");
+      return;
+    }
+
+    setFormStatus(copy.formSending, "loading");
+    if (submitButton) submitButton.disabled = true;
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        body: new FormData(quoteForm),
+        headers: {
+          Accept: "application/json"
+        }
+      });
+
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || !result.ok) {
+        throw new Error(result.message || copy.formError);
+      }
+
+      setFormStatus(result.message || copy.formSuccess, "success");
+      quoteForm.reset();
+      updateFileSummary([]);
+      updateWhatsappHref();
+    } catch (error) {
+      setFormStatus(error.message || copy.formError, "error");
+    } finally {
+      if (submitButton) submitButton.disabled = false;
+    }
   });
 
   // Scroll reveal with IntersectionObserver.
