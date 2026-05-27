@@ -159,7 +159,7 @@ body::before {
   z-index: -2;
   background:
     linear-gradient(90deg, rgba(216, 96, 24, 0.04), transparent 35%, rgba(255, 255, 255, 0.035)),
-    url("assets/material-natural-stone.png");
+    url("assets/material-white-porcelain-original.png");
   background-size: cover;
   opacity: 0.13;
   mix-blend-mode: screen;
@@ -414,7 +414,7 @@ p {
   overflow: hidden;
   background:
     linear-gradient(90deg, rgba(7, 6, 5, 0.95) 0%, rgba(7, 6, 5, 0.64) 48%, rgba(7, 6, 5, 0.36) 100%),
-    url("assets/hero-showroom.png") center / cover no-repeat;
+    url("assets/material-white-porcelain-original.png") center / cover no-repeat;
 }
 
 .hero-aura {
@@ -589,8 +589,8 @@ p {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 6px;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.02)),
-    url("assets/material-granite.png") center / cover no-repeat;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.035)),
+    url("assets/material-white-porcelain-original.png") center / cover no-repeat;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.18);
   transform-style: preserve-3d;
   pointer-events: none;
@@ -613,8 +613,8 @@ p {
   height: 290px;
   opacity: 0.34;
   background-image:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02)),
-    url("assets/material-natural-stone.png");
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.025)),
+    url("assets/material-white-porcelain-original.png");
   transform: rotateY(24deg) rotateX(4deg) translateZ(-120px);
   animation-duration: 12s;
 }
@@ -637,9 +637,10 @@ p {
   display: block;
   border: 1px solid rgba(255, 255, 255, 0.22);
   background-image:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.03) 48%, rgba(216, 96, 24, 0.2)),
-    url("assets/material-marble.png");
+    linear-gradient(135deg, rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.07) 48%, rgba(122, 133, 138, 0.18)),
+    url("assets/material-white-porcelain-original.png");
   background-size: cover;
+  background-position: center;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
@@ -656,7 +657,7 @@ p {
   height: 42px;
   transform-origin: top;
   transform: rotateX(-90deg);
-  filter: brightness(0.46);
+  filter: brightness(0.72) saturate(0.78);
 }
 
 .slab-edge-side {
@@ -666,7 +667,7 @@ p {
   height: 100%;
   transform-origin: left;
   transform: rotateY(90deg);
-  filter: brightness(0.36);
+  filter: brightness(0.58) saturate(0.74);
 }
 
 .material-note {
@@ -1242,7 +1243,7 @@ button.material-card {
 .palette-section::before {
   background:
     linear-gradient(110deg, transparent 0 22%, rgba(255, 255, 255, 0.055) 28%, transparent 38%),
-    url("assets/material-natural-stone.png") center / cover fixed;
+    url("assets/material-white-porcelain-original.png") center / cover fixed;
   opacity: 0.14;
   mix-blend-mode: screen;
 }
@@ -1440,7 +1441,7 @@ button.material-card {
   pointer-events: none;
   background:
     linear-gradient(120deg, transparent 0 18%, rgba(255, 255, 255, 0.045) 24%, transparent 32%),
-    url("assets/material-natural-stone.png") center / cover fixed;
+    url("assets/material-white-porcelain-original.png") center / cover fixed;
   opacity: 0.16;
   mix-blend-mode: screen;
 }
@@ -1512,7 +1513,7 @@ button.material-card {
   border-radius: var(--radius);
   background:
     radial-gradient(circle at 72% 16%, rgba(216, 96, 24, 0.2), transparent 34%),
-    url("assets/material-natural-stone.png") center / cover no-repeat;
+    url("assets/material-white-porcelain-original.png") center / cover no-repeat;
   box-shadow: 0 34px 82px rgba(0, 0, 0, 0.52);
   isolation: isolate;
   transform-style: preserve-3d;
@@ -1556,7 +1557,7 @@ button.material-card {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.44)),
     url("assets/tecnomarmol-real-1.jpg") center / cover no-repeat,
-    url("assets/material-natural-stone.png") center / cover no-repeat;
+    url("assets/material-white-porcelain-original.png") center / cover no-repeat;
   filter: brightness(0.92) contrast(1.08);
 }
 
@@ -1648,7 +1649,7 @@ button.material-card {
   border-radius: var(--radius);
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.11), rgba(216, 96, 24, 0.04)),
-    url("assets/material-natural-stone.png") center / cover no-repeat;
+    url("assets/material-white-porcelain-original.png") center / cover no-repeat;
   box-shadow: 0 22px 48px rgba(0, 0, 0, 0.42);
   transform: translateZ(0) rotateX(0deg) rotateY(0deg);
   transition: transform 700ms var(--ease-premium), box-shadow 700ms var(--ease-premium), border-color 700ms var(--ease-premium);
@@ -1696,7 +1697,7 @@ button.material-card {
   overflow: hidden;
   background:
     linear-gradient(135deg, rgba(8, 7, 6, 0.96), rgba(8, 7, 6, 0.88)),
-    url("assets/material-porcelain.png") center / cover fixed;
+    url("assets/material-white-porcelain-original.png") center / cover fixed;
 }
 
 .final-cta::before {
