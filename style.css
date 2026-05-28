@@ -305,6 +305,128 @@ button {
   box-shadow: 0 12px 26px rgba(216, 96, 24, 0.24);
 }
 
+.language-switch {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  margin-left: 6px;
+  min-width: 0;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  color: #fffaf0;
+  background:
+    radial-gradient(circle at 32% 22%, rgba(255, 255, 255, 0.22), transparent 34%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(216, 96, 24, 0.08)),
+    rgba(8, 7, 6, 0.72);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 14px 30px rgba(0, 0, 0, 0.34),
+    0 0 0 rgba(216, 96, 24, 0);
+  cursor: pointer;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  overflow: visible;
+  transform: translateY(0) scale(1) rotate(0);
+  transition:
+    width 460ms var(--ease-premium),
+    margin-left 460ms var(--ease-premium),
+    opacity 460ms var(--ease-premium),
+    visibility 460ms var(--ease-premium),
+    transform 460ms var(--ease-premium),
+    border-color 360ms var(--ease-premium),
+    box-shadow 360ms var(--ease-premium),
+    background 360ms var(--ease-premium);
+}
+
+.site-header.is-scrolled .language-switch {
+  width: 0;
+  margin-left: 0;
+  border-width: 0;
+  box-shadow: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-8px) scale(0.78) rotate(10deg);
+}
+
+.language-switch:hover,
+.language-switch:focus-visible {
+  border-color: rgba(255, 138, 61, 0.64);
+  background:
+    radial-gradient(circle at 32% 22%, rgba(255, 255, 255, 0.28), transparent 34%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.16), rgba(216, 96, 24, 0.14)),
+    rgba(8, 7, 6, 0.82);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 16px 34px rgba(0, 0, 0, 0.4),
+    0 0 22px rgba(216, 96, 24, 0.2);
+  transform: translateY(-1px) scale(1.04);
+}
+
+.language-flag {
+  display: block;
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 10px rgba(0, 0, 0, 0.22),
+    0 4px 8px rgba(0, 0, 0, 0.42);
+  object-fit: cover;
+  overflow: hidden;
+  transform-origin: center;
+}
+
+.language-switch.is-switching .language-flag {
+  animation: flagSwitch 560ms var(--ease-premium);
+}
+
+.language-tooltip {
+  position: absolute;
+  right: 50%;
+  top: calc(100% + 12px);
+  width: max-content;
+  max-width: 190px;
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius);
+  color: #fffaf0;
+  background: rgba(8, 7, 6, 0.9);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(16px);
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.2;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(50%, -8px);
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+
+.language-tooltip::after {
+  content: "";
+  position: absolute;
+  right: 50%;
+  top: -6px;
+  width: 10px;
+  height: 10px;
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(8, 7, 6, 0.9);
+  transform: translateX(50%) rotate(45deg);
+}
+
+.language-switch:hover .language-tooltip,
+.language-switch:focus-visible .language-tooltip {
+  opacity: 1;
+  transform: translate(50%, 0);
+}
+
 .nav-toggle {
   display: none;
   width: 46px;
@@ -1539,13 +1661,16 @@ button.material-card {
 .workshop-video {
   object-fit: cover;
   opacity: 0;
+  pointer-events: none;
   filter: brightness(0.92) contrast(1.08) saturate(1.05);
   transform: scale(1.04);
   transition: opacity 900ms var(--ease-premium), transform 1200ms var(--ease-premium);
+  cursor: zoom-in;
 }
 
 .workshop-video.is-active {
   opacity: 1;
+  pointer-events: auto;
   transform: scale(1);
 }
 
@@ -1613,23 +1738,140 @@ button.material-card {
   gap: 8px;
 }
 
-.workshop-video-dots span {
+.workshop-video-dots button {
   width: 8px;
   height: 8px;
+  padding: 0;
+  border: 0;
   border-radius: 50%;
   background: rgba(247, 243, 234, 0.36);
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
-  transition: width 360ms var(--ease-premium), background 360ms var(--ease-premium);
+  cursor: pointer;
+  transition: width 360ms var(--ease-premium), background 360ms var(--ease-premium), transform 360ms var(--ease-premium), box-shadow 360ms var(--ease-premium);
 }
 
-.workshop-video-dots span.is-active {
+.workshop-video-dots button:hover,
+.workshop-video-dots button:focus-visible {
+  transform: scale(1.35);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 0 0 4px rgba(216, 96, 24, 0.16);
+  outline: none;
+}
+
+.workshop-video-dots button.is-active {
   width: 28px;
   border-radius: 999px;
   background: var(--gold-soft);
 }
 
+.workshop-video-dots button:disabled {
+  display: none;
+}
+
 .workshop-video-card.has-no-videos .workshop-video-dots {
   display: none;
+}
+
+.video-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1001;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 520ms var(--ease-premium), visibility 520ms var(--ease-premium);
+}
+
+.video-lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.video-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(216, 96, 24, 0.18), transparent 32%),
+    rgba(4, 4, 3, 0.82);
+  backdrop-filter: blur(20px);
+  cursor: zoom-out;
+}
+
+.video-lightbox-panel {
+  position: relative;
+  width: min(88vw, 560px);
+  max-height: min(88vh, 900px);
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius);
+  background: #050504;
+  box-shadow:
+    0 40px 110px rgba(0, 0, 0, 0.72),
+    0 0 70px rgba(216, 96, 24, 0.14);
+  transform: perspective(1200px) translateY(34px) scale(0.88) rotateX(8deg);
+  opacity: 0;
+  transition: transform 680ms var(--ease-premium), opacity 520ms var(--ease-premium);
+}
+
+.video-lightbox.is-open .video-lightbox-panel {
+  opacity: 1;
+  transform: perspective(1200px) translateY(0) scale(1) rotateX(0);
+}
+
+.video-lightbox-player {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  background: #050504;
+}
+
+.video-lightbox-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 50%;
+  background: rgba(5, 5, 4, 0.76);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.36);
+  backdrop-filter: blur(14px);
+  cursor: pointer;
+  transition: transform 320ms var(--ease-premium), border-color 320ms var(--ease-premium), background 320ms var(--ease-premium);
+}
+
+.video-lightbox-close:hover,
+.video-lightbox-close:focus-visible {
+  border-color: rgba(255, 138, 61, 0.62);
+  background: rgba(216, 96, 24, 0.18);
+  transform: scale(1.05);
+  outline: none;
+}
+
+.video-lightbox-close span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 17px;
+  height: 2px;
+  border-radius: 999px;
+  background: #fffaf0;
+}
+
+.video-lightbox-close span:first-child {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.video-lightbox-close span:last-child {
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 .workshop-gallery {
@@ -2091,6 +2333,28 @@ button.material-card {
   }
 }
 
+@keyframes flagSwitch {
+  0% {
+    opacity: 1;
+    transform: rotateY(0deg) scale(1);
+  }
+
+  42% {
+    opacity: 0;
+    transform: rotateY(88deg) scale(0.72);
+  }
+
+  58% {
+    opacity: 0;
+    transform: rotateY(-88deg) scale(0.72);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotateY(0deg) scale(1);
+  }
+}
+
 @media (max-width: 1060px) {
   .site-nav a {
     padding: 0 10px;
@@ -2260,6 +2524,16 @@ button.material-card {
     margin-left: 0;
   }
 
+  .site-nav .language-switch {
+    justify-self: center;
+    margin-top: 4px;
+  }
+
+  .site-nav .language-switch {
+    width: 48px;
+    height: 48px;
+  }
+
   .section {
     padding: 84px 0;
   }
@@ -2401,6 +2675,15 @@ button.material-card {
     bottom: 22px;
   }
 
+  .video-lightbox {
+    padding: 16px;
+  }
+
+  .video-lightbox-panel {
+    width: min(92vw, 520px);
+    max-height: 86vh;
+  }
+
   .workshop-gallery {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 10px;
@@ -2491,6 +2774,22 @@ button.material-card {
     left: 16px;
     right: auto;
     bottom: 16px;
+  }
+
+  .video-lightbox {
+    padding: 10px;
+  }
+
+  .video-lightbox-panel {
+    width: min(96vw, 430px);
+    max-height: 84vh;
+  }
+
+  .video-lightbox-close {
+    top: 10px;
+    right: 10px;
+    width: 38px;
+    height: 38px;
   }
 
   h1 {
