@@ -35,7 +35,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
     <link rel="preload" as="image" href="assets/background-black-marble-original.png" />
-    <link rel="stylesheet" href="style.css?v=27" />
+    <link rel="stylesheet" href="style.css?v=35" />
   </head>
   <body class="language-pending">
     <div class="language-gate" id="languageGate" role="dialog" aria-modal="true" aria-labelledby="languageTitle">
@@ -70,7 +70,12 @@
         <a href="#materiales" data-i18n="navMaterials">Materiales</a>
         <a href="#paletas" data-i18n="navPalettes">Paletas</a>
         <a href="#taller" data-i18n="navWorkshop">Taller</a>
+        <a href="#contacto-footer" data-i18n="navContact">Contacto</a>
         <a class="nav-cta" href="#contacto" data-i18n="navQuote">Cotización</a>
+        <button class="language-switch" type="button" aria-label="Cambiar idioma" data-language-toggle>
+          <img class="language-flag" src="assets/language-spain.svg" alt="" aria-hidden="true" data-language-flag />
+          <span class="language-tooltip" data-language-tooltip>Cambiar idioma</span>
+        </button>
       </nav>
     </header>
 
@@ -429,16 +434,22 @@
               <video class="workshop-video" src="assets/videotaller2.mp4" muted playsinline preload="metadata"></video>
               <video class="workshop-video" src="assets/videotaller3.mp4" muted playsinline preload="metadata"></video>
               <video class="workshop-video" src="assets/videotaller4.mp4" muted playsinline preload="metadata"></video>
+              <video class="workshop-video" src="assets/videotaller5.mp4" muted playsinline preload="metadata"></video>
+              <video class="workshop-video" src="assets/videotaller6.mp4" muted playsinline preload="metadata"></video>
+              <video class="workshop-video" src="assets/videotaller7.mp4" muted playsinline preload="metadata"></video>
               <div class="workshop-video-fallback" aria-hidden="true"></div>
               <div class="workshop-video-meta">
                 <span data-i18n="workshopVideoEyebrow">Video del taller</span>
                 <strong data-i18n="workshopVideoTitle">Corte, pulido y acabado en movimiento</strong>
               </div>
-              <div class="workshop-video-dots" aria-hidden="true">
-                <span class="is-active"></span>
-                <span></span>
-                <span></span>
-                <span></span>
+              <div class="workshop-video-dots" aria-label="Controles de video del taller" data-i18n-aria="workshopVideoControls">
+                <button class="is-active" type="button" aria-label="Video 1"></button>
+                <button type="button" aria-label="Video 2"></button>
+                <button type="button" aria-label="Video 3"></button>
+                <button type="button" aria-label="Video 4"></button>
+                <button type="button" aria-label="Video 5"></button>
+                <button type="button" aria-label="Video 6"></button>
+                <button type="button" aria-label="Video 7"></button>
               </div>
             </div>
           </div>
@@ -563,6 +574,17 @@
       </section>
     </main>
 
+    <div class="video-lightbox" data-video-lightbox aria-hidden="true">
+      <button class="video-lightbox-backdrop" type="button" data-video-lightbox-close data-i18n-aria="workshopVideoClose"></button>
+      <div class="video-lightbox-panel" role="dialog" aria-modal="true" aria-label="Video del taller" data-i18n-aria="workshopVideoLabel">
+        <button class="video-lightbox-close" type="button" data-video-lightbox-close data-i18n-aria="workshopVideoClose">
+          <span></span>
+          <span></span>
+        </button>
+        <video class="video-lightbox-player" controls playsinline data-video-lightbox-player></video>
+      </div>
+    </div>
+
     <footer class="site-footer">
       <div class="section-inner footer-grid">
         <div class="footer-brand-block">
@@ -583,7 +605,7 @@
           <a href="#servicios" data-i18n="footerService2">Topes a la medida</a>
           <a href="#servicios" data-i18n="footerService3">Instalación profesional</a>
         </div>
-        <div class="footer-column">
+        <div class="footer-column" id="contacto-footer">
           <h3 data-i18n="footerContactTitle">Contacto</h3>
           <a href="mailto:mgallo@tecnomarmolpr.com">mgallo@tecnomarmolpr.com</a>
           <a href="tel:+17877522795">787-752-2795</a>
