@@ -172,7 +172,7 @@
       footerService2: "Topes a la medida",
       footerService3: "Instalación profesional",
       footerContactTitle: "Contacto",
-      appointmentOnly: "Servicio por cita",
+      footerLocation: "Localización",
       footerSocialTitle: "Redes sociales",
       rights: "TecnoMármol, Inc. Derechos reservados."
     },
@@ -340,7 +340,7 @@
       footerService2: "Custom countertops",
       footerService3: "Professional installation",
       footerContactTitle: "Contact",
-      appointmentOnly: "By appointment",
+      footerLocation: "Location",
       footerSocialTitle: "Social media",
       rights: "TecnoMármol, Inc. All rights reserved."
     }
