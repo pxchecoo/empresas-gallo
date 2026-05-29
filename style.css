@@ -1980,6 +1980,336 @@ button.material-card {
   transform: scale(1.08);
 }
 
+.completed-projects {
+  grid-column: 1 / -1;
+  width: min(1060px, 100%);
+  margin: 22px auto 0;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.085), rgba(216, 96, 24, 0.045)),
+    rgba(8, 7, 6, 0.54);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.46);
+  backdrop-filter: blur(18px);
+}
+
+.completed-projects-heading {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  margin: 0 auto 22px;
+  text-align: center;
+}
+
+.completed-projects-heading h2 {
+  width: min(780px, 100%);
+  margin: 0;
+  font-size: clamp(1.82rem, 2.35vw, 2.85rem);
+  line-height: 1.06;
+}
+
+.project-slider {
+  position: relative;
+}
+
+.project-stage {
+  position: relative;
+  width: 100%;
+  height: clamp(330px, 39vw, 560px);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(216, 96, 24, 0.08)),
+    url("assets/material-white-porcelain-original.png") center / cover no-repeat;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 24px 54px rgba(0, 0, 0, 0.45);
+}
+
+.project-slide {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.035);
+  transition: opacity 720ms var(--ease-premium), visibility 720ms var(--ease-premium), transform 960ms var(--ease-premium);
+}
+
+.project-slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.42)),
+    var(--project-fallback, url("assets/tecnomarmol-real-1.jpg")) center / cover no-repeat;
+  filter: brightness(0.82) contrast(1.08);
+}
+
+.project-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 48%, rgba(0, 0, 0, 0.52)),
+    linear-gradient(125deg, rgba(255, 255, 255, 0.12), transparent 34%, rgba(216, 96, 24, 0.1));
+}
+
+.project-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.project-slide img,
+.project-slide video {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  filter: brightness(0.96) contrast(1.06) saturate(1.04);
+}
+
+.project-slide[data-media-type="video"] video {
+  object-fit: contain;
+  background:
+    radial-gradient(circle at 50% 36%, rgba(216, 96, 24, 0.1), transparent 44%),
+    #050504;
+}
+
+.project-slide.is-missing img,
+.project-slide.is-missing video {
+  display: none;
+}
+
+.project-slide-count {
+  position: absolute;
+  left: 22px;
+  bottom: 20px;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  color: rgba(247, 243, 234, 0.86);
+  background: rgba(6, 5, 4, 0.62);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(12px);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.project-skip,
+.project-expand,
+.project-lightbox-close,
+.project-lightbox-nav {
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #fffaf0;
+  background: rgba(6, 5, 4, 0.62);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(14px);
+  cursor: pointer;
+  transition:
+    transform 320ms var(--ease-premium),
+    border-color 320ms var(--ease-premium),
+    background 320ms var(--ease-premium),
+    box-shadow 320ms var(--ease-premium);
+}
+
+.project-skip,
+.project-expand {
+  position: absolute;
+  z-index: 5;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.project-skip {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.project-skip-prev {
+  left: 18px;
+}
+
+.project-skip-next {
+  right: 18px;
+}
+
+.project-expand {
+  top: 18px;
+  right: 18px;
+}
+
+.project-skip:hover,
+.project-skip:focus-visible,
+.project-expand:hover,
+.project-expand:focus-visible,
+.project-lightbox-close:hover,
+.project-lightbox-close:focus-visible,
+.project-lightbox-nav:hover,
+.project-lightbox-nav:focus-visible {
+  border-color: rgba(255, 138, 61, 0.62);
+  background: rgba(216, 96, 24, 0.2);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.46), 0 0 24px rgba(216, 96, 24, 0.16);
+  outline: none;
+}
+
+.project-skip:hover,
+.project-skip:focus-visible {
+  transform: translateY(-50%) scale(1.06);
+}
+
+.project-expand:hover,
+.project-expand:focus-visible,
+.project-lightbox-close:hover,
+.project-lightbox-close:focus-visible,
+.project-lightbox-nav:hover,
+.project-lightbox-nav:focus-visible {
+  transform: scale(1.06);
+}
+
+.project-dots {
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 18px;
+}
+
+.project-dots button {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(247, 243, 234, 0.34);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  transition: width 360ms var(--ease-premium), background 360ms var(--ease-premium), transform 360ms var(--ease-premium);
+}
+
+.project-dots button:hover,
+.project-dots button:focus-visible {
+  transform: scale(1.26);
+  background: rgba(255, 255, 255, 0.72);
+  outline: none;
+}
+
+.project-dots button.is-active {
+  width: 34px;
+  background: var(--gold-soft);
+}
+
+.project-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1002;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 520ms var(--ease-premium), visibility 520ms var(--ease-premium);
+}
+
+.project-lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.project-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(216, 96, 24, 0.18), transparent 34%),
+    rgba(4, 4, 3, 0.86);
+  backdrop-filter: blur(20px);
+  cursor: zoom-out;
+}
+
+.project-lightbox-panel {
+  position: relative;
+  width: min(92vw, 1280px);
+  max-height: 88vh;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius);
+  background: #050504;
+  box-shadow:
+    0 40px 110px rgba(0, 0, 0, 0.74),
+    0 0 72px rgba(216, 96, 24, 0.14);
+  transform: perspective(1200px) translateY(30px) scale(0.92);
+  opacity: 0;
+  transition: transform 680ms var(--ease-premium), opacity 520ms var(--ease-premium);
+}
+
+.project-lightbox.is-open .project-lightbox-panel {
+  opacity: 1;
+  transform: perspective(1200px) translateY(0) scale(1);
+}
+
+.project-lightbox-image,
+.project-lightbox-video {
+  width: 100%;
+  height: 100%;
+  display: none;
+  object-fit: contain;
+  background: #050504;
+}
+
+.project-lightbox-image.is-active,
+.project-lightbox-video.is-active {
+  display: block;
+}
+
+.project-lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+.project-lightbox-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.project-lightbox-nav:hover,
+.project-lightbox-nav:focus-visible {
+  transform: translateY(-50%) scale(1.06);
+}
+
+.project-lightbox-prev {
+  left: 18px;
+}
+
+.project-lightbox-next {
+  right: 18px;
+}
+
 .final-cta {
   overflow: hidden;
   background:
@@ -2496,6 +2826,14 @@ button.material-card {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .completed-projects {
+    padding: 22px;
+  }
+
+  .project-stage {
+    height: clamp(320px, 50vw, 500px);
+  }
+
   .contact-panel-grid {
     grid-template-columns: 1fr;
   }
@@ -2733,6 +3071,52 @@ button.material-card {
     gap: 10px;
   }
 
+  .completed-projects {
+    padding: 18px;
+  }
+
+  .completed-projects-heading {
+    display: grid;
+    margin-bottom: 18px;
+  }
+
+  .completed-projects-heading h2 {
+    font-size: 1.95rem;
+  }
+
+  .project-stage {
+    height: clamp(300px, 62vw, 430px);
+  }
+
+  .project-skip,
+  .project-expand {
+    width: 42px;
+    height: 42px;
+  }
+
+  .project-skip-prev {
+    left: 12px;
+  }
+
+  .project-skip-next,
+  .project-expand {
+    right: 12px;
+  }
+
+  .project-lightbox {
+    padding: 14px;
+  }
+
+  .project-lightbox-panel {
+    width: min(96vw, 820px);
+    max-height: 84vh;
+  }
+
+  .project-lightbox-nav {
+    width: 44px;
+    height: 44px;
+  }
+
   .cta-inner {
     padding: 64px 0;
   }
@@ -2834,6 +3218,67 @@ button.material-card {
     right: 10px;
     width: 38px;
     height: 38px;
+  }
+
+  .completed-projects {
+    padding: 14px;
+  }
+
+  .completed-projects-heading h2 {
+    font-size: 1.58rem;
+  }
+
+  .project-stage {
+    height: clamp(300px, 88vw, 420px);
+  }
+
+  .project-slide-count {
+    left: 12px;
+    bottom: 12px;
+    font-size: 0.74rem;
+  }
+
+  .project-skip,
+  .project-expand {
+    width: 38px;
+    height: 38px;
+  }
+
+  .project-expand {
+    top: 12px;
+  }
+
+  .project-dots {
+    gap: 7px;
+  }
+
+  .project-lightbox {
+    padding: 10px;
+  }
+
+  .project-lightbox-panel {
+    width: 96vw;
+    max-height: 78vh;
+  }
+
+  .project-lightbox-close {
+    top: 10px;
+    right: 10px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .project-lightbox-nav {
+    width: 38px;
+    height: 38px;
+  }
+
+  .project-lightbox-prev {
+    left: 10px;
+  }
+
+  .project-lightbox-next {
+    right: 10px;
   }
 
   h1 {
