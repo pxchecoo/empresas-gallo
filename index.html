@@ -35,7 +35,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
     <link rel="preload" as="image" href="assets/background-black-marble-original.png" />
-    <link rel="stylesheet" href="style.css?v=39" />
+    <link rel="stylesheet" href="style.css?v=40" />
   </head>
   <body class="language-pending">
     <div class="language-gate" id="languageGate" role="dialog" aria-modal="true" aria-labelledby="languageTitle">
@@ -465,6 +465,61 @@
               <img src="assets/taller3.jpeg" alt="" loading="lazy" decoding="async" />
             </figure>
           </div>
+
+          <section class="completed-projects reveal" data-project-slideshow aria-label="Galería de proyectos completados" data-i18n-aria="projectsGalleryLabel">
+            <div class="completed-projects-heading">
+              <span class="eyebrow" data-i18n="projectsEyebrow">Proyectos completados</span>
+              <h2 data-i18n="projectsTitle">Superficies terminadas con detalle, precisión y acabado premium.</h2>
+            </div>
+
+            <div class="project-slider">
+              <div class="project-stage" data-project-stage>
+                <figure class="project-slide is-active" data-project-slide data-media-type="image" data-media-sources="assets/slide1.jpg|assets/slide1.jpeg|assets/slide1.png|assets/slide1.webp|assets/slide1" data-fallback-src="assets/tecnomarmol-real-1.jpg">
+                  <img alt="" loading="lazy" decoding="async" data-project-image />
+                </figure>
+                <figure class="project-slide" data-project-slide data-media-type="video" data-media-sources="assets/slidevideo1.mp4|assets/slidevideo1.mov|assets/slidevideo1.webm|assets/slidevideo1" data-fallback-src="assets/tecnomarmol-real-2.jpg">
+                  <video muted playsinline preload="metadata" data-project-video></video>
+                </figure>
+                <figure class="project-slide" data-project-slide data-media-type="image" data-media-sources="assets/slide2.jpg|assets/slide2.jpeg|assets/slide2.png|assets/slide2.webp|assets/slide2" data-fallback-src="assets/tecnomarmol-real-2.jpg">
+                  <img alt="" loading="lazy" decoding="async" data-project-image />
+                </figure>
+                <figure class="project-slide" data-project-slide data-media-type="video" data-media-sources="assets/slidevideo2.mp4|assets/slidevideo2.mov|assets/slidevideo2.webm|assets/slidevideo2" data-fallback-src="assets/tecnomarmol-real-3.jpg">
+                  <video muted playsinline preload="metadata" data-project-video></video>
+                </figure>
+                <figure class="project-slide" data-project-slide data-media-type="image" data-media-sources="assets/slide3.jpg|assets/slide3.jpeg|assets/slide3.png|assets/slide3.webp|assets/slide3" data-fallback-src="assets/tecnomarmol-real-3.jpg">
+                  <img alt="" loading="lazy" decoding="async" data-project-image />
+                </figure>
+                <figure class="project-slide" data-project-slide data-media-type="video" data-media-sources="assets/slidevideo3.mp4|assets/slidevideo3.mov|assets/slidevideo3.webm|assets/slidevideo3" data-fallback-src="assets/tecnomarmol-real-4.jpg">
+                  <video muted playsinline preload="metadata" data-project-video></video>
+                </figure>
+
+                <div class="project-slide-count" aria-hidden="true">
+                  <span data-project-current>01</span>
+                  <span>/</span>
+                  <span data-project-total>06</span>
+                </div>
+
+                <button class="project-skip project-skip-prev" type="button" data-project-prev aria-label="Proyecto anterior" data-i18n-aria="projectsPrevious">
+                  <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                </button>
+                <button class="project-skip project-skip-next" type="button" data-project-next aria-label="Siguiente proyecto" data-i18n-aria="projectsNext">
+                  <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </button>
+                <button class="project-expand" type="button" data-project-expand aria-label="Agrandar proyecto" data-i18n-aria="projectsExpand">
+                  <i class="fa-solid fa-up-right-and-down-left-from-center" aria-hidden="true"></i>
+                </button>
+              </div>
+
+              <div class="project-dots" aria-label="Controles de proyectos" data-i18n-aria="projectsControls">
+                <button class="is-active" type="button" data-project-dot aria-label="Proyecto 1"></button>
+                <button type="button" data-project-dot aria-label="Proyecto 2"></button>
+                <button type="button" data-project-dot aria-label="Proyecto 3"></button>
+                <button type="button" data-project-dot aria-label="Proyecto 4"></button>
+                <button type="button" data-project-dot aria-label="Proyecto 5"></button>
+                <button type="button" data-project-dot aria-label="Proyecto 6"></button>
+              </div>
+            </div>
+          </section>
         </div>
       </section>
 
@@ -585,6 +640,23 @@
       </div>
     </div>
 
+    <div class="project-lightbox" data-project-lightbox aria-hidden="true">
+      <button class="project-lightbox-backdrop" type="button" data-project-lightbox-close aria-label="Cerrar proyecto" data-i18n-aria="projectsClose"></button>
+      <div class="project-lightbox-panel" role="dialog" aria-modal="true" aria-label="Proyecto completado" data-i18n-aria="projectsGalleryLabel">
+        <button class="project-lightbox-close" type="button" data-project-lightbox-close aria-label="Cerrar proyecto" data-i18n-aria="projectsClose">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+        <button class="project-lightbox-nav project-lightbox-prev" type="button" data-project-lightbox-prev aria-label="Proyecto anterior" data-i18n-aria="projectsPrevious">
+          <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        <button class="project-lightbox-nav project-lightbox-next" type="button" data-project-lightbox-next aria-label="Siguiente proyecto" data-i18n-aria="projectsNext">
+          <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        </button>
+        <img class="project-lightbox-image" alt="" data-project-lightbox-image />
+        <video class="project-lightbox-video" controls playsinline data-project-lightbox-video></video>
+      </div>
+    </div>
+
     <footer class="site-footer">
       <div class="section-inner footer-grid">
         <div class="footer-brand-block">
@@ -634,7 +706,7 @@
       </div>
     </footer>
 
-    <script src="script.js?v=37"></script>
+    <script src="script.js?v=40"></script>
     <script>
       (() => {
         window.__TMI_INLINE_VERSION = "36";
@@ -671,6 +743,14 @@
               formFileTooMany: "Puedes adjuntar hasta {count} archivos.",
               formFileTooLarge: "Los archivos superan el limite recomendado de 10MB.",
               footerLocation: "Localización",
+              projectsGalleryLabel: "Galería de proyectos completados",
+              projectsEyebrow: "Proyectos completados",
+              projectsTitle: "Superficies terminadas con detalle, precisión y acabado premium.",
+              projectsControls: "Controles de proyectos completados",
+              projectsPrevious: "Proyecto anterior",
+              projectsNext: "Siguiente proyecto",
+              projectsExpand: "Agrandar proyecto",
+              projectsClose: "Cerrar proyecto",
               workshopVideoControls: "Controles de video del taller",
               workshopVideoLabel: "Videos del taller",
               workshopVideoClose: "Cerrar video"
@@ -692,11 +772,19 @@
               formChooseFiles: "Choose files",
               formNoFiles: "No files selected",
               formSending: "Sending request...",
-              formSuccess: "Quote received.",
+              formSuccess: "Email received.",
               formError: "Could not send. Please try again or call 787-752-2795.",
               formFileTooMany: "You can attach up to {count} files.",
               formFileTooLarge: "Files are over the recommended 10MB limit.",
               footerLocation: "Location",
+              projectsGalleryLabel: "Completed projects gallery",
+              projectsEyebrow: "Completed projects",
+              projectsTitle: "Finished surfaces with detail, precision and a premium finish.",
+              projectsControls: "Completed project controls",
+              projectsPrevious: "Previous project",
+              projectsNext: "Next project",
+              projectsExpand: "Expand project",
+              projectsClose: "Close project",
               workshopVideoControls: "Workshop video controls",
               workshopVideoLabel: "Workshop videos",
               workshopVideoClose: "Close video"
@@ -924,6 +1012,195 @@
             setActiveVideo(0);
             start();
           });
+
+          const initProjectSlideshow = () => {
+            if (window.__TMI_PROJECTS_READY) return;
+            window.__TMI_PROJECTS_READY = true;
+
+            const slider = $("[data-project-slideshow]");
+            if (!slider) return;
+
+            const slides = $$("[data-project-slide]", slider);
+            const dots = $$("[data-project-dot]", slider);
+            const currentCounter = $("[data-project-current]", slider);
+            const totalCounter = $("[data-project-total]", slider);
+            const stage = $("[data-project-stage]", slider);
+            const lightbox = $("[data-project-lightbox]");
+            const lightboxImage = $("[data-project-lightbox-image]");
+            const lightboxVideo = $("[data-project-lightbox-video]");
+            let activeIndex = 0;
+            let lightboxIndex = 0;
+            let timer = null;
+
+            if (!slides.length) return;
+            if (totalCounter) totalCounter.textContent = String(slides.length).padStart(2, "0");
+
+            const sourcesFor = (slide) => (slide.dataset.mediaSources || "").split("|").map((source) => source.trim()).filter(Boolean);
+            const fallbackFor = (slide) => slide.dataset.fallbackSrc || "assets/tecnomarmol-real-1.jpg";
+
+            slides.forEach((slide) => {
+              slide.style.setProperty("--project-fallback", `url("${fallbackFor(slide)}")`);
+              if (slide.dataset.mediaType === "video") {
+                const video = $("[data-project-video]", slide);
+                const sources = sourcesFor(slide);
+                let index = 0;
+                const nextSource = () => {
+                  if (!video) return;
+                  if (index >= sources.length) {
+                    video.dataset.failed = "true";
+                    video.classList.add("is-missing");
+                    slide.classList.add("is-missing");
+                    video.removeAttribute("src");
+                    video.load();
+                    return;
+                  }
+                  video.src = sources[index];
+                  index += 1;
+                  video.load();
+                };
+                if (video) {
+                  video.addEventListener("error", nextSource);
+                  video.addEventListener("loadedmetadata", () => slide.classList.remove("is-missing"));
+                  video.addEventListener("ended", () => {
+                    setActiveSlide(activeIndex + 1);
+                    restart();
+                  });
+                  nextSource();
+                }
+              } else {
+                const image = $("[data-project-image]", slide);
+                const sources = [...sourcesFor(slide), fallbackFor(slide)];
+                let index = 0;
+                const nextSource = () => {
+                  if (!image) return;
+                  if (index >= sources.length) {
+                    slide.classList.add("is-missing");
+                    image.removeAttribute("src");
+                    return;
+                  }
+                  image.src = sources[index];
+                  index += 1;
+                };
+                if (image) {
+                  image.addEventListener("error", nextSource);
+                  image.addEventListener("load", () => slide.classList.remove("is-missing"));
+                  nextSource();
+                }
+              }
+            });
+
+            const pauseVideos = () => slides.forEach((slide) => $("[data-project-video]", slide)?.pause());
+
+            function setActiveSlide(index) {
+              activeIndex = ((index % slides.length) + slides.length) % slides.length;
+              pauseVideos();
+              slides.forEach((slide, slideIndex) => slide.classList.toggle("is-active", slideIndex === activeIndex));
+              dots.forEach((dot, dotIndex) => dot.classList.toggle("is-active", dotIndex === activeIndex));
+              if (currentCounter) currentCounter.textContent = String(activeIndex + 1).padStart(2, "0");
+              const video = $("[data-project-video]", slides[activeIndex]);
+              if (video && !video.dataset.failed && (video.currentSrc || video.src)) {
+                video.currentTime = 0;
+                video.play().catch(() => {});
+              }
+            }
+
+            const start = () => {
+              if (reducedMotion || timer) return;
+              timer = window.setInterval(() => setActiveSlide(activeIndex + 1), 7800);
+            };
+            const stop = () => {
+              if (!timer) return;
+              window.clearInterval(timer);
+              timer = null;
+            };
+            function restart() {
+              stop();
+              start();
+            }
+
+            const setLightboxMedia = (index) => {
+              if (!lightboxImage || !lightboxVideo) return;
+              lightboxIndex = ((index % slides.length) + slides.length) % slides.length;
+              const slide = slides[lightboxIndex];
+              const video = $("[data-project-video]", slide);
+              const image = $("[data-project-image]", slide);
+              const videoSource = video && !video.dataset.failed ? video.currentSrc || video.src : "";
+              const imageSource = image?.currentSrc || image?.src || "";
+              lightboxVideo.pause();
+              lightboxVideo.removeAttribute("src");
+              lightboxImage.removeAttribute("src");
+              lightboxVideo.classList.remove("is-active");
+              lightboxImage.classList.remove("is-active");
+              if (slide.dataset.mediaType === "video" && videoSource) {
+                lightboxVideo.src = videoSource;
+                lightboxVideo.classList.add("is-active");
+                lightboxVideo.load();
+                lightboxVideo.play().catch(() => {});
+              } else {
+                lightboxImage.src = imageSource || fallbackFor(slide);
+                lightboxImage.classList.add("is-active");
+              }
+            };
+
+            const openLightbox = (index = activeIndex) => {
+              if (!lightbox) return;
+              stop();
+              setLightboxMedia(index);
+              lightbox.classList.add("is-open");
+              lightbox.setAttribute("aria-hidden", "false");
+              body.classList.add("modal-open");
+            };
+
+            const closeLightbox = () => {
+              if (!lightbox || !lightboxImage || !lightboxVideo) return;
+              lightbox.classList.remove("is-open");
+              lightbox.setAttribute("aria-hidden", "true");
+              lightboxVideo.pause();
+              lightboxVideo.removeAttribute("src");
+              lightboxVideo.load();
+              lightboxImage.removeAttribute("src");
+              lightboxImage.classList.remove("is-active");
+              lightboxVideo.classList.remove("is-active");
+              body.classList.remove("modal-open");
+              start();
+            };
+
+            $("[data-project-prev]", slider)?.addEventListener("click", () => {
+              setActiveSlide(activeIndex - 1);
+              restart();
+            });
+            $("[data-project-next]", slider)?.addEventListener("click", () => {
+              setActiveSlide(activeIndex + 1);
+              restart();
+            });
+            $("[data-project-expand]", slider)?.addEventListener("click", () => openLightbox(activeIndex));
+            stage?.addEventListener("click", (event) => {
+              if (event.target.closest("button")) return;
+              openLightbox(activeIndex);
+            });
+            dots.forEach((dot, index) => dot.addEventListener("click", () => {
+              setActiveSlide(index);
+              restart();
+            }));
+            slider.addEventListener("mouseenter", stop);
+            slider.addEventListener("mouseleave", start);
+            slider.addEventListener("focusin", stop);
+            slider.addEventListener("focusout", start);
+            $$("[data-project-lightbox-close]").forEach((button) => button.addEventListener("click", closeLightbox));
+            $("[data-project-lightbox-prev]")?.addEventListener("click", () => setLightboxMedia(lightboxIndex - 1));
+            $("[data-project-lightbox-next]")?.addEventListener("click", () => setLightboxMedia(lightboxIndex + 1));
+            document.addEventListener("keydown", (event) => {
+              if (event.key === "Escape") closeLightbox();
+              if (!lightbox?.classList.contains("is-open")) return;
+              if (event.key === "ArrowLeft") setLightboxMedia(lightboxIndex - 1);
+              if (event.key === "ArrowRight") setLightboxMedia(lightboxIndex + 1);
+            });
+
+            setActiveSlide(0);
+            start();
+          };
+
+          initProjectSlideshow();
 
           const quoteForm = $("[data-quote-form]");
           const filePicker = $("[data-file-picker]");
