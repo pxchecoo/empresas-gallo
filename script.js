@@ -6,6 +6,9 @@
   const year = document.querySelector("#year");
   const languageGate = document.querySelector("#languageGate");
   const languageOptions = document.querySelectorAll("[data-language]");
+  const languageSwitch = document.querySelector("[data-language-toggle]");
+  const languageFlag = document.querySelector("[data-language-flag]");
+  const languageTooltip = document.querySelector("[data-language-tooltip]");
 
   const translations = {
     es: {
@@ -121,6 +124,14 @@
       workshopVideoLabel: "Videos del taller",
       workshopVideoEyebrow: "Video del taller",
       workshopVideoTitle: "Corte, pulido y acabado en movimiento",
+      projectsGalleryLabel: "Galería de proyectos completados",
+      projectsEyebrow: "Proyectos completados",
+      projectsTitle: "Superficies terminadas con detalle, precisión y acabado premium.",
+      projectsControls: "Controles de proyectos completados",
+      projectsPrevious: "Proyecto anterior",
+      projectsNext: "Siguiente proyecto",
+      projectsExpand: "Agrandar proyecto",
+      projectsClose: "Cerrar proyecto",
       quoteEyebrow: "Cotización",
       quoteTitle: "¿Listo para transformar tu espacio?",
       quoteText:
@@ -289,6 +300,14 @@
       workshopVideoLabel: "Workshop videos",
       workshopVideoEyebrow: "Workshop video",
       workshopVideoTitle: "Cutting, polishing and finishing in motion",
+      projectsGalleryLabel: "Completed projects gallery",
+      projectsEyebrow: "Completed projects",
+      projectsTitle: "Finished surfaces with detail, precision and a premium finish.",
+      projectsControls: "Completed project controls",
+      projectsPrevious: "Previous project",
+      projectsNext: "Next project",
+      projectsExpand: "Expand project",
+      projectsClose: "Close project",
       quoteEyebrow: "Quote",
       quoteTitle: "Ready to transform your space?",
       quoteText:
@@ -383,6 +402,26 @@
 
     const languageField = document.querySelector("[data-language-field]");
     if (languageField) languageField.value = language;
+
+    const nextLanguage = language === "en" ? "es" : "en";
+    if (languageSwitch) {
+      languageSwitch.dataset.currentLanguage = language;
+      languageSwitch.dataset.nextLanguage = nextLanguage;
+      languageSwitch.setAttribute("aria-label", copy.languageToggle);
+      languageSwitch.setAttribute("title", copy.languageToggle);
+      languageSwitch.classList.remove("is-switching");
+      void languageSwitch.offsetWidth;
+      languageSwitch.classList.add("is-switching");
+      window.setTimeout(() => languageSwitch.classList.remove("is-switching"), 620);
+    }
+
+    if (languageFlag) {
+      languageFlag.setAttribute("src", language === "en" ? "assets/language-usa.svg" : "assets/language-spain.svg");
+    }
+
+    if (languageTooltip) {
+      languageTooltip.textContent = copy.languageToggle;
+    }
   };
 
   languageOptions.forEach((button) => {
@@ -400,6 +439,14 @@
   });
 
   languageOptions[0]?.focus();
+
+  languageSwitch?.addEventListener("click", () => {
+    const nextLanguage = languageSwitch.dataset.nextLanguage || (document.documentElement.lang === "en" ? "es" : "en");
+    applyLanguage(nextLanguage);
+    if (filePicker) {
+      updateFileSummary([...filePicker.files].slice(0, maxFiles));
+    }
+  });
 
   if (year) {
     year.textContent = new Date().getFullYear();
@@ -545,6 +592,240 @@
       image.classList.add("is-missing");
     });
   });
+
+  const initProjectSlideshow = () => {
+    if (window.__TMI_PROJECTS_READY) return;
+    window.__TMI_PROJECTS_READY = true;
+
+    const slider = document.querySelector("[data-project-slideshow]");
+    if (!slider) return;
+
+    const slides = [...slider.querySelectorAll("[data-project-slide]")];
+    const dots = [...slider.querySelectorAll("[data-project-dot]")];
+    const currentCounter = slider.querySelector("[data-project-current]");
+    const totalCounter = slider.querySelector("[data-project-total]");
+    const stage = slider.querySelector("[data-project-stage]");
+    const prevButton = slider.querySelector("[data-project-prev]");
+    const nextButton = slider.querySelector("[data-project-next]");
+    const expandButton = slider.querySelector("[data-project-expand]");
+    const lightbox = document.querySelector("[data-project-lightbox]");
+    const lightboxImage = document.querySelector("[data-project-lightbox-image]");
+    const lightboxVideo = document.querySelector("[data-project-lightbox-video]");
+    const lightboxPrev = document.querySelector("[data-project-lightbox-prev]");
+    const lightboxNext = document.querySelector("[data-project-lightbox-next]");
+    let activeIndex = 0;
+    let lightboxIndex = 0;
+    let timer = null;
+
+    if (!slides.length) return;
+    if (totalCounter) totalCounter.textContent = String(slides.length).padStart(2, "0");
+
+    const sourcesFor = (slide) => (slide.dataset.mediaSources || "").split("|").map((source) => source.trim()).filter(Boolean);
+    const fallbackFor = (slide) => slide.dataset.fallbackSrc || "assets/tecnomarmol-real-1.jpg";
+
+    const setSlideFallback = (slide) => {
+      slide.style.setProperty("--project-fallback", `url("${fallbackFor(slide)}")`);
+    };
+
+    const resolveImage = (slide) => {
+      const image = slide.querySelector("[data-project-image]");
+      if (!image) return;
+      const candidates = [...sourcesFor(slide), fallbackFor(slide)];
+      let index = 0;
+
+      const tryNext = () => {
+        if (index >= candidates.length) {
+          slide.classList.add("is-missing");
+          image.removeAttribute("src");
+          return;
+        }
+        image.src = candidates[index];
+        index += 1;
+      };
+
+      image.addEventListener("load", () => {
+        slide.classList.remove("is-missing");
+        image.dataset.ready = "true";
+      });
+      image.addEventListener("error", tryNext);
+      tryNext();
+    };
+
+    const resolveVideo = (slide) => {
+      const video = slide.querySelector("[data-project-video]");
+      if (!video) return;
+      const candidates = sourcesFor(slide);
+      let index = 0;
+
+      const tryNext = () => {
+        if (index >= candidates.length) {
+          video.dataset.failed = "true";
+          video.classList.add("is-missing");
+          slide.classList.add("is-missing");
+          video.removeAttribute("src");
+          video.load();
+          return;
+        }
+        video.src = candidates[index];
+        index += 1;
+        video.load();
+      };
+
+      video.addEventListener("loadedmetadata", () => {
+        video.dataset.ready = "true";
+        slide.classList.remove("is-missing");
+      });
+      video.addEventListener("error", tryNext);
+      video.addEventListener("ended", () => {
+        setActiveSlide(activeIndex + 1);
+        restart();
+      });
+      tryNext();
+    };
+
+    slides.forEach((slide) => {
+      setSlideFallback(slide);
+      if (slide.dataset.mediaType === "video") {
+        resolveVideo(slide);
+      } else {
+        resolveImage(slide);
+      }
+    });
+
+    const activeVideo = () => slides[activeIndex]?.querySelector("[data-project-video]");
+
+    const pauseVideos = () => {
+      slides.forEach((slide) => slide.querySelector("[data-project-video]")?.pause());
+    };
+
+    function setActiveSlide(index) {
+      activeIndex = ((index % slides.length) + slides.length) % slides.length;
+      pauseVideos();
+
+      slides.forEach((slide, slideIndex) => {
+        slide.classList.toggle("is-active", slideIndex === activeIndex);
+      });
+      dots.forEach((dot, dotIndex) => {
+        dot.classList.toggle("is-active", dotIndex === activeIndex);
+      });
+      if (currentCounter) currentCounter.textContent = String(activeIndex + 1).padStart(2, "0");
+
+      const video = activeVideo();
+      if (video && !video.dataset.failed && (video.currentSrc || video.src)) {
+        video.currentTime = 0;
+        video.play().catch(() => {});
+      }
+    }
+
+    const next = () => setActiveSlide(activeIndex + 1);
+    const previous = () => setActiveSlide(activeIndex - 1);
+
+    const start = () => {
+      if (prefersReducedMotion || timer) return;
+      timer = window.setInterval(next, 7800);
+    };
+
+    const stop = () => {
+      if (!timer) return;
+      window.clearInterval(timer);
+      timer = null;
+    };
+
+    function restart() {
+      stop();
+      start();
+    }
+
+    const closeLightbox = () => {
+      if (!lightbox || !lightboxImage || !lightboxVideo) return;
+      lightbox.classList.remove("is-open");
+      lightbox.setAttribute("aria-hidden", "true");
+      lightboxVideo.pause();
+      lightboxVideo.removeAttribute("src");
+      lightboxVideo.load();
+      lightboxImage.removeAttribute("src");
+      lightboxImage.classList.remove("is-active");
+      lightboxVideo.classList.remove("is-active");
+      document.body.classList.remove("modal-open");
+      start();
+    };
+
+    const setLightboxMedia = (index) => {
+      if (!lightboxImage || !lightboxVideo) return;
+      lightboxIndex = ((index % slides.length) + slides.length) % slides.length;
+      const slide = slides[lightboxIndex];
+      const video = slide.querySelector("[data-project-video]");
+      const image = slide.querySelector("[data-project-image]");
+      const videoSource = video && !video.dataset.failed ? video.currentSrc || video.src : "";
+      const imageSource = image?.currentSrc || image?.src || "";
+
+      lightboxVideo.pause();
+      lightboxVideo.removeAttribute("src");
+      lightboxImage.removeAttribute("src");
+      lightboxVideo.classList.remove("is-active");
+      lightboxImage.classList.remove("is-active");
+
+      if (slide.dataset.mediaType === "video" && videoSource) {
+        lightboxVideo.src = videoSource;
+        lightboxVideo.classList.add("is-active");
+        lightboxVideo.load();
+        lightboxVideo.play().catch(() => {});
+      } else {
+        lightboxImage.src = imageSource || fallbackFor(slide);
+        lightboxImage.classList.add("is-active");
+      }
+    };
+
+    const openLightbox = (index = activeIndex) => {
+      if (!lightbox) return;
+      stop();
+      setLightboxMedia(index);
+      lightbox.classList.add("is-open");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+    };
+
+    prevButton?.addEventListener("click", () => {
+      previous();
+      restart();
+    });
+    nextButton?.addEventListener("click", () => {
+      next();
+      restart();
+    });
+    expandButton?.addEventListener("click", () => openLightbox(activeIndex));
+    stage?.addEventListener("click", (event) => {
+      if (event.target.closest("button")) return;
+      openLightbox(activeIndex);
+    });
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        setActiveSlide(index);
+        restart();
+      });
+    });
+    slider.addEventListener("mouseenter", stop);
+    slider.addEventListener("mouseleave", start);
+    slider.addEventListener("focusin", stop);
+    slider.addEventListener("focusout", start);
+
+    document.querySelectorAll("[data-project-lightbox-close]").forEach((button) => {
+      button.addEventListener("click", closeLightbox);
+    });
+    lightboxPrev?.addEventListener("click", () => setLightboxMedia(lightboxIndex - 1));
+    lightboxNext?.addEventListener("click", () => setLightboxMedia(lightboxIndex + 1));
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeLightbox();
+      if (!lightbox?.classList.contains("is-open")) return;
+      if (event.key === "ArrowLeft") setLightboxMedia(lightboxIndex - 1);
+      if (event.key === "ArrowRight") setLightboxMedia(lightboxIndex + 1);
+    });
+
+    setActiveSlide(0);
+    start();
+  };
+
+  initProjectSlideshow();
 
   // Quote form flow: sends multipart data to the separate backend API.
   const quoteForm = document.querySelector("[data-quote-form]");
@@ -892,4 +1173,5 @@
     requestAnimationFrame(drawParticles);
   }
 
+  window.__TMI_SCRIPT_READY = true;
 })();
