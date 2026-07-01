@@ -20,6 +20,7 @@
       ogDescription:
         "Transformamos cocinas, baños, pisos, paredes, escaleras y espacios comerciales con materiales de alta calidad.",
       navToggle: "Abrir menú",
+      languageToggle: "Cambiar idioma",
       workshopGallery: "Fotos del taller",
       navAbout: "Sobre",
       navServices: "Servicios",
@@ -196,6 +197,7 @@
       ogDescription:
         "We transform kitchens, bathrooms, floors, walls, stairs and commercial spaces with high quality materials.",
       navToggle: "Open menu",
+      languageToggle: "Change language",
       workshopGallery: "Workshop photos",
       navAbout: "About",
       navServices: "Services",
@@ -477,6 +479,122 @@
   document.querySelectorAll(".palette-card[href='#']").forEach((link) => {
     link.addEventListener("click", (event) => event.preventDefault());
   });
+
+  const analytics = (() => {
+    if (window.location.pathname.startsWith("/admin")) return null;
+
+    const endpoint = "/api/analytics/event";
+    const storageKey = "tm_visitor_id";
+    const sessionKey = "tm_session_id";
+    const pageMap = {
+      "": "Inicio",
+      inicio: "Inicio",
+      servicios: "Servicios",
+      taller: "Galería",
+      galeria: "Galería",
+      "cotizacion-panel": "Cotización",
+      contacto: "Cotización",
+      "contacto-footer": "Contacto",
+      materiales: "Materiales",
+      paletas: "Paletas",
+      proceso: "Proceso",
+      sobre: "Sobre"
+    };
+
+    const getId = (store, key) => {
+      try {
+        let value = store.getItem(key);
+        if (!value) {
+          value = crypto.randomUUID();
+          store.setItem(key, value);
+        }
+        return value;
+      } catch {
+        return crypto.randomUUID();
+      }
+    };
+
+    const visitorId = getId(window.localStorage, storageKey);
+    const sessionId = getId(window.sessionStorage, sessionKey);
+    let currentPage = pageFromLocation();
+    let pageStartedAt = Date.now();
+    let exitSent = false;
+
+    function pageFromLocation() {
+      const key = window.location.hash.replace("#", "");
+      return pageMap[key] || "Inicio";
+    }
+
+    const payloadFor = (type, extra = {}) => ({
+      type,
+      visitorId,
+      sessionId,
+      page: currentPage,
+      path: window.location.pathname,
+      hash: window.location.hash,
+      referrer: document.referrer || "Acceso directo",
+      ...extra
+    });
+
+    const send = (type, extra = {}, useBeacon = false) => {
+      const payload = payloadFor(type, extra);
+      if (useBeacon && navigator.sendBeacon) {
+        const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+        navigator.sendBeacon(endpoint, blob);
+        return;
+      }
+
+      fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        keepalive: useBeacon,
+        credentials: "same-origin"
+      }).catch(() => {});
+    };
+
+    const finishPage = (type = "page_duration", useBeacon = false) => {
+      const durationSeconds = Math.max(0, Math.round((Date.now() - pageStartedAt) / 1000));
+      send(type, { durationSeconds }, useBeacon);
+    };
+
+    const startPage = (type = "page_view") => {
+      currentPage = pageFromLocation();
+      pageStartedAt = Date.now();
+      send(type);
+      if (currentPage === "Cotización") send("quote_open");
+    };
+
+    window.addEventListener("hashchange", () => {
+      finishPage();
+      startPage();
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "hidden") {
+        finishPage("site_exit", true);
+      } else {
+        pageStartedAt = Date.now();
+        send("heartbeat");
+      }
+    });
+
+    window.addEventListener("pagehide", () => {
+      if (exitSent) return;
+      exitSent = true;
+      finishPage("site_exit", true);
+    });
+
+    window.setInterval(() => send("heartbeat"), 30000);
+    window.setTimeout(() => startPage("site_enter"), 250);
+
+    return {
+      visitorId,
+      sessionId,
+      send,
+      finishPage
+    };
+  })();
 
   const materialModalOpenButtons = document.querySelectorAll("[data-material-modal-open]");
   const materialModalCloseButtons = document.querySelectorAll("[data-material-modal-close]");
@@ -837,6 +955,22 @@
   const maxFiles = Number(filePicker?.dataset.maxFiles || 5);
   const maxTotalBytes = Number(filePicker?.dataset.maxTotal || 10485760);
 
+  if (quoteForm && analytics) {
+    [
+      ["visitor_id", analytics.visitorId],
+      ["session_id", analytics.sessionId]
+    ].forEach(([name, value]) => {
+      let field = quoteForm.querySelector(`input[name="${name}"]`);
+      if (!field) {
+        field = document.createElement("input");
+        field.type = "hidden";
+        field.name = name;
+        quoteForm.appendChild(field);
+      }
+      field.value = value;
+    });
+  }
+
   const activeCopy = () => translations[document.documentElement.dataset.lang || document.documentElement.lang] || translations.es;
 
   const cleanFormText = (value) => String(value).replace(/\s+/g, " ").trim();
@@ -964,6 +1098,8 @@
       quoteForm.reportValidity();
       return;
     }
+
+    analytics?.send("quote_submit", { page: "Cotización", hash: "#cotizacion-panel" }, true);
 
     if (quoteForm.elements.website?.value) {
       setFormStatus(copy.formSuccess, "success");
