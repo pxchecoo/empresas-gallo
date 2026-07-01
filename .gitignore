@@ -1,5 +1,7 @@
 node_modules/
 backend/node_modules/
+backend/.npm-cache/
+backend/data/
 .env
 backend/.env
 .DS_Store
