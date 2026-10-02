@@ -1128,7 +1128,7 @@ p {
   border: 1px solid var(--card-border);
   border-radius: var(--radius);
   color: var(--ink);
-  background: var(--image) center / cover no-repeat;
+  background: #11100e;
   box-shadow: var(--shadow-soft);
   isolation: isolate;
 }
@@ -1142,12 +1142,14 @@ button.material-card {
   cursor: pointer;
 }
 
-.material-card::before {
-  content: "";
+.material-card-image {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--image) center / cover no-repeat;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--material-position, center);
   transform: scale(1.03);
   transition: transform 600ms ease, filter 600ms ease;
 }
@@ -1160,8 +1162,8 @@ button.material-card {
   pointer-events: none;
 }
 
-.material-card:hover::before,
-.material-card:focus-visible::before {
+.material-card:hover .material-card-image,
+.material-card:focus-visible .material-card-image {
   transform: scale(1.055);
   filter: contrast(1.06) saturate(1.08);
 }
@@ -1350,14 +1352,14 @@ button.material-card {
   transition: transform 620ms var(--ease-premium), border-color 620ms var(--ease-premium), box-shadow 620ms var(--ease-premium);
 }
 
-.marble-type-card::before {
-  content: "";
+.material-sample-image {
   position: absolute;
   inset: 0;
   z-index: -2;
-  background:
-    var(--marble-image) center / cover no-repeat,
-    var(--sample-fallback, url("assets/optimized/material-marble.webp")) center / cover no-repeat;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   filter: none;
   pointer-events: none;
   transform: scale(1);
@@ -1381,11 +1383,11 @@ button.material-card {
 .marble-type-card:hover {
   border-color: rgba(216, 96, 24, 0.42);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
-.marble-type-card:hover::before {
-  transform: scale(1.03);
+.marble-type-card:hover .material-sample-image {
+  transform: scale(1.02);
 }
 
 .marble-type-card:hover::after {
@@ -3385,8 +3387,10 @@ button.material-card {
 }
 
 /* Keep the original glass and morphing, with less work on scrolling surfaces. */
+/* Hide after the existing closing fade, keeping the opening/closing motion intact. */
 .material-modal:not(.is-open) .material-modal-panel {
-  display: none;
+  content-visibility: hidden;
+  transition: transform 520ms var(--ease-premium), content-visibility 420ms allow-discrete;
 }
 
 .effects-paused .hero-aura span,
@@ -3515,4 +3519,38 @@ button.material-card {
   }
 
   .hero-particles { display: none; }
+}
+
+/* Real showroom photography, scoped to the materials catalog. */
+.material-card[data-material-modal-open="#marbleModal"] { --material-position: 50% 48%; }
+.material-card[data-material-modal-open="#quartzModal"] { --material-position: 50% 48%; }
+.material-card[data-material-modal-open="#graniteModal"] { --material-position: 50% 42%; }
+.material-showroom-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 18px;
+  margin-top: 30px;
+}
+.material-showroom {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  background: #11100e;
+}
+.material-showroom img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.material-modal .modal-close { min-width: 44px; min-height: 44px; }
+.material-modal-panel:focus-visible {
+  outline: 2px solid var(--gold-soft);
+  outline-offset: -4px;
+}
+.material-modal-panel { max-height: min(86dvh, 820px); }
+@media (max-width: 820px) {
+  .material-modal-panel { max-height: 88dvh; }
 }

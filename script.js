@@ -143,7 +143,13 @@
       marbleModalIntro:
         "Explora las opciones de mármol disponibles para cocinas, baños, paredes, pisos y piezas a la medida.",
       material2Title: "Granito",
-      material2Text: "Resistente, duradero y perfecto para cocinas, baños y superficies de alto uso.",
+      material2Action: "Ver tipos",
+      openGraniteCollection: "Abrir tipos de granito",
+      graniteModalClose: "Cerrar tipos de granito",
+      graniteModalEyebrow: "Granitos disponibles",
+      graniteModalTitle: "Tipos de granito",
+      graniteModalIntro: "Explora nuestras opciones de granito natural para cocinas, baños, topes, paredes y proyectos a la medida.",
+      material2Text: "Natural, resistente y duradero. Ideal para cocinas, baños y espacios de alto uso.",
       material3Title: "Cuarzo",
       material3Text: "Moderno, uniforme y fácil de mantener. Excelente para topes contemporáneos.",
       material3Action: "Ver tipos",
@@ -152,9 +158,7 @@
       quartzModalEyebrow: "Cuarzos disponibles",
       quartzModalTitle: "Tipos de cuarzo",
       quartzModalIntro:
-        "Explora las opciones de cuarzo disponibles para topes modernos, superficies resistentes y proyectos a la medida.",
-      material4Title: "Porcelana",
-      material4Text: "Versátil, elegante y resistente. Ideal para diseños modernos.",
+        "Explora nuestras opciones de cuarzo para cocinas, baños, topes y proyectos contemporáneos.",
       paletteEyebrow: "Paletas de materiales",
       paletteTitle: "Panel de paletas para seleccionar acabados.",
       paletteIntro:
@@ -320,7 +324,13 @@
       marbleModalIntro:
         "Explore marble options available for kitchens, bathrooms, walls, floors and custom pieces.",
       material2Title: "Granite",
-      material2Text: "Resistant, durable and perfect for kitchens, bathrooms and high-use surfaces.",
+      material2Action: "View types",
+      openGraniteCollection: "Open granite types",
+      graniteModalClose: "Close granite types",
+      graniteModalEyebrow: "Available granites",
+      graniteModalTitle: "Granite types",
+      graniteModalIntro: "Explore our natural granite options for kitchens, bathrooms, countertops, walls and custom projects.",
+      material2Text: "Natural, resistant and durable. Ideal for kitchens, bathrooms and high-use spaces.",
       material3Title: "Quartz",
       material3Text: "Modern, uniform and easy to maintain. Excellent for contemporary countertops.",
       material3Action: "View types",
@@ -329,9 +339,7 @@
       quartzModalEyebrow: "Available quartz",
       quartzModalTitle: "Quartz types",
       quartzModalIntro:
-        "Explore quartz options available for modern countertops, resistant surfaces and custom projects.",
-      material4Title: "Porcelain",
-      material4Text: "Versatile, elegant and resistant. Ideal for modern designs.",
+        "Explore our quartz options for kitchens, bathrooms, countertops and contemporary projects.",
       paletteEyebrow: "Material palettes",
       paletteTitle: "A palette panel for selecting finishes.",
       paletteIntro:
@@ -651,48 +659,6 @@
       finishPage
     };
   })();
-
-  const materialModalOpenButtons = document.querySelectorAll("[data-material-modal-open]");
-  const materialModalCloseButtons = document.querySelectorAll("[data-material-modal-close]");
-  let materialLastFocusedElement = null;
-
-  const closeMaterialModal = (modal = document.querySelector(".material-modal.is-open")) => {
-    if (!modal || !modal.classList.contains("is-open")) return;
-    modal.classList.remove("is-open");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("modal-open");
-    if (materialLastFocusedElement instanceof HTMLElement) {
-      materialLastFocusedElement.focus();
-    }
-  };
-
-  const openMaterialModal = (modal) => {
-    if (!modal) return;
-    closeMaterialModal();
-    materialLastFocusedElement = document.activeElement;
-    modal.classList.add("is-open");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.classList.add("modal-open");
-    modal.querySelector(".modal-close")?.focus();
-  };
-
-  materialModalOpenButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      openMaterialModal(document.querySelector(button.dataset.materialModalOpen));
-    });
-  });
-
-  materialModalCloseButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      closeMaterialModal(button.closest(".material-modal"));
-    });
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeMaterialModal();
-    }
-  });
 
   // Workshop media is attached only when visible or explicitly requested.
   const videoLightbox = document.querySelector("[data-video-lightbox]");

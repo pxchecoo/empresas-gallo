@@ -177,33 +177,9 @@
             });
           });
 
-          const closeMaterialModal = (modal = $(".material-modal.is-open")) => {
-            if (!modal) return;
-            modal.classList.remove("is-open");
-            modal.setAttribute("aria-hidden", "true");
-            body.classList.remove("modal-open");
-          };
-
-          const openMaterialModal = (modal) => {
-            if (!modal) return;
-            modal.classList.add("is-open");
-            modal.setAttribute("aria-hidden", "false");
-            body.classList.add("modal-open");
-            const closeButton = modal.querySelector(".modal-close");
-            if (closeButton) closeButton.focus();
-          };
-
-          $$("[data-material-modal-open]").forEach((button) => {
-            button.addEventListener("click", () => openMaterialModal($(button.dataset.materialModalOpen)));
-          });
-
-          $$("[data-material-modal-close]").forEach((button) => {
-            button.addEventListener("click", () => closeMaterialModal(button.closest(".material-modal")));
-          });
-
           document.addEventListener("keydown", (event) => {
             if (event.key === "Escape") {
-              closeMaterialModal();
+              window.TMIMaterials?.close();
               closeVideoLightbox();
             }
           });

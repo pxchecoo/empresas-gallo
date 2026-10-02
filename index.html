@@ -36,7 +36,7 @@
       media="print" onload="this.media='all'"
     />
     <link rel="preload" as="image" href="assets/optimized/background-black-marble-original.webp" />
-    <link rel="stylesheet" href="style.css?v=45" />
+    <link rel="stylesheet" href="style.css?v=46" />
   </head>
   <body class="language-pending">
     <div class="language-gate" id="languageGate" role="dialog" aria-modal="true" aria-labelledby="languageTitle">
@@ -266,111 +266,135 @@
             <span class="eyebrow" data-i18n="materialsEyebrow">Materiales</span>
             <h2 data-i18n="materialsTitle">Texturas naturales, acabados precisos y presencia arquitectónica.</h2>
           </div>
-
           <div class="material-grid">
-            <button class="material-card material-trigger reveal" type="button" style="--image: url('assets/optimized/material-marble.webp')" data-material-modal-open="#marbleModal" aria-controls="marbleModal" data-i18n-aria="openMarbleCollection">
+            <button class="material-card material-trigger reveal" type="button" data-material-modal-open="#marbleModal" aria-controls="marbleModal" aria-haspopup="dialog" aria-label="Abrir tipos de mármol" data-i18n-aria="openMarbleCollection">
+              <img class="material-card-image" src="assets/materials/marble-card-1105.webp" srcset="assets/materials/marble-card-480.webp 480w, assets/materials/marble-card-800.webp 800w, assets/materials/marble-card-1105.webp 1105w" sizes="(max-width: 820px) 90vw, (max-width: 1060px) 44vw, 390px" width="1105" height="1496" alt="Display real de mármol en el showroom" loading="lazy" decoding="async" />
               <div>
                 <h3 data-i18n="material1Title">Mármol</h3>
                 <p data-i18n="material1Text">Elegante, natural y sofisticado. Ideal para espacios con presencia premium.</p>
                 <span class="material-card-action" data-i18n="material1Action">Ver tipos</span>
               </div>
             </button>
-            <button class="material-card material-trigger reveal" type="button" style="--image: url('assets/optimized/material-quartz.webp')" data-material-modal-open="#quartzModal" aria-controls="quartzModal" data-i18n-aria="openQuartzCollection">
+            <button class="material-card material-trigger reveal" type="button" data-material-modal-open="#quartzModal" aria-controls="quartzModal" aria-haspopup="dialog" aria-label="Abrir tipos de cuarzo" data-i18n-aria="openQuartzCollection">
+              <img class="material-card-image" src="assets/materials/quartz-card-905.webp" srcset="assets/materials/quartz-card-480.webp 480w, assets/materials/quartz-card-800.webp 800w, assets/materials/quartz-card-905.webp 905w" sizes="(max-width: 820px) 90vw, (max-width: 1060px) 44vw, 390px" width="905" height="1496" alt="Display real de cuarzo en el showroom" loading="lazy" decoding="async" />
               <div>
                 <h3 data-i18n="material3Title">Cuarzo</h3>
                 <p data-i18n="material3Text">Moderno, uniforme y fácil de mantener. Excelente para topes contemporáneos.</p>
                 <span class="material-card-action" data-i18n="material3Action">Ver tipos</span>
               </div>
             </button>
-            <article class="material-card reveal" style="--image: url('assets/optimized/material-white-porcelain-original.webp')">
+            <button class="material-card material-trigger reveal" type="button" data-material-modal-open="#graniteModal" aria-controls="graniteModal" aria-haspopup="dialog" aria-label="Abrir tipos de granito" data-i18n-aria="openGraniteCollection">
+              <img class="material-card-image" src="assets/materials/granite-card-1200.webp" srcset="assets/materials/granite-card-480.webp 480w, assets/materials/granite-card-800.webp 800w, assets/materials/granite-card-1200.webp 1200w" sizes="(max-width: 820px) 90vw, (max-width: 1060px) 44vw, 390px" width="1200" height="951" alt="Display real de granito en el showroom" loading="lazy" decoding="async" />
               <div>
-                <h3 data-i18n="material4Title">Porcelana</h3>
-                <p data-i18n="material4Text">Versátil, elegante y resistente. Ideal para diseños modernos.</p>
+                <h3 data-i18n="material2Title">Granito</h3>
+                <p data-i18n="material2Text">Natural, resistente y duradero. Ideal para cocinas, baños y espacios de alto uso.</p>
+                <span class="material-card-action" data-i18n="material2Action">Ver tipos</span>
               </div>
-            </article>
+            </button>
           </div>
         </div>
       </section>
 
-      <div class="material-modal" id="marbleModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="marbleModalTitle">
-        <button class="material-modal-backdrop" type="button" data-material-modal-close data-i18n-aria="marbleModalClose"></button>
-        <div class="material-modal-panel" role="document" style="--sample-fallback: url('assets/optimized/material-marble.webp')">
-          <button class="modal-close" type="button" data-material-modal-close data-i18n-aria="marbleModalClose">
+      <div class="material-modal" id="marbleModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="marbleModalTitle" aria-describedby="marbleModalIntro" inert>
+        <button class="material-modal-backdrop" type="button" tabindex="-1" data-material-modal-close aria-label="Cerrar tipos de mármol" data-i18n-aria="marbleModalClose"></button>
+        <div class="material-modal-panel" role="document" tabindex="0">
+          <button class="modal-close" type="button" data-material-modal-close aria-label="Cerrar tipos de mármol" data-i18n-aria="marbleModalClose">
             <i class="fa-solid fa-xmark" aria-hidden="true"></i>
           </button>
           <span class="eyebrow" data-i18n="marbleModalEyebrow">Mármoles disponibles</span>
           <h2 id="marbleModalTitle" data-i18n="marbleModalTitle">Tipos de mármol</h2>
-          <p data-i18n="marbleModalIntro">
-            Explora las opciones de mármol disponibles para cocinas, baños, paredes, pisos y piezas a la medida.
-          </p>
-
-          <div class="marble-types-grid">
-            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Blanco Carrara.webp')" aria-label="Blanco Carrara">
-              <span>Blanco Carrara</span>
-            </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Fior Di Pesco.webp')" aria-label="Fior Di Pesco">
-              <span>Fior Di Pesco</span>
-            </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Marron Emperador.webp')" aria-label="Marron Emperador">
-              <span>Marron Emperador</span>
-            </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Onix Verde.webp')" aria-label="Onix Verde">
-              <span>Onix Verde</span>
-            </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Tarvertino Romano.webp')" aria-label="Tarvertino Romano">
-              <span>Tarvertino Romano</span>
-            </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/optimized/thumb-forest-green-orizz.webp')" aria-label="Forest Green Orizz">
-              <span>Forest Green Orizz</span>
-            </article>
-          </div>
+          <p id="marbleModalIntro" data-i18n="marbleModalIntro">Explora las opciones de mármol disponibles para cocinas, baños, paredes, pisos y piezas a la medida.</p>
+          <template data-material-gallery>
+            <div class="marble-types-grid">
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/onix-verde-338.webp" srcset="assets/materials/onix-verde-320.webp 320w, assets/materials/onix-verde-338.webp 338w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="338" height="148" alt="Onix Verde — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Onix Verde</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/travertino-romano-424.webp" srcset="assets/materials/travertino-romano-320.webp 320w, assets/materials/travertino-romano-424.webp 424w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="424" height="174" alt="Travertino Romano — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Travertino Romano</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/crema-capri-427.webp" srcset="assets/materials/crema-capri-320.webp 320w, assets/materials/crema-capri-427.webp 427w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="427" height="140" alt="Crema Capri — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Crema Capri</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/botticino-classico-410.webp" srcset="assets/materials/botticino-classico-320.webp 320w, assets/materials/botticino-classico-410.webp 410w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="410" height="153" alt="Botticino Classico — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Botticino Classico</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/arabescato-fantastico-302.webp" srcset="assets/materials/arabescato-fantastico-302.webp 302w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="302" height="130" alt="Arabescato Fantástico — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Arabescato Fantástico</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/breccia-pernice-341.webp" srcset="assets/materials/breccia-pernice-320.webp 320w, assets/materials/breccia-pernice-341.webp 341w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="341" height="145" alt="Breccia Pernice — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Breccia Pernice</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/rojo-alicante-377.webp" srcset="assets/materials/rojo-alicante-320.webp 320w, assets/materials/rojo-alicante-377.webp 377w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="377" height="162" alt="Rojo Alicante — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Rojo Alicante</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/rosso-verona-425.webp" srcset="assets/materials/rosso-verona-320.webp 320w, assets/materials/rosso-verona-425.webp 425w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="425" height="167" alt="Rosso Verona — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Rosso Verona</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/verde-quetzal-411.webp" srcset="assets/materials/verde-quetzal-320.webp 320w, assets/materials/verde-quetzal-411.webp 411w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="411" height="158" alt="Verde Quetzal — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Verde Quetzal</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/rosa-noruega-396.webp" srcset="assets/materials/rosa-noruega-320.webp 320w, assets/materials/rosa-noruega-396.webp 396w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="396" height="137" alt="Rosa Noruega — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Rosa Noruega</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/kenia-black-383.webp" srcset="assets/materials/kenia-black-320.webp 320w, assets/materials/kenia-black-383.webp 383w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="383" height="105" alt="Kenia Black — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Kenia Black</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/optimized/Blanco Carrara.webp" width="140" height="140" alt="Blanco Carrara — catálogo existente" loading="lazy" decoding="async" /><span>Blanco Carrara</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/optimized/Fior Di Pesco.webp" width="140" height="140" alt="Fior Di Pesco — catálogo existente" loading="lazy" decoding="async" /><span>Fior Di Pesco</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/optimized/Marron Emperador.webp" width="140" height="140" alt="Marron Emperador — catálogo existente" loading="lazy" decoding="async" /><span>Marron Emperador</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/optimized/thumb-forest-green-orizz.webp" width="140" height="140" alt="Forest Green Orizz — catálogo existente" loading="lazy" decoding="async" /><span>Forest Green Orizz</span></article>
+            </div>
+            <div class="material-showroom-grid">
+              <figure class="material-showroom"><img class="" src="assets/materials/marble-1-showroom-1496.webp" srcset="assets/materials/marble-1-showroom-640.webp 640w, assets/materials/marble-1-showroom-1100.webp 1100w, assets/materials/marble-1-showroom-1496.webp 1496w" sizes="(max-width: 820px) 85vw, 500px" width="1496" height="1496" alt="Display de mármol del showroom — fotografía 1" loading="lazy" decoding="async" /></figure>
+              <figure class="material-showroom"><img class="" src="assets/materials/marble-2-showroom-1496.webp" srcset="assets/materials/marble-2-showroom-640.webp 640w, assets/materials/marble-2-showroom-1100.webp 1100w, assets/materials/marble-2-showroom-1496.webp 1496w" sizes="(max-width: 820px) 85vw, 500px" width="1496" height="1496" alt="Display de mármol del showroom — fotografía 2" loading="lazy" decoding="async" /></figure>
+            </div>
+          </template>
         </div>
       </div>
 
-      <div class="material-modal" id="quartzModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="quartzModalTitle">
-        <button class="material-modal-backdrop" type="button" data-material-modal-close data-i18n-aria="quartzModalClose"></button>
-        <div class="material-modal-panel" role="document" style="--sample-fallback: url('assets/optimized/material-quartz.webp')">
-          <button class="modal-close" type="button" data-material-modal-close data-i18n-aria="quartzModalClose">
+      <div class="material-modal" id="quartzModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="quartzModalTitle" aria-describedby="quartzModalIntro" inert>
+        <button class="material-modal-backdrop" type="button" tabindex="-1" data-material-modal-close aria-label="Cerrar tipos de cuarzo" data-i18n-aria="quartzModalClose"></button>
+        <div class="material-modal-panel" role="document" tabindex="0">
+          <button class="modal-close" type="button" data-material-modal-close aria-label="Cerrar tipos de cuarzo" data-i18n-aria="quartzModalClose">
             <i class="fa-solid fa-xmark" aria-hidden="true"></i>
           </button>
           <span class="eyebrow" data-i18n="quartzModalEyebrow">Cuarzos disponibles</span>
           <h2 id="quartzModalTitle" data-i18n="quartzModalTitle">Tipos de cuarzo</h2>
-          <p data-i18n="quartzModalIntro">
-            Explora las opciones de cuarzo disponibles para topes modernos, superficies resistentes y proyectos a la medida.
-          </p>
+          <p id="quartzModalIntro" data-i18n="quartzModalIntro">Explora nuestras opciones de cuarzo para cocinas, baños, topes y proyectos contemporáneos.</p>
+          <template data-material-gallery>
+            <div class="marble-types-grid">
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/quartz-01-388.webp" srcset="assets/materials/quartz-01-320.webp 320w, assets/materials/quartz-01-388.webp 388w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="388" height="176" alt="Muestra 01 — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Muestra 01</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/quartz-02-427.webp" srcset="assets/materials/quartz-02-320.webp 320w, assets/materials/quartz-02-427.webp 427w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="427" height="187" alt="Muestra 02 — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Muestra 02</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/quartz-03-315.webp" srcset="assets/materials/quartz-03-315.webp 315w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="315" height="181" alt="Muestra 03 — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Muestra 03</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/quartz-04-369.webp" srcset="assets/materials/quartz-04-320.webp 320w, assets/materials/quartz-04-369.webp 369w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="369" height="173" alt="Muestra 04 — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Muestra 04</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/quartz-05-342.webp" srcset="assets/materials/quartz-05-320.webp 320w, assets/materials/quartz-05-342.webp 342w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="342" height="139" alt="Muestra 05 — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Muestra 05</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/quartz-06-373.webp" srcset="assets/materials/quartz-06-320.webp 320w, assets/materials/quartz-06-373.webp 373w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="373" height="140" alt="Muestra 06 — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Muestra 06</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/mistral-367.webp" srcset="assets/materials/mistral-320.webp 320w, assets/materials/mistral-367.webp 367w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="367" height="126" alt="Mistral — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Mistral</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/stardust-white-398.webp" srcset="assets/materials/stardust-white-320.webp 320w, assets/materials/stardust-white-398.webp 398w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="398" height="137" alt="Stardust White — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Stardust White</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/quartz-09-164.webp" srcset="assets/materials/quartz-09-164.webp 164w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="164" height="147" alt="Muestra 09 — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Muestra 09</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/stardust-black-341.webp" srcset="assets/materials/stardust-black-320.webp 320w, assets/materials/stardust-black-341.webp 341w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="341" height="135" alt="Stardust Black — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Stardust Black</span></article>
+            </div>
+            <div class="material-showroom-grid">
+              <figure class="material-showroom"><img class="" src="assets/materials/quartz-showroom-905.webp" srcset="assets/materials/quartz-showroom-640.webp 640w, assets/materials/quartz-showroom-905.webp 905w" sizes="(max-width: 820px) 85vw, 500px" width="905" height="1496" alt="Display de cuarzo del showroom — fotografía 1" loading="lazy" decoding="async" /></figure>
+            </div>
+          </template>
+        </div>
+      </div>
 
-          <div class="marble-types-grid">
-            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Vega.webp')" aria-label="Vega">
-              <span>Vega</span>
-            </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Vermont.webp')" aria-label="Vermont">
-              <span>Vermont</span>
-            </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Bianco Stardust.webp')" aria-label="Bianco Stardust">
-              <span>Bianco Stardust</span>
-            </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Carnia.webp')" aria-label="Carnia">
-              <span>Carnia</span>
-            </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Elba.webp')" aria-label="Elba">
-              <span>Elba</span>
-            </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Grecale.webp')" aria-label="Grecale">
-              <span>Grecale</span>
-            </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Maui.webp')" aria-label="Maui">
-              <span>Maui</span>
-            </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Nero Stardust.webp')" aria-label="Nero Stardust">
-              <span>Nero Stardust</span>
-            </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Silver.webp')" aria-label="Silver">
-              <span>Silver</span>
-            </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Tago.webp')" aria-label="Tago">
-              <span>Tago</span>
-            </article>
-          </div>
+      <div class="material-modal" id="graniteModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="graniteModalTitle" aria-describedby="graniteModalIntro" inert>
+        <button class="material-modal-backdrop" type="button" tabindex="-1" data-material-modal-close aria-label="Cerrar tipos de granito" data-i18n-aria="graniteModalClose"></button>
+        <div class="material-modal-panel" role="document" tabindex="0">
+          <button class="modal-close" type="button" data-material-modal-close aria-label="Cerrar tipos de granito" data-i18n-aria="graniteModalClose">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+          <span class="eyebrow" data-i18n="graniteModalEyebrow">Granitos disponibles</span>
+          <h2 id="graniteModalTitle" data-i18n="graniteModalTitle">Tipos de granito</h2>
+          <p id="graniteModalIntro" data-i18n="graniteModalIntro">Explora nuestras opciones de granito natural para cocinas, baños, topes, paredes y proyectos a la medida.</p>
+          <template data-material-gallery>
+            <div class="marble-types-grid">
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/granite-01-324.webp" srcset="assets/materials/granite-01-320.webp 320w, assets/materials/granite-01-324.webp 324w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="324" height="128" alt="Negro África brillada — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Negro África brillada</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/granite-02-326.webp" srcset="assets/materials/granite-02-320.webp 320w, assets/materials/granite-02-326.webp 326w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="326" height="128" alt="Negro África honed — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Negro África honed</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/granite-03-328.webp" srcset="assets/materials/granite-03-320.webp 320w, assets/materials/granite-03-328.webp 328w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="328" height="128" alt="Blue Pearl — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Blue Pearl</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/granite-04-317.webp" srcset="assets/materials/granite-04-317.webp 317w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="317" height="128" alt="Alaska White — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Alaska White</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/granite-05-318.webp" srcset="assets/materials/granite-05-318.webp 318w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="318" height="121" alt="Negro Absoluto — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Negro Absoluto</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/granite-06-321.webp" srcset="assets/materials/granite-06-320.webp 320w, assets/materials/granite-06-321.webp 321w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="321" height="121" alt="Labrador Oscuro — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Labrador Oscuro</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/granite-07-317.webp" srcset="assets/materials/granite-07-317.webp 317w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="317" height="121" alt="Verde Ubatuba — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Verde Ubatuba</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/granite-08-318.webp" srcset="assets/materials/granite-08-318.webp 318w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="318" height="121" alt="Tan Brown — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Tan Brown</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/granite-09-316.webp" srcset="assets/materials/granite-09-316.webp 316w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="316" height="113" alt="Verde Olivo — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Verde Olivo</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/granite-10-313.webp" srcset="assets/materials/granite-10-313.webp 313w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="313" height="113" alt="Muestra 10 — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Muestra 10</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/granite-11-307.webp" srcset="assets/materials/granite-11-307.webp 307w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="307" height="113" alt="Paradiso Argentino — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Paradiso Argentino</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/granite-12-314.webp" srcset="assets/materials/granite-12-314.webp 314w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="314" height="113" alt="Blanco Macaubas — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Blanco Macaubas</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/granite-13-308.webp" srcset="assets/materials/granite-13-308.webp 308w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="308" height="109" alt="Aurora — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Aurora</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/granite-14-305.webp" srcset="assets/materials/granite-14-305.webp 305w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="305" height="109" alt="Rojo Tigrato — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Rojo Tigrato</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/granite-15-303.webp" srcset="assets/materials/granite-15-303.webp 303w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="303" height="109" alt="Rojo Imperial — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Rojo Imperial</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/granite-16-304.webp" srcset="assets/materials/granite-16-304.webp 304w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="304" height="109" alt="Rojo Multicolor — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Rojo Multicolor</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/granite-17-306.webp" srcset="assets/materials/granite-17-306.webp 306w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="306" height="102" alt="Baltic Brown — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Baltic Brown</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/granite-18-294.webp" srcset="assets/materials/granite-18-294.webp 294w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="294" height="102" alt="Desert Brown — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Desert Brown</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/granite-19-298.webp" srcset="assets/materials/granite-19-298.webp 298w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="298" height="102" alt="Giallo Antico — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Giallo Antico</span></article>
+              <article class="marble-type-card"><img class="material-sample-image" src="assets/materials/granite-20-144.webp" srcset="assets/materials/granite-20-144.webp 144w" sizes="(max-width: 820px) 85vw, (max-width: 1060px) 42vw, 330px" width="144" height="102" alt="Muestra 20 — muestra fotografiada en el showroom" loading="lazy" decoding="async" /><span>Muestra 20</span></article>
+            </div>
+            <div class="material-showroom-grid">
+              <figure class="material-showroom"><img class="" src="assets/materials/granite-showroom-1496.webp" srcset="assets/materials/granite-showroom-640.webp 640w, assets/materials/granite-showroom-1100.webp 1100w, assets/materials/granite-showroom-1496.webp 1496w" sizes="(max-width: 820px) 85vw, 500px" width="1496" height="1496" alt="Display de granito del showroom — fotografía 1" loading="lazy" decoding="async" /></figure>
+            </div>
+          </template>
         </div>
       </div>
 
@@ -705,11 +729,12 @@
       </div>
     </footer>
 
-    <script src="script.js?v=44"></script>
+    <script src="materials.js?v=1"></script>
+    <script src="script.js?v=45"></script>
     <script>
       if (!window.__TMI_SCRIPT_READY) {
         const fallback = document.createElement("script");
-        fallback.src = "fallback.js?v=44";
+        fallback.src = "fallback.js?v=45";
         document.head.appendChild(fallback);
       }
     </script>

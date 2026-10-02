@@ -1,0 +1,1109 @@
+[
+  {
+    "slug": "marble-card",
+    "source": "source/marble-1.jpeg",
+    "crop": [
+      275,
+      0,
+      1380,
+      1496
+    ],
+    "label": null,
+    "files": [
+      {
+        "path": "assets/materials/marble-card-480.webp",
+        "width": 480,
+        "height": 650,
+        "bytes": 35166
+      },
+      {
+        "path": "assets/materials/marble-card-800.webp",
+        "width": 800,
+        "height": 1083,
+        "bytes": 89746
+      },
+      {
+        "path": "assets/materials/marble-card-1105.webp",
+        "width": 1105,
+        "height": 1496,
+        "bytes": 162576
+      }
+    ]
+  },
+  {
+    "slug": "quartz-card",
+    "source": "source/quartz.jpeg",
+    "crop": [
+      125,
+      0,
+      1030,
+      1496
+    ],
+    "label": null,
+    "files": [
+      {
+        "path": "assets/materials/quartz-card-480.webp",
+        "width": 480,
+        "height": 793,
+        "bytes": 27518
+      },
+      {
+        "path": "assets/materials/quartz-card-800.webp",
+        "width": 800,
+        "height": 1322,
+        "bytes": 62122
+      },
+      {
+        "path": "assets/materials/quartz-card-905.webp",
+        "width": 905,
+        "height": 1496,
+        "bytes": 77130
+      }
+    ]
+  },
+  {
+    "slug": "granite-card",
+    "source": "source/granite.jpeg",
+    "crop": [
+      45,
+      115,
+      1496,
+      1265
+    ],
+    "label": null,
+    "files": [
+      {
+        "path": "assets/materials/granite-card-480.webp",
+        "width": 480,
+        "height": 380,
+        "bytes": 42532
+      },
+      {
+        "path": "assets/materials/granite-card-800.webp",
+        "width": 800,
+        "height": 634,
+        "bytes": 118652
+      },
+      {
+        "path": "assets/materials/granite-card-1200.webp",
+        "width": 1200,
+        "height": 951,
+        "bytes": 258882
+      }
+    ]
+  },
+  {
+    "slug": "marble-1-showroom",
+    "source": "source/marble-1.jpeg",
+    "crop": null,
+    "label": null,
+    "files": [
+      {
+        "path": "assets/materials/marble-1-showroom-640.webp",
+        "width": 640,
+        "height": 640,
+        "bytes": 43404
+      },
+      {
+        "path": "assets/materials/marble-1-showroom-1100.webp",
+        "width": 1100,
+        "height": 1100,
+        "bytes": 118230
+      },
+      {
+        "path": "assets/materials/marble-1-showroom-1496.webp",
+        "width": 1496,
+        "height": 1496,
+        "bytes": 195678
+      }
+    ]
+  },
+  {
+    "slug": "marble-2-showroom",
+    "source": "source/marble-2.jpeg",
+    "crop": null,
+    "label": null,
+    "files": [
+      {
+        "path": "assets/materials/marble-2-showroom-640.webp",
+        "width": 640,
+        "height": 640,
+        "bytes": 75230
+      },
+      {
+        "path": "assets/materials/marble-2-showroom-1100.webp",
+        "width": 1100,
+        "height": 1100,
+        "bytes": 202528
+      },
+      {
+        "path": "assets/materials/marble-2-showroom-1496.webp",
+        "width": 1496,
+        "height": 1496,
+        "bytes": 338812
+      }
+    ]
+  },
+  {
+    "slug": "granite-showroom",
+    "source": "source/granite.jpeg",
+    "crop": null,
+    "label": null,
+    "files": [
+      {
+        "path": "assets/materials/granite-showroom-640.webp",
+        "width": 640,
+        "height": 640,
+        "bytes": 80054
+      },
+      {
+        "path": "assets/materials/granite-showroom-1100.webp",
+        "width": 1100,
+        "height": 1100,
+        "bytes": 231630
+      },
+      {
+        "path": "assets/materials/granite-showroom-1496.webp",
+        "width": 1496,
+        "height": 1496,
+        "bytes": 397688
+      }
+    ]
+  },
+  {
+    "slug": "quartz-showroom",
+    "source": "source/quartz.jpeg",
+    "crop": [
+      125,
+      0,
+      1030,
+      1496
+    ],
+    "label": null,
+    "files": [
+      {
+        "path": "assets/materials/quartz-showroom-640.webp",
+        "width": 640,
+        "height": 1058,
+        "bytes": 43504
+      },
+      {
+        "path": "assets/materials/quartz-showroom-905.webp",
+        "width": 905,
+        "height": 1496,
+        "bytes": 77130
+      }
+    ]
+  },
+  {
+    "slug": "travertino-romano",
+    "source": "source/marble-1.jpeg",
+    "crop": [
+      312,
+      448,
+      736,
+      622
+    ],
+    "label": "Travertino Romano",
+    "files": [
+      {
+        "path": "assets/materials/travertino-romano-320.webp",
+        "width": 320,
+        "height": 131,
+        "bytes": 3876
+      },
+      {
+        "path": "assets/materials/travertino-romano-424.webp",
+        "width": 424,
+        "height": 174,
+        "bytes": 6356
+      }
+    ]
+  },
+  {
+    "slug": "onix-verde",
+    "source": "source/marble-2.jpeg",
+    "crop": [
+      156,
+      475,
+      494,
+      623
+    ],
+    "label": "Onix Verde",
+    "files": [
+      {
+        "path": "assets/materials/onix-verde-320.webp",
+        "width": 320,
+        "height": 140,
+        "bytes": 11784
+      },
+      {
+        "path": "assets/materials/onix-verde-338.webp",
+        "width": 338,
+        "height": 148,
+        "bytes": 13110
+      }
+    ]
+  },
+  {
+    "slug": "crema-capri",
+    "source": "source/marble-1.jpeg",
+    "crop": [
+      305,
+      170,
+      732,
+      310
+    ],
+    "label": "Crema Capri",
+    "files": [
+      {
+        "path": "assets/materials/crema-capri-320.webp",
+        "width": 320,
+        "height": 105,
+        "bytes": 1394
+      },
+      {
+        "path": "assets/materials/crema-capri-427.webp",
+        "width": 427,
+        "height": 140,
+        "bytes": 2342
+      }
+    ]
+  },
+  {
+    "slug": "botticino-classico",
+    "source": "source/marble-1.jpeg",
+    "crop": [
+      330,
+      740,
+      740,
+      893
+    ],
+    "label": "Botticino Classico",
+    "files": [
+      {
+        "path": "assets/materials/botticino-classico-320.webp",
+        "width": 320,
+        "height": 119,
+        "bytes": 3264
+      },
+      {
+        "path": "assets/materials/botticino-classico-410.webp",
+        "width": 410,
+        "height": 153,
+        "bytes": 4656
+      }
+    ]
+  },
+  {
+    "slug": "arabescato-fantastico",
+    "source": "source/marble-1.jpeg",
+    "crop": [
+      768,
+      716,
+      1070,
+      846
+    ],
+    "label": "Arabescato Fantástico",
+    "files": [
+      {
+        "path": "assets/materials/arabescato-fantastico-302.webp",
+        "width": 302,
+        "height": 130,
+        "bytes": 3700
+      }
+    ]
+  },
+  {
+    "slug": "breccia-pernice",
+    "source": "source/marble-2.jpeg",
+    "crop": [
+      153,
+      234,
+      494,
+      379
+    ],
+    "label": "Breccia Pernice",
+    "files": [
+      {
+        "path": "assets/materials/breccia-pernice-320.webp",
+        "width": 320,
+        "height": 136,
+        "bytes": 11054
+      },
+      {
+        "path": "assets/materials/breccia-pernice-341.webp",
+        "width": 341,
+        "height": 145,
+        "bytes": 12488
+      }
+    ]
+  },
+  {
+    "slug": "rojo-alicante",
+    "source": "source/marble-2.jpeg",
+    "crop": [
+      521,
+      223,
+      898,
+      385
+    ],
+    "label": "Rojo Alicante",
+    "files": [
+      {
+        "path": "assets/materials/rojo-alicante-320.webp",
+        "width": 320,
+        "height": 138,
+        "bytes": 9146
+      },
+      {
+        "path": "assets/materials/rojo-alicante-377.webp",
+        "width": 377,
+        "height": 162,
+        "bytes": 12526
+      }
+    ]
+  },
+  {
+    "slug": "rosso-verona",
+    "source": "source/marble-2.jpeg",
+    "crop": [
+      929,
+      213,
+      1354,
+      380
+    ],
+    "label": "Rosso Verona",
+    "files": [
+      {
+        "path": "assets/materials/rosso-verona-320.webp",
+        "width": 320,
+        "height": 126,
+        "bytes": 11058
+      },
+      {
+        "path": "assets/materials/rosso-verona-425.webp",
+        "width": 425,
+        "height": 167,
+        "bytes": 17426
+      }
+    ]
+  },
+  {
+    "slug": "verde-quetzal",
+    "source": "source/marble-2.jpeg",
+    "crop": [
+      917,
+      487,
+      1328,
+      645
+    ],
+    "label": "Verde Quetzal",
+    "files": [
+      {
+        "path": "assets/materials/verde-quetzal-320.webp",
+        "width": 320,
+        "height": 123,
+        "bytes": 13300
+      },
+      {
+        "path": "assets/materials/verde-quetzal-411.webp",
+        "width": 411,
+        "height": 158,
+        "bytes": 21092
+      }
+    ]
+  },
+  {
+    "slug": "rosa-noruega",
+    "source": "source/marble-2.jpeg",
+    "crop": [
+      909,
+      762,
+      1305,
+      899
+    ],
+    "label": "Rosa Noruega",
+    "files": [
+      {
+        "path": "assets/materials/rosa-noruega-320.webp",
+        "width": 320,
+        "height": 111,
+        "bytes": 6928
+      },
+      {
+        "path": "assets/materials/rosa-noruega-396.webp",
+        "width": 396,
+        "height": 137,
+        "bytes": 9690
+      }
+    ]
+  },
+  {
+    "slug": "kenia-black",
+    "source": "source/marble-2.jpeg",
+    "crop": [
+      889,
+      1255,
+      1272,
+      1360
+    ],
+    "label": "Kenia Black",
+    "files": [
+      {
+        "path": "assets/materials/kenia-black-320.webp",
+        "width": 320,
+        "height": 88,
+        "bytes": 4028
+      },
+      {
+        "path": "assets/materials/kenia-black-383.webp",
+        "width": 383,
+        "height": 105,
+        "bytes": 5078
+      }
+    ]
+  },
+  {
+    "slug": "quartz-01",
+    "source": "source/quartz.jpeg",
+    "crop": [
+      151,
+      201,
+      539,
+      377
+    ],
+    "label": "Muestra 01",
+    "files": [
+      {
+        "path": "assets/materials/quartz-01-320.webp",
+        "width": 320,
+        "height": 145,
+        "bytes": 372
+      },
+      {
+        "path": "assets/materials/quartz-01-388.webp",
+        "width": 388,
+        "height": 176,
+        "bytes": 432
+      }
+    ]
+  },
+  {
+    "slug": "quartz-02",
+    "source": "source/quartz.jpeg",
+    "crop": [
+      570,
+      183,
+      997,
+      370
+    ],
+    "label": "Muestra 02",
+    "files": [
+      {
+        "path": "assets/materials/quartz-02-320.webp",
+        "width": 320,
+        "height": 140,
+        "bytes": 2030
+      },
+      {
+        "path": "assets/materials/quartz-02-427.webp",
+        "width": 427,
+        "height": 187,
+        "bytes": 3194
+      }
+    ]
+  },
+  {
+    "slug": "quartz-03",
+    "source": "source/quartz.jpeg",
+    "crop": [
+      230,
+      467,
+      545,
+      648
+    ],
+    "label": "Muestra 03",
+    "files": [
+      {
+        "path": "assets/materials/quartz-03-315.webp",
+        "width": 315,
+        "height": 181,
+        "bytes": 4456
+      }
+    ]
+  },
+  {
+    "slug": "quartz-04",
+    "source": "source/quartz.jpeg",
+    "crop": [
+      625,
+      489,
+      994,
+      662
+    ],
+    "label": "Muestra 04",
+    "files": [
+      {
+        "path": "assets/materials/quartz-04-320.webp",
+        "width": 320,
+        "height": 150,
+        "bytes": 600
+      },
+      {
+        "path": "assets/materials/quartz-04-369.webp",
+        "width": 369,
+        "height": 173,
+        "bytes": 678
+      }
+    ]
+  },
+  {
+    "slug": "quartz-05",
+    "source": "source/quartz.jpeg",
+    "crop": [
+      204,
+      765,
+      546,
+      904
+    ],
+    "label": "Muestra 05",
+    "files": [
+      {
+        "path": "assets/materials/quartz-05-320.webp",
+        "width": 320,
+        "height": 130,
+        "bytes": 688
+      },
+      {
+        "path": "assets/materials/quartz-05-342.webp",
+        "width": 342,
+        "height": 139,
+        "bytes": 798
+      }
+    ]
+  },
+  {
+    "slug": "quartz-06",
+    "source": "source/quartz.jpeg",
+    "crop": [
+      618,
+      789,
+      991,
+      929
+    ],
+    "label": "Muestra 06",
+    "files": [
+      {
+        "path": "assets/materials/quartz-06-320.webp",
+        "width": 320,
+        "height": 120,
+        "bytes": 856
+      },
+      {
+        "path": "assets/materials/quartz-06-373.webp",
+        "width": 373,
+        "height": 140,
+        "bytes": 992
+      }
+    ]
+  },
+  {
+    "slug": "mistral",
+    "source": "source/quartz.jpeg",
+    "crop": [
+      183,
+      1004,
+      550,
+      1130
+    ],
+    "label": "Mistral",
+    "files": [
+      {
+        "path": "assets/materials/mistral-320.webp",
+        "width": 320,
+        "height": 110,
+        "bytes": 1520
+      },
+      {
+        "path": "assets/materials/mistral-367.webp",
+        "width": 367,
+        "height": 126,
+        "bytes": 1760
+      }
+    ]
+  },
+  {
+    "slug": "stardust-white",
+    "source": "source/quartz.jpeg",
+    "crop": [
+      583,
+      1028,
+      981,
+      1165
+    ],
+    "label": "Stardust White",
+    "files": [
+      {
+        "path": "assets/materials/stardust-white-320.webp",
+        "width": 320,
+        "height": 110,
+        "bytes": 7784
+      },
+      {
+        "path": "assets/materials/stardust-white-398.webp",
+        "width": 398,
+        "height": 137,
+        "bytes": 11634
+      }
+    ]
+  },
+  {
+    "slug": "quartz-09",
+    "source": "source/quartz.jpeg",
+    "crop": [
+      388,
+      1249,
+      552,
+      1396
+    ],
+    "label": "Muestra 09",
+    "files": [
+      {
+        "path": "assets/materials/quartz-09-164.webp",
+        "width": 164,
+        "height": 147,
+        "bytes": 422
+      }
+    ]
+  },
+  {
+    "slug": "stardust-black",
+    "source": "source/quartz.jpeg",
+    "crop": [
+      585,
+      1280,
+      926,
+      1415
+    ],
+    "label": "Stardust Black",
+    "files": [
+      {
+        "path": "assets/materials/stardust-black-320.webp",
+        "width": 320,
+        "height": 127,
+        "bytes": 1390
+      },
+      {
+        "path": "assets/materials/stardust-black-341.webp",
+        "width": 341,
+        "height": 135,
+        "bytes": 1542
+      }
+    ]
+  },
+  {
+    "slug": "granite-01",
+    "source": "source/granite.jpeg",
+    "crop": [
+      80,
+      250,
+      404,
+      378
+    ],
+    "label": "Negro África brillada",
+    "files": [
+      {
+        "path": "assets/materials/granite-01-320.webp",
+        "width": 320,
+        "height": 126,
+        "bytes": 10126
+      },
+      {
+        "path": "assets/materials/granite-01-324.webp",
+        "width": 324,
+        "height": 128,
+        "bytes": 10338
+      }
+    ]
+  },
+  {
+    "slug": "granite-02",
+    "source": "source/granite.jpeg",
+    "crop": [
+      439,
+      250,
+      765,
+      378
+    ],
+    "label": "Negro África honed",
+    "files": [
+      {
+        "path": "assets/materials/granite-02-320.webp",
+        "width": 320,
+        "height": 126,
+        "bytes": 14658
+      },
+      {
+        "path": "assets/materials/granite-02-326.webp",
+        "width": 326,
+        "height": 128,
+        "bytes": 15606
+      }
+    ]
+  },
+  {
+    "slug": "granite-03",
+    "source": "source/granite.jpeg",
+    "crop": [
+      796,
+      250,
+      1124,
+      378
+    ],
+    "label": "Blue Pearl",
+    "files": [
+      {
+        "path": "assets/materials/granite-03-320.webp",
+        "width": 320,
+        "height": 125,
+        "bytes": 16068
+      },
+      {
+        "path": "assets/materials/granite-03-328.webp",
+        "width": 328,
+        "height": 128,
+        "bytes": 16860
+      }
+    ]
+  },
+  {
+    "slug": "granite-04",
+    "source": "source/granite.jpeg",
+    "crop": [
+      1160,
+      250,
+      1477,
+      378
+    ],
+    "label": "Alaska White",
+    "files": [
+      {
+        "path": "assets/materials/granite-04-317.webp",
+        "width": 317,
+        "height": 128,
+        "bytes": 16846
+      }
+    ]
+  },
+  {
+    "slug": "granite-05",
+    "source": "source/granite.jpeg",
+    "crop": [
+      92,
+      467,
+      410,
+      588
+    ],
+    "label": "Negro Absoluto",
+    "files": [
+      {
+        "path": "assets/materials/granite-05-318.webp",
+        "width": 318,
+        "height": 121,
+        "bytes": 1296
+      }
+    ]
+  },
+  {
+    "slug": "granite-06",
+    "source": "source/granite.jpeg",
+    "crop": [
+      441,
+      467,
+      762,
+      588
+    ],
+    "label": "Labrador Oscuro",
+    "files": [
+      {
+        "path": "assets/materials/granite-06-320.webp",
+        "width": 320,
+        "height": 121,
+        "bytes": 9602
+      },
+      {
+        "path": "assets/materials/granite-06-321.webp",
+        "width": 321,
+        "height": 121,
+        "bytes": 9908
+      }
+    ]
+  },
+  {
+    "slug": "granite-07",
+    "source": "source/granite.jpeg",
+    "crop": [
+      793,
+      467,
+      1110,
+      588
+    ],
+    "label": "Verde Ubatuba",
+    "files": [
+      {
+        "path": "assets/materials/granite-07-317.webp",
+        "width": 317,
+        "height": 121,
+        "bytes": 7710
+      }
+    ]
+  },
+  {
+    "slug": "granite-08",
+    "source": "source/granite.jpeg",
+    "crop": [
+      1142,
+      467,
+      1460,
+      588
+    ],
+    "label": "Tan Brown",
+    "files": [
+      {
+        "path": "assets/materials/granite-08-318.webp",
+        "width": 318,
+        "height": 121,
+        "bytes": 14048
+      }
+    ]
+  },
+  {
+    "slug": "granite-09",
+    "source": "source/granite.jpeg",
+    "crop": [
+      100,
+      686,
+      416,
+      799
+    ],
+    "label": "Verde Olivo",
+    "files": [
+      {
+        "path": "assets/materials/granite-09-316.webp",
+        "width": 316,
+        "height": 113,
+        "bytes": 13432
+      }
+    ]
+  },
+  {
+    "slug": "granite-10",
+    "source": "source/granite.jpeg",
+    "crop": [
+      446,
+      686,
+      759,
+      799
+    ],
+    "label": "Muestra 10",
+    "files": [
+      {
+        "path": "assets/materials/granite-10-313.webp",
+        "width": 313,
+        "height": 113,
+        "bytes": 16192
+      }
+    ]
+  },
+  {
+    "slug": "granite-11",
+    "source": "source/granite.jpeg",
+    "crop": [
+      791,
+      686,
+      1098,
+      799
+    ],
+    "label": "Paradiso Argentino",
+    "files": [
+      {
+        "path": "assets/materials/granite-11-307.webp",
+        "width": 307,
+        "height": 113,
+        "bytes": 17266
+      }
+    ]
+  },
+  {
+    "slug": "granite-12",
+    "source": "source/granite.jpeg",
+    "crop": [
+      1133,
+      686,
+      1447,
+      799
+    ],
+    "label": "Blanco Macaubas",
+    "files": [
+      {
+        "path": "assets/materials/granite-12-314.webp",
+        "width": 314,
+        "height": 113,
+        "bytes": 3200
+      }
+    ]
+  },
+  {
+    "slug": "granite-13",
+    "source": "source/granite.jpeg",
+    "crop": [
+      110,
+      888,
+      418,
+      997
+    ],
+    "label": "Aurora",
+    "files": [
+      {
+        "path": "assets/materials/granite-13-308.webp",
+        "width": 308,
+        "height": 109,
+        "bytes": 9638
+      }
+    ]
+  },
+  {
+    "slug": "granite-14",
+    "source": "source/granite.jpeg",
+    "crop": [
+      449,
+      888,
+      754,
+      997
+    ],
+    "label": "Rojo Tigrato",
+    "files": [
+      {
+        "path": "assets/materials/granite-14-305.webp",
+        "width": 305,
+        "height": 109,
+        "bytes": 12942
+      }
+    ]
+  },
+  {
+    "slug": "granite-15",
+    "source": "source/granite.jpeg",
+    "crop": [
+      788,
+      888,
+      1091,
+      997
+    ],
+    "label": "Rojo Imperial",
+    "files": [
+      {
+        "path": "assets/materials/granite-15-303.webp",
+        "width": 303,
+        "height": 109,
+        "bytes": 8276
+      }
+    ]
+  },
+  {
+    "slug": "granite-16",
+    "source": "source/granite.jpeg",
+    "crop": [
+      1124,
+      888,
+      1428,
+      997
+    ],
+    "label": "Rojo Multicolor",
+    "files": [
+      {
+        "path": "assets/materials/granite-16-304.webp",
+        "width": 304,
+        "height": 109,
+        "bytes": 6568
+      }
+    ]
+  },
+  {
+    "slug": "granite-17",
+    "source": "source/granite.jpeg",
+    "crop": [
+      120,
+      1090,
+      426,
+      1192
+    ],
+    "label": "Baltic Brown",
+    "files": [
+      {
+        "path": "assets/materials/granite-17-306.webp",
+        "width": 306,
+        "height": 102,
+        "bytes": 13436
+      }
+    ]
+  },
+  {
+    "slug": "granite-18",
+    "source": "source/granite.jpeg",
+    "crop": [
+      458,
+      1090,
+      752,
+      1192
+    ],
+    "label": "Desert Brown",
+    "files": [
+      {
+        "path": "assets/materials/granite-18-294.webp",
+        "width": 294,
+        "height": 102,
+        "bytes": 12236
+      }
+    ]
+  },
+  {
+    "slug": "granite-19",
+    "source": "source/granite.jpeg",
+    "crop": [
+      788,
+      1090,
+      1086,
+      1192
+    ],
+    "label": "Giallo Antico",
+    "files": [
+      {
+        "path": "assets/materials/granite-19-298.webp",
+        "width": 298,
+        "height": 102,
+        "bytes": 10432
+      }
+    ]
+  },
+  {
+    "slug": "granite-20",
+    "source": "source/granite.jpeg",
+    "crop": [
+      1116,
+      1090,
+      1260,
+      1192
+    ],
+    "label": "Muestra 20",
+    "files": [
+      {
+        "path": "assets/materials/granite-20-144.webp",
+        "width": 144,
+        "height": 102,
+        "bytes": 4744
+      }
+    ]
+  }
+]

@@ -65,7 +65,7 @@ async function run(engine, name, options) {
     }
     await page.locator('[data-material-modal-open="#marbleModal"]').click();
     await page.locator('#marbleModal.is-open').waitFor();
-    assert.equal(await page.locator('#marbleModal .marble-type-card').count(), 6);
+    assert.equal(await page.locator('#marbleModal .marble-type-card').count(), 15);
     await page.waitForFunction(() => getComputedStyle(document.querySelector('#marbleModal')).opacity === '1');
     await page.screenshot({ path: `${output}/${name}-materials.png` });
     await page.keyboard.press('Escape');
