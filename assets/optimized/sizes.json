@@ -1,0 +1,202 @@
+[
+  {
+    "source": "Bianco Stardust.jpg",
+    "original_bytes": 16391,
+    "optimized_bytes": 10850
+  },
+  {
+    "source": "Blanco Carrara.jpg",
+    "original_bytes": 5206,
+    "optimized_bytes": 2106
+  },
+  {
+    "source": "Carnia.jpg",
+    "original_bytes": 180069,
+    "optimized_bytes": 87172
+  },
+  {
+    "source": "Elba.jpg",
+    "original_bytes": 6635,
+    "optimized_bytes": 2470
+  },
+  {
+    "source": "Fior Di Pesco.jpg",
+    "original_bytes": 6380,
+    "optimized_bytes": 2942
+  },
+  {
+    "source": "Grecale.jpg",
+    "original_bytes": 2950,
+    "optimized_bytes": 790
+  },
+  {
+    "source": "Marron Emperador.jpg",
+    "original_bytes": 12665,
+    "optimized_bytes": 8684
+  },
+  {
+    "source": "Maui.jpg",
+    "original_bytes": 11795,
+    "optimized_bytes": 8922
+  },
+  {
+    "source": "Nero Stardust.jpg",
+    "original_bytes": 17162,
+    "optimized_bytes": 11080
+  },
+  {
+    "source": "Onix Verde.jpg",
+    "original_bytes": 10236,
+    "optimized_bytes": 6250
+  },
+  {
+    "source": "Silver.jpg",
+    "original_bytes": 241338,
+    "optimized_bytes": 136166
+  },
+  {
+    "source": "Tago.jpg",
+    "original_bytes": 7291,
+    "optimized_bytes": 2986
+  },
+  {
+    "source": "Tarvertino Romano.jpg",
+    "original_bytes": 5899,
+    "optimized_bytes": 2608
+  },
+  {
+    "source": "Vega.jpg",
+    "original_bytes": 16761,
+    "optimized_bytes": 912
+  },
+  {
+    "source": "Vermont.jpg",
+    "original_bytes": 53467,
+    "optimized_bytes": 4638
+  },
+  {
+    "source": "background-black-marble-original.png",
+    "original_bytes": 2703922,
+    "optimized_bytes": 168370
+  },
+  {
+    "source": "material-granite.png",
+    "original_bytes": 539607,
+    "optimized_bytes": 53396
+  },
+  {
+    "source": "material-marble.png",
+    "original_bytes": 646442,
+    "optimized_bytes": 72802
+  },
+  {
+    "source": "material-quartz.png",
+    "original_bytes": 655313,
+    "optimized_bytes": 74312
+  },
+  {
+    "source": "material-white-porcelain-original.png",
+    "original_bytes": 2113365,
+    "optimized_bytes": 41480
+  },
+  {
+    "source": "slide1.jpeg",
+    "original_bytes": 239932,
+    "optimized_bytes": 218404
+  },
+  {
+    "source": "slide2.jpeg",
+    "original_bytes": 250129,
+    "optimized_bytes": 218914
+  },
+  {
+    "source": "slide3.jpeg",
+    "original_bytes": 278577,
+    "optimized_bytes": 275020
+  },
+  {
+    "source": "slidevideo1.mp4",
+    "original_bytes": 8758532,
+    "optimized_bytes": 8306198
+  },
+  {
+    "source": "slidevideo2.mp4",
+    "original_bytes": 8421598,
+    "optimized_bytes": 4090274
+  },
+  {
+    "source": "slidevideo3.mp4",
+    "original_bytes": 1893635,
+    "optimized_bytes": 1220684
+  },
+  {
+    "source": "taller1.jpeg",
+    "original_bytes": 208169,
+    "optimized_bytes": 161352
+  },
+  {
+    "source": "taller2.jpeg",
+    "original_bytes": 248586,
+    "optimized_bytes": 195808
+  },
+  {
+    "source": "taller3.jpeg",
+    "original_bytes": 419594,
+    "optimized_bytes": 312722
+  },
+  {
+    "source": "tecnomarmol-real-1.jpg",
+    "original_bytes": 56830,
+    "optimized_bytes": 43970
+  },
+  {
+    "source": "tecnomarmol-real-2.jpg",
+    "original_bytes": 50968,
+    "optimized_bytes": 43278
+  },
+  {
+    "source": "tecnomarmol-real-3.jpg",
+    "original_bytes": 40220,
+    "optimized_bytes": 31274
+  },
+  {
+    "source": "tecnomarmol-real-4.jpg",
+    "original_bytes": 42166,
+    "optimized_bytes": 32674
+  },
+  {
+    "source": "thumb-forest-green-orizz.jpg",
+    "original_bytes": 10812,
+    "optimized_bytes": 7150
+  },
+  {
+    "source": "videotaller1.mp4",
+    "original_bytes": 21659531,
+    "optimized_bytes": 4229210
+  },
+  {
+    "source": "videotaller2.mp4",
+    "original_bytes": 20799178,
+    "optimized_bytes": 5495401
+  },
+  {
+    "source": "videotaller3.mp4",
+    "original_bytes": 1341321,
+    "optimized_bytes": 1177813
+  },
+  {
+    "source": "videotaller4.mp4",
+    "original_bytes": 1904507,
+    "optimized_bytes": 1108207
+  },
+  {
+    "source": "videotaller5.mp4",
+    "original_bytes": 21804734,
+    "optimized_bytes": 4298475
+  },
+  {
+    "source": "videotaller6.mp4",
+    "original_bytes": 18680694,
+    "optimized_bytes": 3535682
+  }
+]

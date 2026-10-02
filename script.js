@@ -1,5 +1,60 @@
 (() => {
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+  let prefersReducedMotion = motionQuery.matches;
+  const saveData = navigator.connection?.saveData === true;
+  let pageHidden = document.hidden;
+  let overlayOpen = document.body.matches(".language-pending, .modal-open");
+  const activities = new Map();
+  const pageIsActive = () => !pageHidden && !overlayOpen;
+  const autoMotion = () => pageIsActive() && !prefersReducedMotion && !saveData;
+  const updateActivities = () => {
+    const paused = !autoMotion();
+    if (document.body.classList.contains("effects-paused") !== paused) {
+      document.body.classList.toggle("effects-paused", paused);
+    }
+    activities.forEach((activity) => activity.update(activity.visible));
+  };
+  const activityObserver = "IntersectionObserver" in window ? new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const activity = activities.get(entry.target);
+      if (!activity) return;
+      activity.visible = entry.isIntersecting;
+      activity.update(activity.visible);
+    });
+  }) : null;
+  const watchActivity = (element, update) => {
+    if (!element) return;
+    activities.set(element, { visible: !activityObserver, update });
+    update(!activityObserver);
+    activityObserver?.observe(element);
+  };
+  new MutationObserver(() => {
+    const next = document.body.matches(".language-pending, .modal-open");
+    if (next === overlayOpen) return;
+    overlayOpen = next;
+    updateActivities();
+  }).observe(document.body, { attributes: true, attributeFilter: ["class"] });
+  motionQuery.addEventListener("change", () => {
+    prefersReducedMotion = motionQuery.matches;
+    if (prefersReducedMotion) document.querySelectorAll(".reveal").forEach((item) => item.classList.add("is-visible"));
+    updateActivities();
+  });
+  document.addEventListener("visibilitychange", () => {
+    pageHidden = document.hidden;
+    updateActivities();
+    if (pageHidden) document.querySelectorAll("video").forEach((video) => video.pause());
+  });
+  window.addEventListener("pagehide", () => {
+    pageHidden = true;
+    updateActivities();
+    document.querySelectorAll("video").forEach((video) => video.pause());
+  });
+  window.addEventListener("pageshow", () => {
+    pageHidden = document.hidden;
+    updateActivities();
+  });
+  updateActivities();
   const header = document.querySelector("[data-header]");
   const navToggle = document.querySelector(".nav-toggle");
   const navMenu = document.querySelector("#navMenu");
@@ -456,7 +511,8 @@
 
   // Sticky navigation state and mobile menu.
   const setHeaderState = () => {
-    header?.classList.toggle("is-scrolled", window.scrollY > 18);
+    const scrolled = window.scrollY > 18;
+    if (header?.classList.contains("is-scrolled") !== scrolled) header?.classList.toggle("is-scrolled", scrolled);
   };
 
   setHeaderState();
@@ -585,7 +641,7 @@
       finishPage("site_exit", true);
     });
 
-    window.setInterval(() => send("heartbeat"), 30000);
+    window.setInterval(() => { if (!document.hidden) send("heartbeat"); }, 30000);
     window.setTimeout(() => startPage("site_enter"), 250);
 
     return {
@@ -638,70 +694,117 @@
     }
   });
 
+  // Workshop media is attached only when visible or explicitly requested.
+  const videoLightbox = document.querySelector("[data-video-lightbox]");
+  const lightboxPlayer = document.querySelector("[data-video-lightbox-player]");
+  let videoLastFocus = null;
+  const closeVideoLightbox = () => {
+    if (!videoLightbox?.classList.contains("is-open")) return;
+    videoLightbox.classList.remove("is-open");
+    videoLightbox.setAttribute("aria-hidden", "true");
+    lightboxPlayer.pause();
+    lightboxPlayer.removeAttribute("src");
+    lightboxPlayer.load();
+    document.body.classList.remove("modal-open");
+    videoLastFocus?.focus({ preventScroll: true });
+  };
+  document.querySelectorAll("[data-video-lightbox-close]").forEach((button) => button.addEventListener("click", closeVideoLightbox));
+  document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeVideoLightbox(); });
+
   document.querySelectorAll("[data-video-rotator]").forEach((rotator) => {
     const videos = [...rotator.querySelectorAll(".workshop-video")];
-    const dots = [...rotator.querySelectorAll(".workshop-video-dots span")];
+    const dots = [...rotator.querySelectorAll(".workshop-video-dots button")];
     let activeIndex = 0;
     let rotationTimer = null;
-
-    const availableVideos = () => videos.filter((video) => !video.dataset.failed);
-
-    const setActiveVideo = (index) => {
-      const available = availableVideos();
-      if (!available.length) {
+    let visible = false;
+    let hovered = false;
+    let focused = false;
+    let userPlayback = false;
+    const stop = () => {
+      window.clearTimeout(rotationTimer);
+      rotationTimer = null;
+    };
+    const hydrate = (video) => {
+      if (!video.getAttribute("src") && video.dataset.src) video.src = video.dataset.src;
+      if (video.dataset.poster && !video.poster) video.poster = video.dataset.poster;
+    };
+    const sync = () => {
+      stop();
+      const canPlay = visible && pageIsActive() && (userPlayback || autoMotion());
+      videos.forEach((video, index) => {
+        if (index === activeIndex && visible && video.dataset.poster && !video.poster) video.poster = video.dataset.poster;
+        if (index === activeIndex && canPlay && !video.dataset.failed) {
+          hydrate(video);
+          video.play().catch(() => {});
+        } else video.pause();
+      });
+      if (visible && autoMotion() && !hovered && !focused && videos.some((video) => !video.dataset.failed)) {
+        rotationTimer = window.setTimeout(() => setActiveVideo(activeIndex + 1), 8500);
+      }
+    };
+    const setActiveVideo = (index, manual = false) => {
+      stop();
+      if (!videos.some((video) => !video.dataset.failed)) {
         rotator.classList.add("has-no-videos");
-        videos.forEach((video) => {
-          video.classList.remove("is-active");
-          video.pause();
-        });
-        dots.forEach((dot) => dot.classList.remove("is-active"));
+        videos.forEach((video) => video.pause());
         return;
       }
-
-      activeIndex = ((index % videos.length) + videos.length) % videos.length;
-      let guard = 0;
-      while (videos[activeIndex]?.dataset.failed && guard < videos.length) {
-        activeIndex = (activeIndex + 1) % videos.length;
-        guard += 1;
-      }
-
-      videos.forEach((video, videoIndex) => {
-        const isActive = videoIndex === activeIndex && !video.dataset.failed;
-        video.classList.toggle("is-active", isActive);
-        if (isActive) {
-          video.currentTime = 0;
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
+      activeIndex = (index + videos.length) % videos.length;
+      while (videos[activeIndex].dataset.failed) activeIndex = (activeIndex + 1) % videos.length;
+      userPlayback = manual;
+      videos.forEach((video, i) => {
+        video.classList.toggle("is-active", i === activeIndex);
+        video.tabIndex = i === activeIndex ? 0 : -1;
+        if (i === activeIndex && video.readyState) video.currentTime = 0;
       });
-
-      dots.forEach((dot, dotIndex) => {
-        dot.classList.toggle("is-active", dotIndex === activeIndex);
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("is-active", i === activeIndex);
+        dot.setAttribute("aria-pressed", String(i === activeIndex));
       });
+      sync();
     };
-
+    const openVideo = (video) => {
+      if (!videoLightbox || !lightboxPlayer || video.dataset.failed) return;
+      hydrate(video);
+      stop();
+      video.pause();
+      videoLastFocus = document.activeElement;
+      lightboxPlayer.src = video.currentSrc || video.src;
+      videoLightbox.classList.add("is-open");
+      videoLightbox.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+      videoLightbox.querySelector(".video-lightbox-close")?.focus({ preventScroll: true });
+      lightboxPlayer.play().catch(() => {});
+    };
     videos.forEach((video, index) => {
       video.addEventListener("error", () => {
         video.dataset.failed = "true";
         video.classList.add("is-missing");
-        if (index === activeIndex) setActiveVideo(activeIndex + 1);
+        if (dots[index]) dots[index].disabled = true;
+        if (index === activeIndex) setActiveVideo(index + 1);
       });
-
       video.addEventListener("ended", () => {
-        setActiveVideo(index + 1);
+        if (visible && autoMotion()) setActiveVideo(index + 1);
+      });
+      video.addEventListener("click", () => openVideo(video));
+      video.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openVideo(video);
+        }
       });
     });
-
-    if (!prefersReducedMotion && videos.length > 1) {
-      rotationTimer = window.setInterval(() => setActiveVideo(activeIndex + 1), 8500);
-      rotator.addEventListener("mouseenter", () => window.clearInterval(rotationTimer));
-      rotator.addEventListener("mouseleave", () => {
-        rotationTimer = window.setInterval(() => setActiveVideo(activeIndex + 1), 8500);
-      });
-    }
-
+    dots.forEach((dot, index) => dot.addEventListener("click", () => setActiveVideo(index, true)));
+    rotator.addEventListener("mouseenter", () => { hovered = finePointer.matches; sync(); });
+    rotator.addEventListener("mouseleave", () => { hovered = false; sync(); });
+    rotator.addEventListener("focusin", () => { focused = true; sync(); });
+    rotator.addEventListener("focusout", (event) => { focused = rotator.contains(event.relatedTarget); sync(); });
     setActiveVideo(0);
+    watchActivity(rotator, (inView) => {
+      visible = inView;
+      if (!visible || !pageIsActive() || prefersReducedMotion) userPlayback = false;
+      sync();
+    });
   });
 
   // Keep workshop photo slots clean until the real image files are added.
@@ -734,12 +837,16 @@
     let activeIndex = 0;
     let lightboxIndex = 0;
     let timer = null;
+    let visible = false;
+    let hovered = false;
+    let focused = false;
+    let lightboxLastFocus = null;
 
     if (!slides.length) return;
     if (totalCounter) totalCounter.textContent = String(slides.length).padStart(2, "0");
 
     const sourcesFor = (slide) => (slide.dataset.mediaSources || "").split("|").map((source) => source.trim()).filter(Boolean);
-    const fallbackFor = (slide) => slide.dataset.fallbackSrc || "assets/tecnomarmol-real-1.jpg";
+    const fallbackFor = (slide) => slide.dataset.fallbackSrc || "assets/optimized/tecnomarmol-real-1.webp";
 
     const setSlideFallback = (slide) => {
       slide.style.setProperty("--project-fallback", `url("${fallbackFor(slide)}")`);
@@ -773,6 +880,7 @@
       const video = slide.querySelector("[data-project-video]");
       if (!video) return;
       const candidates = sourcesFor(slide);
+      video.poster = candidates[0]?.replace(/\.mp4$/, "-poster.jpg") || "";
       let index = 0;
 
       const tryNext = () => {
@@ -795,20 +903,24 @@
       });
       video.addEventListener("error", tryNext);
       video.addEventListener("ended", () => {
-        setActiveSlide(activeIndex + 1);
-        restart();
+        if (visible && autoMotion() && !lightbox?.classList.contains("is-open")) {
+          setActiveSlide(activeIndex + 1);
+          restart();
+        }
       });
       tryNext();
     };
 
-    slides.forEach((slide) => {
+    const ensureSlide = (slide) => {
+      if (slide.dataset.initialized) return;
+      slide.dataset.initialized = "true";
       setSlideFallback(slide);
       if (slide.dataset.mediaType === "video") {
         resolveVideo(slide);
       } else {
         resolveImage(slide);
       }
-    });
+    };
 
     const activeVideo = () => slides[activeIndex]?.querySelector("[data-project-video]");
 
@@ -828,18 +940,17 @@
       });
       if (currentCounter) currentCounter.textContent = String(activeIndex + 1).padStart(2, "0");
 
+      if (visible) ensureSlide(slides[activeIndex]);
       const video = activeVideo();
-      if (video && !video.dataset.failed && (video.currentSrc || video.src)) {
-        video.currentTime = 0;
-        video.play().catch(() => {});
-      }
+      if (video?.readyState) video.currentTime = 0;
+      if (video && visible && autoMotion() && !video.dataset.failed) video.play().catch(() => {});
     }
 
     const next = () => setActiveSlide(activeIndex + 1);
     const previous = () => setActiveSlide(activeIndex - 1);
 
     const start = () => {
-      if (prefersReducedMotion || timer) return;
+      if (!visible || !autoMotion() || hovered || focused || timer || lightbox?.classList.contains("is-open")) return;
       timer = window.setInterval(next, 7800);
     };
 
@@ -855,7 +966,7 @@
     }
 
     const closeLightbox = () => {
-      if (!lightbox || !lightboxImage || !lightboxVideo) return;
+      if (!lightbox?.classList.contains("is-open") || !lightboxImage || !lightboxVideo) return;
       lightbox.classList.remove("is-open");
       lightbox.setAttribute("aria-hidden", "true");
       lightboxVideo.pause();
@@ -865,6 +976,7 @@
       lightboxImage.classList.remove("is-active");
       lightboxVideo.classList.remove("is-active");
       document.body.classList.remove("modal-open");
+      lightboxLastFocus?.focus({ preventScroll: true });
       start();
     };
 
@@ -872,6 +984,7 @@
       if (!lightboxImage || !lightboxVideo) return;
       lightboxIndex = ((index % slides.length) + slides.length) % slides.length;
       const slide = slides[lightboxIndex];
+      ensureSlide(slide);
       const video = slide.querySelector("[data-project-video]");
       const image = slide.querySelector("[data-project-image]");
       const videoSource = video && !video.dataset.failed ? video.currentSrc || video.src : "";
@@ -897,10 +1010,13 @@
     const openLightbox = (index = activeIndex) => {
       if (!lightbox) return;
       stop();
+      pauseVideos();
+      lightboxLastFocus = document.activeElement;
       setLightboxMedia(index);
       lightbox.classList.add("is-open");
       lightbox.setAttribute("aria-hidden", "false");
       document.body.classList.add("modal-open");
+      lightbox.querySelector(".project-lightbox-close")?.focus({ preventScroll: true });
     };
 
     prevButton?.addEventListener("click", () => {
@@ -922,10 +1038,10 @@
         restart();
       });
     });
-    slider.addEventListener("mouseenter", stop);
-    slider.addEventListener("mouseleave", start);
-    slider.addEventListener("focusin", stop);
-    slider.addEventListener("focusout", start);
+    slider.addEventListener("mouseenter", () => { hovered = finePointer.matches; if (hovered) stop(); });
+    slider.addEventListener("mouseleave", () => { hovered = false; start(); });
+    slider.addEventListener("focusin", () => { focused = true; stop(); });
+    slider.addEventListener("focusout", (event) => { focused = slider.contains(event.relatedTarget); if (!focused) start(); });
 
     document.querySelectorAll("[data-project-lightbox-close]").forEach((button) => {
       button.addEventListener("click", closeLightbox);
@@ -940,7 +1056,17 @@
     });
 
     setActiveSlide(0);
-    start();
+    watchActivity(slider, (inView) => {
+      visible = inView;
+      stop();
+      if (visible) ensureSlide(slides[activeIndex]);
+      if (!visible || !autoMotion()) pauseVideos();
+      else {
+        const video = activeVideo();
+        if (video && !video.dataset.failed) video.play().catch(() => {});
+        start();
+      }
+    });
   };
 
   initProjectSlideshow();
@@ -1162,70 +1288,91 @@
           if (entry.isIntersecting) {
             entry.target.classList.add("is-visible");
             observer.unobserve(entry.target);
+            entry.target.addEventListener("transitionend", (event) => {
+              if (event.target === entry.target) entry.target.style.removeProperty("transition-delay");
+            }, { once: true });
           }
         });
       },
-      { threshold: 0.14, rootMargin: "0px 0px -70px" }
+      { threshold: 0.01, rootMargin: "0px 0px -24px" }
     );
 
     revealItems.forEach((item, index) => {
-      item.style.transitionDelay = `${Math.min((index % 6) * 55, 275)}ms`;
+      item.style.transitionDelay = `${Math.min((index % 6) * 35, 140)}ms`;
       observer.observe(item);
     });
   } else {
     revealItems.forEach((item) => item.classList.add("is-visible"));
   }
 
-  // Premium 3D hover for service cards.
+  // Coalesce pointer work into one frame and keep touch scrolling native.
   document.querySelectorAll("[data-tilt]").forEach((card) => {
-    if (prefersReducedMotion) return;
-
+    let frame = 0;
+    let pointer = null;
+    const reset = () => {
+      cancelAnimationFrame(frame);
+      frame = 0;
+      ["--rx", "--ry", "--raise", "--shine-x", "--shine-y"].forEach((name) => card.style.removeProperty(name));
+    };
     card.addEventListener("pointermove", (event) => {
-      const rect = card.getBoundingClientRect();
-      const px = (event.clientX - rect.left) / rect.width;
-      const py = (event.clientY - rect.top) / rect.height;
-      const rotateX = (py - 0.5) * -8;
-      const rotateY = (px - 0.5) * 10;
-
-      card.style.setProperty("--rx", `${rotateX.toFixed(2)}deg`);
-      card.style.setProperty("--ry", `${rotateY.toFixed(2)}deg`);
-      card.style.setProperty("--shine-x", `${(px * 100).toFixed(1)}%`);
-      card.style.setProperty("--shine-y", `${(py * 100).toFixed(1)}%`);
-      card.style.setProperty("--raise", "-8px");
-    });
-
-    card.addEventListener("pointerleave", () => {
-      card.style.setProperty("--rx", "0deg");
-      card.style.setProperty("--ry", "0deg");
-      card.style.setProperty("--raise", "0px");
-    });
+      if (!finePointer.matches || prefersReducedMotion || event.pointerType === "touch") return;
+      pointer = { x: event.clientX, y: event.clientY };
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        if (!finePointer.matches || prefersReducedMotion || !pageIsActive()) return;
+        const rect = card.getBoundingClientRect();
+        const px = Math.max(0, Math.min(1, (pointer.x - rect.left) / rect.width));
+        const py = Math.max(0, Math.min(1, (pointer.y - rect.top) / rect.height));
+        card.style.setProperty("--rx", `${((py - 0.5) * -5).toFixed(2)}deg`);
+        card.style.setProperty("--ry", `${((px - 0.5) * 6).toFixed(2)}deg`);
+        card.style.setProperty("--shine-x", `${(px * 100).toFixed(1)}%`);
+        card.style.setProperty("--shine-y", `${(py * 100).toFixed(1)}%`);
+        card.style.setProperty("--raise", "-4px");
+      });
+    }, { passive: true });
+    card.addEventListener("pointerleave", reset);
+    motionQuery.addEventListener("change", reset);
+    finePointer.addEventListener("change", reset);
   });
 
-  // Soft parallax on selected visual blocks.
-  const parallaxItems = document.querySelectorAll("[data-parallax]");
-  let parallaxTicking = false;
-
+  // Read all visible geometry before writing styles; skip parallax on touch.
+  const visibleParallax = new Set();
+  let parallaxFrame = 0;
   const updateParallax = () => {
+    parallaxFrame = 0;
+    if (!finePointer.matches || !autoMotion()) return;
     const viewport = window.innerHeight || 1;
-    parallaxItems.forEach((item) => {
-      const speed = Number(item.dataset.parallax || 0.08);
+    const positions = [...visibleParallax].map((item) => {
       const rect = item.getBoundingClientRect();
-      const centerOffset = rect.top + rect.height / 2 - viewport / 2;
-      const y = centerOffset * speed * -0.22;
-      item.style.setProperty("--parallax-y", `${y.toFixed(2)}px`);
+      return [item, (rect.top + rect.height / 2 - viewport / 2) * Number(item.dataset.parallax || 0.08) * -0.22];
     });
-    parallaxTicking = false;
+    positions.forEach(([item, y]) => item.style.setProperty("--parallax-y", `${y.toFixed(2)}px`));
   };
-
   const requestParallax = () => {
-    if (prefersReducedMotion || parallaxTicking) return;
-    parallaxTicking = true;
-    requestAnimationFrame(updateParallax);
+    if (!finePointer.matches || !autoMotion() || parallaxFrame || !visibleParallax.size) return;
+    parallaxFrame = requestAnimationFrame(updateParallax);
   };
-
-  updateParallax();
+  document.querySelectorAll("[data-parallax]").forEach((item) => {
+    // The video card already has an activity subscription.
+    const observer = "IntersectionObserver" in window ? new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) visibleParallax.add(item);
+      else visibleParallax.delete(item);
+      requestParallax();
+    }) : null;
+    if (observer) observer.observe(item);
+    else visibleParallax.add(item);
+  });
+  const resetParallax = () => {
+    cancelAnimationFrame(parallaxFrame);
+    parallaxFrame = 0;
+    document.querySelectorAll("[data-parallax]").forEach((item) => item.style.removeProperty("--parallax-y"));
+    requestParallax();
+  };
+  motionQuery.addEventListener("change", resetParallax);
+  finePointer.addEventListener("change", resetParallax);
   window.addEventListener("scroll", requestParallax, { passive: true });
-  window.addEventListener("resize", requestParallax);
+  window.addEventListener("resize", requestParallax, { passive: true });
 
   // Cinematic particle layer in the hero.
   const canvas = document.querySelector("#heroParticles");
@@ -1233,18 +1380,22 @@
   let particles = [];
   let canvasWidth = 0;
   let canvasHeight = 0;
+  let particleFrame = 0;
+  let heroVisible = false;
+  let lastParticleTime = 0;
 
   const resizeCanvas = () => {
     if (!canvas || !ctx) return;
-    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    const ratio = Math.min(window.devicePixelRatio || 1, finePointer.matches ? 1.5 : 1);
     const rect = canvas.getBoundingClientRect();
+    if (canvasWidth === rect.width && canvasHeight === rect.height) return;
     canvasWidth = rect.width;
     canvasHeight = rect.height;
     canvas.width = Math.max(1, Math.floor(rect.width * ratio));
     canvas.height = Math.max(1, Math.floor(rect.height * ratio));
     ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
 
-    const count = window.innerWidth < 760 ? 32 : 62;
+    const count = finePointer.matches ? 40 : 16;
     particles = Array.from({ length: count }, (_, index) => ({
       x: (index * 97) % Math.max(canvasWidth, 1),
       y: (index * 53) % Math.max(canvasHeight, 1),
@@ -1282,13 +1433,16 @@
   };
 
   const drawParticles = (time = 0) => {
-    if (!canvas || !ctx || prefersReducedMotion) return;
+    particleFrame = 0;
+    if (!canvas || !ctx || !heroVisible || !autoMotion()) return;
+    const step = lastParticleTime ? Math.min((time - lastParticleTime) / 16.667, 2) : 1;
+    lastParticleTime = time;
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-    drawAuraBands(time);
+    if (finePointer.matches) drawAuraBands(time);
 
     particles.forEach((particle) => {
-      particle.y -= particle.speed;
-      particle.x += particle.drift;
+      particle.y -= particle.speed * step;
+      particle.x += particle.drift * step;
 
       if (particle.y < -10) particle.y = canvasHeight + 10;
       if (particle.x < -10) particle.x = canvasWidth + 10;
@@ -1300,14 +1454,29 @@
       ctx.fill();
     });
 
-    requestAnimationFrame(drawParticles);
+    particleFrame = requestAnimationFrame(drawParticles);
   };
 
-  if (canvas && ctx && !prefersReducedMotion) {
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-    requestAnimationFrame(drawParticles);
+  if (canvas && ctx) {
+    const hero = document.querySelector(".hero");
+    watchActivity(hero, (visible) => {
+      heroVisible = visible;
+      hero.classList.toggle("motion-paused", !visible || !autoMotion());
+      cancelAnimationFrame(particleFrame);
+      particleFrame = 0;
+      lastParticleTime = 0;
+      if (visible && autoMotion()) {
+        resizeCanvas();
+        particleFrame = requestAnimationFrame(drawParticles);
+      } else ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    });
+    if ("ResizeObserver" in window) new ResizeObserver(() => {
+      if (heroVisible && autoMotion()) resizeCanvas();
+    }).observe(canvas);
+    else window.addEventListener("resize", resizeCanvas, { passive: true });
   }
+  const palettes = document.querySelector(".palette-section");
+  watchActivity(palettes, (visible) => palettes.classList.toggle("motion-paused", !visible || !autoMotion()));
 
   window.__TMI_SCRIPT_READY = true;
 })();

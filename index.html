@@ -33,9 +33,10 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      media="print" onload="this.media='all'"
     />
-    <link rel="preload" as="image" href="assets/background-black-marble-original.png" />
-    <link rel="stylesheet" href="style.css?v=40" />
+    <link rel="preload" as="image" href="assets/optimized/background-black-marble-original.webp" />
+    <link rel="stylesheet" href="style.css?v=45" />
   </head>
   <body class="language-pending">
     <div class="language-gate" id="languageGate" role="dialog" aria-modal="true" aria-labelledby="languageTitle">
@@ -73,7 +74,7 @@
         <a href="#contacto-footer" data-i18n="navContact">Contacto</a>
         <a class="nav-cta" href="#cotizacion-panel" data-i18n="navQuote">Cotización</a>
         <button class="language-switch" type="button" aria-label="Cambiar idioma" data-language-toggle>
-          <img class="language-flag" src="assets/language-spain.svg" alt="" aria-hidden="true" data-language-flag />
+          <img class="language-flag" width="28" height="28" src="assets/language-spain.svg" alt="" aria-hidden="true" data-language-flag />
           <span class="language-tooltip" data-language-tooltip>Cambiar idioma</span>
         </button>
       </nav>
@@ -90,15 +91,15 @@
         <div class="hero-shade" aria-hidden="true"></div>
         <div class="section-inner hero-grid">
           <div class="hero-copy reveal">
-            <h1>Tecno Mármol, Inc</h1>
+            <h1>Tecno <span class="hero-title-name">Mármol, Inc</span></h1>
             <p class="hero-subtitle" data-i18n="heroSubtitle">Superficies premium en mármol, granito, cuarzo, porcelana y piedras naturales.</p>
             <p class="hero-text" data-i18n="heroText">
               Transformamos cocinas, baños, pisos, paredes, escaleras y espacios comerciales con materiales de alta
               calidad, acabados elegantes e instalación profesional.
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#servicios" data-i18n="viewServices">Ver servicios</a>
-              <a class="btn btn-ghost" href="#contacto" data-i18n="requestQuote">Solicitar cotización</a>
+              <a class="btn btn-primary" href="#contacto" data-i18n="requestQuote">Solicitar cotización</a>
+              <a class="btn btn-ghost" href="#servicios" data-i18n="viewServices">Ver servicios</a>
             </div>
           </div>
 
@@ -148,7 +149,7 @@
           </div>
 
           <div class="about-visual reveal" data-parallax="0.08">
-            <img src="assets/material-white-porcelain-original.png" alt="Textura premium de porcelana blanca" loading="lazy" />
+            <img src="assets/optimized/material-white-porcelain-original.webp" alt="Textura premium de porcelana blanca" width="1672" height="941" decoding="async" loading="lazy" />
             <div class="keyword-card glass-panel">
               <span data-i18n="quality">Calidad</span>
               <span data-i18n="precision">Precisión</span>
@@ -267,21 +268,21 @@
           </div>
 
           <div class="material-grid">
-            <button class="material-card material-trigger reveal" type="button" style="--image: url('assets/material-marble.png')" data-material-modal-open="#marbleModal" aria-controls="marbleModal" data-i18n-aria="openMarbleCollection">
+            <button class="material-card material-trigger reveal" type="button" style="--image: url('assets/optimized/material-marble.webp')" data-material-modal-open="#marbleModal" aria-controls="marbleModal" data-i18n-aria="openMarbleCollection">
               <div>
                 <h3 data-i18n="material1Title">Mármol</h3>
                 <p data-i18n="material1Text">Elegante, natural y sofisticado. Ideal para espacios con presencia premium.</p>
                 <span class="material-card-action" data-i18n="material1Action">Ver tipos</span>
               </div>
             </button>
-            <button class="material-card material-trigger reveal" type="button" style="--image: url('assets/material-quartz.png')" data-material-modal-open="#quartzModal" aria-controls="quartzModal" data-i18n-aria="openQuartzCollection">
+            <button class="material-card material-trigger reveal" type="button" style="--image: url('assets/optimized/material-quartz.webp')" data-material-modal-open="#quartzModal" aria-controls="quartzModal" data-i18n-aria="openQuartzCollection">
               <div>
                 <h3 data-i18n="material3Title">Cuarzo</h3>
                 <p data-i18n="material3Text">Moderno, uniforme y fácil de mantener. Excelente para topes contemporáneos.</p>
                 <span class="material-card-action" data-i18n="material3Action">Ver tipos</span>
               </div>
             </button>
-            <article class="material-card reveal" style="--image: url('assets/material-white-porcelain-original.png')">
+            <article class="material-card reveal" style="--image: url('assets/optimized/material-white-porcelain-original.webp')">
               <div>
                 <h3 data-i18n="material4Title">Porcelana</h3>
                 <p data-i18n="material4Text">Versátil, elegante y resistente. Ideal para diseños modernos.</p>
@@ -293,7 +294,7 @@
 
       <div class="material-modal" id="marbleModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="marbleModalTitle">
         <button class="material-modal-backdrop" type="button" data-material-modal-close data-i18n-aria="marbleModalClose"></button>
-        <div class="material-modal-panel" role="document" style="--sample-fallback: url('assets/material-marble.png')">
+        <div class="material-modal-panel" role="document" style="--sample-fallback: url('assets/optimized/material-marble.webp')">
           <button class="modal-close" type="button" data-material-modal-close data-i18n-aria="marbleModalClose">
             <i class="fa-solid fa-xmark" aria-hidden="true"></i>
           </button>
@@ -304,22 +305,22 @@
           </p>
 
           <div class="marble-types-grid">
-            <article class="marble-type-card" style="--marble-image: url('assets/Blanco Carrara.jpg')" aria-label="Blanco Carrara">
+            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Blanco Carrara.webp')" aria-label="Blanco Carrara">
               <span>Blanco Carrara</span>
             </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/Fior Di Pesco.jpg')" aria-label="Fior Di Pesco">
+            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Fior Di Pesco.webp')" aria-label="Fior Di Pesco">
               <span>Fior Di Pesco</span>
             </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/Marron Emperador.jpg')" aria-label="Marron Emperador">
+            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Marron Emperador.webp')" aria-label="Marron Emperador">
               <span>Marron Emperador</span>
             </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/Onix Verde.jpg')" aria-label="Onix Verde">
+            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Onix Verde.webp')" aria-label="Onix Verde">
               <span>Onix Verde</span>
             </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/Tarvertino Romano.jpg')" aria-label="Tarvertino Romano">
+            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Tarvertino Romano.webp')" aria-label="Tarvertino Romano">
               <span>Tarvertino Romano</span>
             </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/thumb-forest-green-orizz.jpg')" aria-label="Forest Green Orizz">
+            <article class="marble-type-card" style="--marble-image: url('assets/optimized/thumb-forest-green-orizz.webp')" aria-label="Forest Green Orizz">
               <span>Forest Green Orizz</span>
             </article>
           </div>
@@ -328,7 +329,7 @@
 
       <div class="material-modal" id="quartzModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="quartzModalTitle">
         <button class="material-modal-backdrop" type="button" data-material-modal-close data-i18n-aria="quartzModalClose"></button>
-        <div class="material-modal-panel" role="document" style="--sample-fallback: url('assets/material-quartz.png')">
+        <div class="material-modal-panel" role="document" style="--sample-fallback: url('assets/optimized/material-quartz.webp')">
           <button class="modal-close" type="button" data-material-modal-close data-i18n-aria="quartzModalClose">
             <i class="fa-solid fa-xmark" aria-hidden="true"></i>
           </button>
@@ -339,34 +340,34 @@
           </p>
 
           <div class="marble-types-grid">
-            <article class="marble-type-card" style="--marble-image: url('assets/Vega.jpg')" aria-label="Vega">
+            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Vega.webp')" aria-label="Vega">
               <span>Vega</span>
             </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/Vermont.jpg')" aria-label="Vermont">
+            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Vermont.webp')" aria-label="Vermont">
               <span>Vermont</span>
             </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/Bianco Stardust.jpg')" aria-label="Bianco Stardust">
+            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Bianco Stardust.webp')" aria-label="Bianco Stardust">
               <span>Bianco Stardust</span>
             </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/Carnia.jpg')" aria-label="Carnia">
+            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Carnia.webp')" aria-label="Carnia">
               <span>Carnia</span>
             </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/Elba.jpg')" aria-label="Elba">
+            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Elba.webp')" aria-label="Elba">
               <span>Elba</span>
             </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/Grecale.jpg')" aria-label="Grecale">
+            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Grecale.webp')" aria-label="Grecale">
               <span>Grecale</span>
             </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/Maui.jpg')" aria-label="Maui">
+            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Maui.webp')" aria-label="Maui">
               <span>Maui</span>
             </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/Nero Stardust.jpg')" aria-label="Nero Stardust">
+            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Nero Stardust.webp')" aria-label="Nero Stardust">
               <span>Nero Stardust</span>
             </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/Silver.jpg')" aria-label="Silver">
+            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Silver.webp')" aria-label="Silver">
               <span>Silver</span>
             </article>
-            <article class="marble-type-card" style="--marble-image: url('assets/Tago.jpg')" aria-label="Tago">
+            <article class="marble-type-card" style="--marble-image: url('assets/optimized/Tago.webp')" aria-label="Tago">
               <span>Tago</span>
             </article>
           </div>
@@ -430,13 +431,12 @@
 
           <div class="workshop-video-card reveal" data-video-rotator data-parallax="0.04" aria-label="Videos del taller" data-i18n-aria="workshopVideoLabel">
             <div class="workshop-video-frame">
-              <video class="workshop-video is-active" src="assets/videotaller1.mp4" muted playsinline preload="metadata"></video>
-              <video class="workshop-video" src="assets/videotaller2.mp4" muted playsinline preload="metadata"></video>
-              <video class="workshop-video" src="assets/videotaller3.mp4" muted playsinline preload="metadata"></video>
-              <video class="workshop-video" src="assets/videotaller4.mp4" muted playsinline preload="metadata"></video>
-              <video class="workshop-video" src="assets/videotaller5.mp4" muted playsinline preload="metadata"></video>
-              <video class="workshop-video" src="assets/videotaller6.mp4" muted playsinline preload="metadata"></video>
-              <video class="workshop-video" src="assets/videotaller7.mp4" muted playsinline preload="metadata"></video>
+              <video class="workshop-video is-active" data-src="assets/optimized/videotaller1.mp4" data-poster="assets/optimized/videotaller1-poster.jpg" role="button" aria-label="Videos del taller" data-i18n-aria="workshopVideoLabel" tabindex="-1" muted playsinline preload="none"></video>
+              <video class="workshop-video" data-src="assets/optimized/videotaller2.mp4" data-poster="assets/optimized/videotaller2-poster.jpg" role="button" aria-label="Videos del taller" data-i18n-aria="workshopVideoLabel" tabindex="-1" muted playsinline preload="none"></video>
+              <video class="workshop-video" data-src="assets/optimized/videotaller3.mp4" data-poster="assets/optimized/videotaller3-poster.jpg" role="button" aria-label="Videos del taller" data-i18n-aria="workshopVideoLabel" tabindex="-1" muted playsinline preload="none"></video>
+              <video class="workshop-video" data-src="assets/optimized/videotaller4.mp4" data-poster="assets/optimized/videotaller4-poster.jpg" role="button" aria-label="Videos del taller" data-i18n-aria="workshopVideoLabel" tabindex="-1" muted playsinline preload="none"></video>
+              <video class="workshop-video" data-src="assets/optimized/videotaller5.mp4" data-poster="assets/optimized/videotaller5-poster.jpg" role="button" aria-label="Videos del taller" data-i18n-aria="workshopVideoLabel" tabindex="-1" muted playsinline preload="none"></video>
+              <video class="workshop-video" data-src="assets/optimized/videotaller6.mp4" data-poster="assets/optimized/videotaller6-poster.jpg" role="button" aria-label="Videos del taller" data-i18n-aria="workshopVideoLabel" tabindex="-1" muted playsinline preload="none"></video>
               <div class="workshop-video-fallback" aria-hidden="true"></div>
               <div class="workshop-video-meta">
                 <span data-i18n="workshopVideoEyebrow">Video del taller</span>
@@ -449,20 +449,19 @@
                 <button type="button" aria-label="Video 4"></button>
                 <button type="button" aria-label="Video 5"></button>
                 <button type="button" aria-label="Video 6"></button>
-                <button type="button" aria-label="Video 7"></button>
               </div>
             </div>
           </div>
 
           <div class="workshop-gallery" aria-label="Fotos del taller" data-i18n-aria="workshopGallery">
             <figure class="workshop-photo reveal">
-              <img src="assets/taller1.jpeg" alt="" loading="lazy" decoding="async" />
+              <img src="assets/optimized/taller1.webp" alt="" loading="lazy" decoding="async" />
             </figure>
             <figure class="workshop-photo reveal">
-              <img src="assets/taller2.jpeg" alt="" loading="lazy" decoding="async" />
+              <img src="assets/optimized/taller2.webp" alt="" loading="lazy" decoding="async" />
             </figure>
             <figure class="workshop-photo reveal">
-              <img src="assets/taller3.jpeg" alt="" loading="lazy" decoding="async" />
+              <img src="assets/optimized/taller3.webp" alt="" loading="lazy" decoding="async" />
             </figure>
           </div>
 
@@ -474,23 +473,23 @@
 
             <div class="project-slider">
               <div class="project-stage" data-project-stage>
-                <figure class="project-slide is-active" data-project-slide data-media-type="image" data-media-sources="assets/slide1.jpg|assets/slide1.jpeg|assets/slide1.png|assets/slide1.webp|assets/slide1" data-fallback-src="assets/tecnomarmol-real-1.jpg">
+                <figure class="project-slide is-active" data-project-slide data-media-type="image" data-media-sources="assets/optimized/slide1.webp|assets/slide1.jpeg" data-fallback-src="assets/optimized/tecnomarmol-real-1.webp">
                   <img alt="" loading="lazy" decoding="async" data-project-image />
                 </figure>
-                <figure class="project-slide" data-project-slide data-media-type="video" data-media-sources="assets/slidevideo1.mp4|assets/slidevideo1.mov|assets/slidevideo1.webm|assets/slidevideo1" data-fallback-src="assets/tecnomarmol-real-2.jpg">
-                  <video muted playsinline preload="metadata" data-project-video></video>
+                <figure class="project-slide" data-project-slide data-media-type="video" data-media-sources="assets/optimized/slidevideo1.mp4|assets/slidevideo1.mp4" data-fallback-src="assets/optimized/tecnomarmol-real-2.webp">
+                  <video muted playsinline preload="none" data-project-video></video>
                 </figure>
-                <figure class="project-slide" data-project-slide data-media-type="image" data-media-sources="assets/slide2.jpg|assets/slide2.jpeg|assets/slide2.png|assets/slide2.webp|assets/slide2" data-fallback-src="assets/tecnomarmol-real-2.jpg">
+                <figure class="project-slide" data-project-slide data-media-type="image" data-media-sources="assets/optimized/slide2.webp|assets/slide2.jpeg" data-fallback-src="assets/optimized/tecnomarmol-real-2.webp">
                   <img alt="" loading="lazy" decoding="async" data-project-image />
                 </figure>
-                <figure class="project-slide" data-project-slide data-media-type="video" data-media-sources="assets/slidevideo2.mp4|assets/slidevideo2.mov|assets/slidevideo2.webm|assets/slidevideo2" data-fallback-src="assets/tecnomarmol-real-3.jpg">
-                  <video muted playsinline preload="metadata" data-project-video></video>
+                <figure class="project-slide" data-project-slide data-media-type="video" data-media-sources="assets/optimized/slidevideo2.mp4|assets/slidevideo2.mp4" data-fallback-src="assets/optimized/tecnomarmol-real-3.webp">
+                  <video muted playsinline preload="none" data-project-video></video>
                 </figure>
-                <figure class="project-slide" data-project-slide data-media-type="image" data-media-sources="assets/slide3.jpg|assets/slide3.jpeg|assets/slide3.png|assets/slide3.webp|assets/slide3" data-fallback-src="assets/tecnomarmol-real-3.jpg">
+                <figure class="project-slide" data-project-slide data-media-type="image" data-media-sources="assets/optimized/slide3.webp|assets/slide3.jpeg" data-fallback-src="assets/optimized/tecnomarmol-real-3.webp">
                   <img alt="" loading="lazy" decoding="async" data-project-image />
                 </figure>
-                <figure class="project-slide" data-project-slide data-media-type="video" data-media-sources="assets/slidevideo3.mp4|assets/slidevideo3.mov|assets/slidevideo3.webm|assets/slidevideo3" data-fallback-src="assets/tecnomarmol-real-4.jpg">
-                  <video muted playsinline preload="metadata" data-project-video></video>
+                <figure class="project-slide" data-project-slide data-media-type="video" data-media-sources="assets/optimized/slidevideo3.mp4|assets/slidevideo3.mp4" data-fallback-src="assets/optimized/tecnomarmol-real-4.webp">
+                  <video muted playsinline preload="none" data-project-video></video>
                 </figure>
 
                 <div class="project-slide-count" aria-hidden="true">
@@ -706,597 +705,13 @@
       </div>
     </footer>
 
-    <script src="script.js?v=40"></script>
+    <script src="script.js?v=44"></script>
     <script>
-      (() => {
-        window.__TMI_INLINE_VERSION = "36";
-
-        const bootFallback = () => {
-          if (window.__TMI_SCRIPT_READY || window.__TMI_INLINE_FALLBACK_READY) return;
-          window.__TMI_INLINE_FALLBACK_READY = true;
-
-          const $ = (selector, scope = document) => scope.querySelector(selector);
-          const $$ = (selector, scope = document) => Array.from(scope.querySelectorAll(selector));
-          const reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-          const body = document.body;
-
-          const fallbackCopy = {
-            es: {
-              navToggle: "Abrir menu",
-              navAbout: "Sobre",
-              navServices: "Servicios",
-              navProcess: "Proceso",
-              navMaterials: "Materiales",
-              navPalettes: "Paletas",
-              navWorkshop: "Taller",
-              navContact: "Contacto",
-              navQuote: "Cotizacion",
-              languageToggle: "Cambiar lenguaje",
-              viewServices: "Ver servicios",
-              requestQuote: "Solicitar cotizacion",
-              contactNow: "Contactar ahora",
-              formChooseFiles: "Seleccionar archivos",
-              formNoFiles: "Ningun archivo seleccionado",
-              formSending: "Enviando solicitud...",
-              formSuccess: "Solicitud recibida.",
-              formError: "No se pudo enviar. Intenta de nuevo o llama al 787-752-2795.",
-              formFileTooMany: "Puedes adjuntar hasta {count} archivos.",
-              formFileTooLarge: "Los archivos superan el limite recomendado de 10MB.",
-              footerLocation: "Localización",
-              projectsGalleryLabel: "Galería de proyectos completados",
-              projectsEyebrow: "Proyectos completados",
-              projectsTitle: "Superficies terminadas con detalle, precisión y acabado premium.",
-              projectsControls: "Controles de proyectos completados",
-              projectsPrevious: "Proyecto anterior",
-              projectsNext: "Siguiente proyecto",
-              projectsExpand: "Agrandar proyecto",
-              projectsClose: "Cerrar proyecto",
-              workshopVideoControls: "Controles de video del taller",
-              workshopVideoLabel: "Videos del taller",
-              workshopVideoClose: "Cerrar video"
-            },
-            en: {
-              navToggle: "Open menu",
-              navAbout: "About",
-              navServices: "Services",
-              navProcess: "Process",
-              navMaterials: "Materials",
-              navPalettes: "Palettes",
-              navWorkshop: "Workshop",
-              navContact: "Contact",
-              navQuote: "Quote",
-              languageToggle: "Change language",
-              viewServices: "View services",
-              requestQuote: "Request quote",
-              contactNow: "Contact now",
-              formChooseFiles: "Choose files",
-              formNoFiles: "No files selected",
-              formSending: "Sending request...",
-              formSuccess: "Email received.",
-              formError: "Could not send. Please try again or call 787-752-2795.",
-              formFileTooMany: "You can attach up to {count} files.",
-              formFileTooLarge: "Files are over the recommended 10MB limit.",
-              footerLocation: "Location",
-              projectsGalleryLabel: "Completed projects gallery",
-              projectsEyebrow: "Completed projects",
-              projectsTitle: "Finished surfaces with detail, precision and a premium finish.",
-              projectsControls: "Completed project controls",
-              projectsPrevious: "Previous project",
-              projectsNext: "Next project",
-              projectsExpand: "Expand project",
-              projectsClose: "Close project",
-              workshopVideoControls: "Workshop video controls",
-              workshopVideoLabel: "Workshop videos",
-              workshopVideoClose: "Close video"
-            }
-          };
-
-          const activeCopy = () => fallbackCopy[document.documentElement.dataset.lang || document.documentElement.lang] || fallbackCopy.es;
-
-          const applyLanguage = (language) => {
-            const copy = fallbackCopy[language] || fallbackCopy.es;
-            document.documentElement.lang = language;
-            document.documentElement.dataset.lang = language;
-
-            $$("[data-i18n]").forEach((element) => {
-              const key = element.dataset.i18n;
-              if (copy[key]) element.textContent = copy[key];
-            });
-
-            $$("[data-i18n-aria]").forEach((element) => {
-              const key = element.dataset.i18nAria;
-              if (copy[key]) element.setAttribute("aria-label", copy[key]);
-            });
-
-            $$("[data-i18n-placeholder]").forEach((element) => {
-              const key = element.dataset.i18nPlaceholder;
-              if (copy[key]) element.setAttribute("placeholder", copy[key]);
-            });
-
-            const languageField = $("[data-language-field]");
-            if (languageField) languageField.value = language;
-
-            const toggle = $("[data-language-toggle]");
-            const nextLanguage = language === "en" ? "es" : "en";
-            if (toggle) {
-              toggle.dataset.currentLanguage = language;
-              toggle.dataset.nextLanguage = nextLanguage;
-              toggle.setAttribute("aria-label", copy.languageToggle);
-              toggle.setAttribute("title", copy.languageToggle);
-              toggle.classList.remove("is-switching");
-              void toggle.offsetWidth;
-              toggle.classList.add("is-switching");
-              window.setTimeout(() => toggle.classList.remove("is-switching"), 620);
-            }
-
-            const flag = $("[data-language-flag]");
-            if (flag) {
-              flag.setAttribute("src", language === "en" ? "assets/language-usa.svg" : "assets/language-spain.svg");
-            }
-
-            const tooltip = $("[data-language-tooltip]");
-            if (tooltip) tooltip.textContent = copy.languageToggle;
-          };
-
-          $$("[data-language]").forEach((button) => {
-            button.addEventListener("click", () => {
-              applyLanguage(button.dataset.language || "es");
-              const gate = $("#languageGate");
-              if (gate) gate.classList.add("is-hidden");
-              body.classList.remove("language-pending");
-            });
-          });
-
-          const languageSwitch = $("[data-language-toggle]");
-          if (languageSwitch) languageSwitch.addEventListener("click", () => {
-            const toggle = $("[data-language-toggle]");
-            const nextLanguage = toggle && toggle.dataset.nextLanguage ? toggle.dataset.nextLanguage : (document.documentElement.dataset.lang === "en" ? "es" : "en");
-            applyLanguage(nextLanguage);
-          });
-
-          if (!document.documentElement.dataset.lang) applyLanguage(document.documentElement.lang || "es");
-          $$(".reveal").forEach((element) => element.classList.add("is-visible"));
-
-          const header = $("[data-header]");
-          const setHeaderState = () => {
-            if (!header) return;
-            header.classList.toggle("is-scrolled", window.scrollY > 16);
-          };
-          setHeaderState();
-          window.addEventListener("scroll", setHeaderState, { passive: true });
-
-          const navToggle = $(".nav-toggle");
-          const navMenu = $("#navMenu");
-          if (navToggle) navToggle.addEventListener("click", () => {
-            const isOpen = navMenu ? navMenu.classList.toggle("is-open") : false;
-            navToggle.classList.toggle("is-open", Boolean(isOpen));
-            navToggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
-          });
-
-          if (navMenu) navMenu.querySelectorAll("a").forEach((link) => {
-            link.addEventListener("click", () => {
-              navMenu.classList.remove("is-open");
-              if (navToggle) {
-                navToggle.classList.remove("is-open");
-                navToggle.setAttribute("aria-expanded", "false");
-              }
-            });
-          });
-
-          const closeMaterialModal = (modal = $(".material-modal.is-open")) => {
-            if (!modal) return;
-            modal.classList.remove("is-open");
-            modal.setAttribute("aria-hidden", "true");
-            body.classList.remove("modal-open");
-          };
-
-          const openMaterialModal = (modal) => {
-            if (!modal) return;
-            modal.classList.add("is-open");
-            modal.setAttribute("aria-hidden", "false");
-            body.classList.add("modal-open");
-            const closeButton = modal.querySelector(".modal-close");
-            if (closeButton) closeButton.focus();
-          };
-
-          $$("[data-material-modal-open]").forEach((button) => {
-            button.addEventListener("click", () => openMaterialModal($(button.dataset.materialModalOpen)));
-          });
-
-          $$("[data-material-modal-close]").forEach((button) => {
-            button.addEventListener("click", () => closeMaterialModal(button.closest(".material-modal")));
-          });
-
-          document.addEventListener("keydown", (event) => {
-            if (event.key === "Escape") {
-              closeMaterialModal();
-              closeVideoLightbox();
-            }
-          });
-
-          const videoLightbox = $("[data-video-lightbox]");
-          const lightboxPlayer = $("[data-video-lightbox-player]");
-
-          const closeVideoLightbox = () => {
-            if (!videoLightbox || !lightboxPlayer) return;
-            videoLightbox.classList.remove("is-open");
-            videoLightbox.setAttribute("aria-hidden", "true");
-            lightboxPlayer.pause();
-            lightboxPlayer.removeAttribute("src");
-            lightboxPlayer.load();
-            body.classList.remove("modal-open");
-          };
-
-          const openVideoLightbox = (video) => {
-            if (!videoLightbox || !lightboxPlayer || !video || (!video.currentSrc && !video.src)) return;
-            lightboxPlayer.src = video.currentSrc || video.src;
-            videoLightbox.classList.add("is-open");
-            videoLightbox.setAttribute("aria-hidden", "false");
-            body.classList.add("modal-open");
-            lightboxPlayer.play().catch(() => {});
-          };
-
-          $$("[data-video-lightbox-close]").forEach((button) => button.addEventListener("click", closeVideoLightbox));
-
-          $$("[data-video-rotator]").forEach((rotator) => {
-            const videos = $$(".workshop-video", rotator);
-            const dots = $$(".workshop-video-dots button", rotator);
-            let activeIndex = 0;
-            let timer = null;
-
-            const setActiveVideo = (index) => {
-              const available = videos.filter((video) => !video.dataset.failed);
-              if (!available.length) return;
-              let nextIndex = ((index % videos.length) + videos.length) % videos.length;
-              let guard = 0;
-              while (videos[nextIndex] && videos[nextIndex].dataset.failed && guard < videos.length) {
-                nextIndex = (nextIndex + 1) % videos.length;
-                guard += 1;
-              }
-              activeIndex = nextIndex;
-              videos.forEach((video, videoIndex) => {
-                const isActive = videoIndex === activeIndex;
-                video.classList.toggle("is-active", isActive);
-                if (isActive) {
-                  video.currentTime = 0;
-                  video.play().catch(() => {});
-                } else {
-                  video.pause();
-                }
-              });
-              dots.forEach((dot, dotIndex) => dot.classList.toggle("is-active", dotIndex === activeIndex));
-            };
-
-            const start = () => {
-              if (reducedMotion || timer) return;
-              timer = window.setInterval(() => setActiveVideo(activeIndex + 1), 6500);
-            };
-            const stop = () => {
-              if (!timer) return;
-              window.clearInterval(timer);
-              timer = null;
-            };
-            const restart = () => {
-              stop();
-              start();
-            };
-
-            videos.forEach((video, index) => {
-              video.addEventListener("error", () => {
-                video.dataset.failed = "true";
-                video.classList.add("is-missing");
-                if (dots[index]) dots[index].disabled = true;
-                if (index === activeIndex) setActiveVideo(index + 1);
-              });
-              video.addEventListener("click", () => {
-                if (index !== activeIndex || video.dataset.failed) return;
-                stop();
-                openVideoLightbox(video);
-              });
-              video.addEventListener("ended", () => {
-                setActiveVideo(index + 1);
-                restart();
-              });
-            });
-
-            dots.forEach((dot, index) => {
-              dot.addEventListener("click", (event) => {
-                event.stopPropagation();
-                setActiveVideo(index === activeIndex ? activeIndex + 1 : index);
-                restart();
-              });
-            });
-
-            rotator.addEventListener("mouseenter", stop);
-            rotator.addEventListener("mouseleave", start);
-            setActiveVideo(0);
-            start();
-          });
-
-          const initProjectSlideshow = () => {
-            if (window.__TMI_PROJECTS_READY) return;
-            window.__TMI_PROJECTS_READY = true;
-
-            const slider = $("[data-project-slideshow]");
-            if (!slider) return;
-
-            const slides = $$("[data-project-slide]", slider);
-            const dots = $$("[data-project-dot]", slider);
-            const currentCounter = $("[data-project-current]", slider);
-            const totalCounter = $("[data-project-total]", slider);
-            const stage = $("[data-project-stage]", slider);
-            const lightbox = $("[data-project-lightbox]");
-            const lightboxImage = $("[data-project-lightbox-image]");
-            const lightboxVideo = $("[data-project-lightbox-video]");
-            let activeIndex = 0;
-            let lightboxIndex = 0;
-            let timer = null;
-
-            if (!slides.length) return;
-            if (totalCounter) totalCounter.textContent = String(slides.length).padStart(2, "0");
-
-            const sourcesFor = (slide) => (slide.dataset.mediaSources || "").split("|").map((source) => source.trim()).filter(Boolean);
-            const fallbackFor = (slide) => slide.dataset.fallbackSrc || "assets/tecnomarmol-real-1.jpg";
-
-            slides.forEach((slide) => {
-              slide.style.setProperty("--project-fallback", `url("${fallbackFor(slide)}")`);
-              if (slide.dataset.mediaType === "video") {
-                const video = $("[data-project-video]", slide);
-                const sources = sourcesFor(slide);
-                let index = 0;
-                const nextSource = () => {
-                  if (!video) return;
-                  if (index >= sources.length) {
-                    video.dataset.failed = "true";
-                    video.classList.add("is-missing");
-                    slide.classList.add("is-missing");
-                    video.removeAttribute("src");
-                    video.load();
-                    return;
-                  }
-                  video.src = sources[index];
-                  index += 1;
-                  video.load();
-                };
-                if (video) {
-                  video.addEventListener("error", nextSource);
-                  video.addEventListener("loadedmetadata", () => slide.classList.remove("is-missing"));
-                  video.addEventListener("ended", () => {
-                    setActiveSlide(activeIndex + 1);
-                    restart();
-                  });
-                  nextSource();
-                }
-              } else {
-                const image = $("[data-project-image]", slide);
-                const sources = [...sourcesFor(slide), fallbackFor(slide)];
-                let index = 0;
-                const nextSource = () => {
-                  if (!image) return;
-                  if (index >= sources.length) {
-                    slide.classList.add("is-missing");
-                    image.removeAttribute("src");
-                    return;
-                  }
-                  image.src = sources[index];
-                  index += 1;
-                };
-                if (image) {
-                  image.addEventListener("error", nextSource);
-                  image.addEventListener("load", () => slide.classList.remove("is-missing"));
-                  nextSource();
-                }
-              }
-            });
-
-            const pauseVideos = () => slides.forEach((slide) => $("[data-project-video]", slide)?.pause());
-
-            function setActiveSlide(index) {
-              activeIndex = ((index % slides.length) + slides.length) % slides.length;
-              pauseVideos();
-              slides.forEach((slide, slideIndex) => slide.classList.toggle("is-active", slideIndex === activeIndex));
-              dots.forEach((dot, dotIndex) => dot.classList.toggle("is-active", dotIndex === activeIndex));
-              if (currentCounter) currentCounter.textContent = String(activeIndex + 1).padStart(2, "0");
-              const video = $("[data-project-video]", slides[activeIndex]);
-              if (video && !video.dataset.failed && (video.currentSrc || video.src)) {
-                video.currentTime = 0;
-                video.play().catch(() => {});
-              }
-            }
-
-            const start = () => {
-              if (reducedMotion || timer) return;
-              timer = window.setInterval(() => setActiveSlide(activeIndex + 1), 7800);
-            };
-            const stop = () => {
-              if (!timer) return;
-              window.clearInterval(timer);
-              timer = null;
-            };
-            function restart() {
-              stop();
-              start();
-            }
-
-            const setLightboxMedia = (index) => {
-              if (!lightboxImage || !lightboxVideo) return;
-              lightboxIndex = ((index % slides.length) + slides.length) % slides.length;
-              const slide = slides[lightboxIndex];
-              const video = $("[data-project-video]", slide);
-              const image = $("[data-project-image]", slide);
-              const videoSource = video && !video.dataset.failed ? video.currentSrc || video.src : "";
-              const imageSource = image?.currentSrc || image?.src || "";
-              lightboxVideo.pause();
-              lightboxVideo.removeAttribute("src");
-              lightboxImage.removeAttribute("src");
-              lightboxVideo.classList.remove("is-active");
-              lightboxImage.classList.remove("is-active");
-              if (slide.dataset.mediaType === "video" && videoSource) {
-                lightboxVideo.src = videoSource;
-                lightboxVideo.classList.add("is-active");
-                lightboxVideo.load();
-                lightboxVideo.play().catch(() => {});
-              } else {
-                lightboxImage.src = imageSource || fallbackFor(slide);
-                lightboxImage.classList.add("is-active");
-              }
-            };
-
-            const openLightbox = (index = activeIndex) => {
-              if (!lightbox) return;
-              stop();
-              setLightboxMedia(index);
-              lightbox.classList.add("is-open");
-              lightbox.setAttribute("aria-hidden", "false");
-              body.classList.add("modal-open");
-            };
-
-            const closeLightbox = () => {
-              if (!lightbox || !lightboxImage || !lightboxVideo) return;
-              lightbox.classList.remove("is-open");
-              lightbox.setAttribute("aria-hidden", "true");
-              lightboxVideo.pause();
-              lightboxVideo.removeAttribute("src");
-              lightboxVideo.load();
-              lightboxImage.removeAttribute("src");
-              lightboxImage.classList.remove("is-active");
-              lightboxVideo.classList.remove("is-active");
-              body.classList.remove("modal-open");
-              start();
-            };
-
-            $("[data-project-prev]", slider)?.addEventListener("click", () => {
-              setActiveSlide(activeIndex - 1);
-              restart();
-            });
-            $("[data-project-next]", slider)?.addEventListener("click", () => {
-              setActiveSlide(activeIndex + 1);
-              restart();
-            });
-            $("[data-project-expand]", slider)?.addEventListener("click", () => openLightbox(activeIndex));
-            stage?.addEventListener("click", (event) => {
-              if (event.target.closest("button")) return;
-              openLightbox(activeIndex);
-            });
-            dots.forEach((dot, index) => dot.addEventListener("click", () => {
-              setActiveSlide(index);
-              restart();
-            }));
-            slider.addEventListener("mouseenter", stop);
-            slider.addEventListener("mouseleave", start);
-            slider.addEventListener("focusin", stop);
-            slider.addEventListener("focusout", start);
-            $$("[data-project-lightbox-close]").forEach((button) => button.addEventListener("click", closeLightbox));
-            $("[data-project-lightbox-prev]")?.addEventListener("click", () => setLightboxMedia(lightboxIndex - 1));
-            $("[data-project-lightbox-next]")?.addEventListener("click", () => setLightboxMedia(lightboxIndex + 1));
-            document.addEventListener("keydown", (event) => {
-              if (event.key === "Escape") closeLightbox();
-              if (!lightbox?.classList.contains("is-open")) return;
-              if (event.key === "ArrowLeft") setLightboxMedia(lightboxIndex - 1);
-              if (event.key === "ArrowRight") setLightboxMedia(lightboxIndex + 1);
-            });
-
-            setActiveSlide(0);
-            start();
-          };
-
-          initProjectSlideshow();
-
-          const quoteForm = $("[data-quote-form]");
-          const filePicker = $("[data-file-picker]");
-          const fileSummary = $("[data-file-summary]");
-          const formStatus = $("[data-form-status]");
-          const submitButton = quoteForm ? quoteForm.querySelector(".form-submit") : null;
-          const maxFiles = Number(filePicker ? filePicker.dataset.maxFiles || 5 : 5);
-          const maxTotalBytes = Number(filePicker ? filePicker.dataset.maxTotal || 10485760 : 10485760);
-
-          const setFormStatus = (message, type = "") => {
-            if (!formStatus) return;
-            formStatus.textContent = message;
-            formStatus.dataset.type = type;
-          };
-
-          const updateFileSummary = (files) => {
-            if (!fileSummary) return;
-            const copy = activeCopy();
-            if (!files.length) {
-              fileSummary.textContent = copy.formNoFiles;
-              return;
-            }
-            fileSummary.textContent = files.length === 1 ? files[0].name : `${files.length} files selected`;
-          };
-
-          if (filePicker) filePicker.addEventListener("change", () => {
-            const files = Array.from(filePicker.files);
-            const copy = activeCopy();
-            const total = files.reduce((sum, file) => sum + file.size, 0);
-            if (files.length > maxFiles) setFormStatus(copy.formFileTooMany.replace("{count}", String(maxFiles)), "error");
-            else if (total > maxTotalBytes) setFormStatus(copy.formFileTooLarge, "error");
-            else setFormStatus("", "");
-            updateFileSummary(files.slice(0, maxFiles));
-          });
-
-          if (quoteForm) quoteForm.addEventListener("submit", async (event) => {
-            event.preventDefault();
-            const copy = activeCopy();
-            if (!quoteForm.checkValidity()) {
-              quoteForm.reportValidity();
-              return;
-            }
-            if (quoteForm.elements.website && quoteForm.elements.website.value) {
-              setFormStatus(copy.formSuccess, "success");
-              quoteForm.reset();
-              updateFileSummary([]);
-              return;
-            }
-
-            const files = filePicker ? Array.from(filePicker.files) : [];
-            const total = files.reduce((sum, file) => sum + file.size, 0);
-            if (files.length > maxFiles) {
-              setFormStatus(copy.formFileTooMany.replace("{count}", String(maxFiles)), "error");
-              return;
-            }
-            if (total > maxTotalBytes) {
-              setFormStatus(copy.formFileTooLarge, "error");
-              return;
-            }
-
-            const endpoint = quoteForm.dataset.apiEndpoint || "https://api.tecnomarmolpr.com/api/quote";
-            submitButton && (submitButton.disabled = true);
-            setFormStatus(copy.formSending, "loading");
-            try {
-              const response = await fetch(endpoint, {
-                method: "POST",
-                body: new FormData(quoteForm),
-                headers: { Accept: "application/json" }
-              });
-              const result = await response.json().catch(() => ({}));
-              if (!response.ok) throw new Error(result.message || copy.formError);
-              setFormStatus(result.message || copy.formSuccess, "success");
-              quoteForm.reset();
-              updateFileSummary([]);
-            } catch (error) {
-              setFormStatus(error.message || copy.formError, "error");
-            } finally {
-              submitButton && (submitButton.disabled = false);
-            }
-          });
-        };
-
-        window.__TMI_BOOT_FALLBACK = bootFallback;
-
-        const scheduleFallback = () => {
-          window.setTimeout(() => {
-            if (!window.__TMI_SCRIPT_READY) bootFallback();
-          }, 1200);
-        };
-
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", scheduleFallback, { once: true });
-        } else {
-          scheduleFallback();
-        }
-      })();
+      if (!window.__TMI_SCRIPT_READY) {
+        const fallback = document.createElement("script");
+        fallback.src = "fallback.js?v=44";
+        document.head.appendChild(fallback);
+      }
     </script>
   </body>
 </html>
