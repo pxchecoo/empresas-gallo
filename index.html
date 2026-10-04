@@ -578,7 +578,7 @@
             method="POST"
             enctype="multipart/form-data"
             data-quote-form
-            data-api-endpoint="https://api.tecnomarmolpr.com/api/quote"
+            data-api-endpoint="https://tecnomarmol-cotizaciones.vercel.app/api/cotizacion"
           >
             <input type="hidden" name="language" value="es" data-language-field />
             <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="form-honey" />
@@ -590,7 +590,7 @@
               </label>
               <label>
                 <span data-i18n="formEmail">Email</span>
-                <input type="email" name="email" autocomplete="email" required data-i18n-placeholder="formEmailPlaceholder" placeholder="correo@ejemplo.com" />
+                <input type="email" name="email" autocomplete="email" required maxlength="254" data-i18n-placeholder="formEmailPlaceholder" placeholder="correo@ejemplo.com" />
               </label>
             </div>
 
@@ -633,14 +633,14 @@
                   name="attachments"
                   data-file-picker
                   data-max-files="5"
-                  data-max-total="10485760"
-                  accept=".pdf,.png,.jpg,.jpeg,.webp,.dwg,.dxf"
+                  data-max-total="3145728"
+                  accept=".pdf,.png,.jpg,.jpeg,.webp"
                   multiple
                 />
                 <span class="file-picker-button" data-i18n="formChooseFiles">Seleccionar archivos</span>
                 <span class="file-picker-text" data-file-summary data-i18n="formNoFiles">Ningún archivo seleccionado</span>
               </label>
-              <small data-i18n="formPlansHelp">Puedes adjuntar hasta 5 archivos PDF, imágenes o planos. Se enviarán junto con tu solicitud.</small>
+              <small data-i18n="formPlansHelp">Hasta 5 archivos PDF, JPG, PNG o WEBP; máximo 3 MB en total. Se enviarán junto con tu solicitud.</small>
             </div>
 
             <p class="form-status" data-form-status role="status" aria-live="polite"></p>
@@ -730,11 +730,11 @@
     </footer>
 
     <script src="materials.js?v=1"></script>
-    <script src="script.js?v=45"></script>
+    <script src="script.js?v=47"></script>
     <script>
       if (!window.__TMI_SCRIPT_READY) {
         const fallback = document.createElement("script");
-        fallback.src = "fallback.js?v=45";
+        fallback.src = "fallback.js?v=47";
         document.head.appendChild(fallback);
       }
     </script>

@@ -31,11 +31,11 @@
               contactNow: "Contactar ahora",
               formChooseFiles: "Seleccionar archivos",
               formNoFiles: "Ningun archivo seleccionado",
-              formSending: "Enviando solicitud...",
-              formSuccess: "Solicitud recibida.",
+              formSending: "Enviando...",
+              formSuccess: "Cotización enviada. Gracias. Nuestro equipo revisará tu solicitud y se comunicará contigo.",
               formError: "No se pudo enviar. Intenta de nuevo o llama al 787-752-2795.",
               formFileTooMany: "Puedes adjuntar hasta {count} archivos.",
-              formFileTooLarge: "Los archivos superan el limite recomendado de 10MB.",
+              formFileTooLarge: "Los archivos no pueden pasar de 3 MB en total.",
               footerLocation: "Localización",
               projectsGalleryLabel: "Galería de proyectos completados",
               projectsEyebrow: "Proyectos completados",
@@ -65,11 +65,11 @@
               contactNow: "Contact now",
               formChooseFiles: "Choose files",
               formNoFiles: "No files selected",
-              formSending: "Sending request...",
-              formSuccess: "Email received.",
+              formSending: "Sending...",
+              formSuccess: "Quote sent. Thank you. Our team will review your request and contact you.",
               formError: "Could not send. Please try again or call 787-752-2795.",
               formFileTooMany: "You can attach up to {count} files.",
-              formFileTooLarge: "Files are over the recommended 10MB limit.",
+              formFileTooLarge: "Files cannot exceed 3 MB total.",
               footerLocation: "Location",
               projectsGalleryLabel: "Completed projects gallery",
               projectsEyebrow: "Completed projects",
@@ -478,12 +478,12 @@
           const formStatus = $("[data-form-status]");
           const submitButton = quoteForm ? quoteForm.querySelector(".form-submit") : null;
           const maxFiles = Number(filePicker ? filePicker.dataset.maxFiles || 5 : 5);
-          const maxTotalBytes = Number(filePicker ? filePicker.dataset.maxTotal || 10485760 : 10485760);
+          const maxTotalBytes = Number(filePicker ? filePicker.dataset.maxTotal || 3145728 : 3145728);
 
           const setFormStatus = (message, type = "") => {
             if (!formStatus) return;
             formStatus.textContent = message;
-            formStatus.dataset.type = type;
+            formStatus.dataset.status = type;
           };
 
           const updateFileSummary = (files) => {
@@ -508,6 +508,7 @@
 
           if (quoteForm) quoteForm.addEventListener("submit", async (event) => {
             event.preventDefault();
+            if (submitButton && submitButton.disabled) return;
             const copy = activeCopy();
             if (!quoteForm.checkValidity()) {
               quoteForm.reportValidity();
@@ -531,24 +532,27 @@
               return;
             }
 
-            const endpoint = quoteForm.dataset.apiEndpoint || "https://api.tecnomarmolpr.com/api/quote";
-            submitButton && (submitButton.disabled = true);
+            const endpoint = quoteForm.dataset.apiEndpoint || "https://tecnomarmol-cotizaciones.vercel.app/api/cotizacion";
+            if (submitButton) { submitButton.disabled = true; submitButton.textContent = copy.formSending; }
+            quoteForm.setAttribute("aria-busy", "true");
             setFormStatus(copy.formSending, "loading");
             try {
               const response = await fetch(endpoint, {
                 method: "POST",
                 body: new FormData(quoteForm),
+                signal: AbortSignal.timeout(30000),
                 headers: { Accept: "application/json" }
               });
               const result = await response.json().catch(() => ({}));
-              if (!response.ok) throw new Error(result.message || copy.formError);
-              setFormStatus(result.message || copy.formSuccess, "success");
+              if (!response.ok || !result.ok) throw new Error(result.message || copy.formError);
+              setFormStatus(activeCopy().formSuccess, "success");
               quoteForm.reset();
               updateFileSummary([]);
             } catch (error) {
-              setFormStatus(error.message || copy.formError, "error");
+              setFormStatus(activeCopy().formError, "error");
             } finally {
-              submitButton && (submitButton.disabled = false);
+              quoteForm.removeAttribute("aria-busy");
+              if (submitButton) { submitButton.disabled = false; submitButton.textContent = document.documentElement.lang === "en" ? "Send request" : "Enviar solicitud"; }
             }
           });
         };
