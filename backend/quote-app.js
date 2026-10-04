@@ -56,8 +56,7 @@ function buildEmail(values, files, now = new Date()) {
   };
 }
 
-function createApp({ env = process.env, fetchImpl = global.fetch, rateLimitMax = 5 } = {}) {
-  const app = express();
+function createApp({ app = express(), env = process.env, fetchImpl = global.fetch, rateLimitMax = 5 } = {}) {
   if (env.VERCEL) app.set("trust proxy", 1);
   const allowedOrigins = new Set(["https://tecnomarmolpr.com", "https://www.tecnomarmolpr.com", "https://pxchecoo.github.io", ...(env.ALLOWED_ORIGINS || "").split(",").map(origin => origin.trim()).filter(Boolean)]);
   app.use(helmet());
