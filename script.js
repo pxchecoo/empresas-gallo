@@ -224,14 +224,14 @@
       formNoFiles: "Ningún archivo seleccionado",
       formFileSingle: "1 archivo seleccionado",
       formFileMultiple: "{count} archivos seleccionados",
-      formPlansHelp: "Puedes adjuntar hasta 5 archivos PDF, imágenes o planos. Se enviarán junto con tu solicitud.",
-      formSending: "Enviando solicitud...",
-      formSuccess: "Solicitud enviada. Nuestro equipo revisará la información y te contactará pronto.",
+      formPlansHelp: "Hasta 5 archivos PDF, JPG, PNG o WEBP; máximo 3 MB en total. Se enviarán junto con tu solicitud.",
+      formSending: "Enviando...",
+      formSuccess: "Cotización enviada. Gracias. Nuestro equipo revisará tu solicitud y se comunicará contigo.",
       formShareSuccess: "Se abrió WhatsApp con los detalles preparados.",
-      formError: "No se pudo enviar la solicitud. Intenta nuevamente o usa WhatsApp.",
-      formEndpointMissing: "El backend de cotizaciones todavía no está configurado. Agrega el URL del API en index.html.",
+      formError: "No pudimos enviar tu solicitud. Intenta nuevamente.",
+      formEndpointMissing: "El servicio de cotizaciones no está disponible. Intenta nuevamente más tarde.",
       formFileTooMany: "Solo puedes adjuntar hasta {count} archivos.",
-      formFileTooLarge: "Los archivos no pueden pasar de 10MB en total.",
+      formFileTooLarge: "Los archivos no pueden pasar de 3 MB en total.",
       formMailSubject: "Nueva solicitud de cotización - TecnoMármol, Inc",
       formSelectedFiles: "Archivos seleccionados",
       formWhatsapp: "WhatsApp",
@@ -405,14 +405,14 @@
       formNoFiles: "No files selected",
       formFileSingle: "1 file selected",
       formFileMultiple: "{count} files selected",
-      formPlansHelp: "You may attach up to 5 PDF, image or plan files. They will be sent with your request.",
-      formSending: "Sending request...",
-      formSuccess: "Request sent. Our team will review the information and contact you soon.",
+      formPlansHelp: "Up to 5 PDF, JPG, PNG or WEBP files; 3 MB total. Files are included with your request.",
+      formSending: "Sending...",
+      formSuccess: "Quote sent. Thank you. Our team will review your request and contact you.",
       formShareSuccess: "WhatsApp opened with the details prepared.",
-      formError: "The request could not be sent. Please try again or use WhatsApp.",
-      formEndpointMissing: "The quote backend is not configured yet. Add the API URL in index.html.",
+      formError: "We could not send your request. Please try again.",
+      formEndpointMissing: "The quote service is unavailable. Please try again later.",
       formFileTooMany: "You may attach up to {count} files.",
-      formFileTooLarge: "Files cannot exceed 10MB total.",
+      formFileTooLarge: "Files cannot exceed 3 MB total.",
       formMailSubject: "New quote request - TecnoMármol, Inc",
       formSelectedFiles: "Selected files",
       formWhatsapp: "WhatsApp",
@@ -1045,7 +1045,7 @@
   const submitButton = quoteForm?.querySelector(".form-submit");
   const whatsappSubmit = document.querySelector("[data-whatsapp-submit]");
   const maxFiles = Number(filePicker?.dataset.maxFiles || 5);
-  const maxTotalBytes = Number(filePicker?.dataset.maxTotal || 10485760);
+  const maxTotalBytes = Number(filePicker?.dataset.maxTotal || 3145728);
 
   if (quoteForm && analytics) {
     [
@@ -1183,6 +1183,7 @@
 
   quoteForm?.addEventListener("submit", async (event) => {
     event.preventDefault();
+    if (submitButton?.disabled) return;
     const copy = activeCopy();
     const files = filePicker ? [...filePicker.files] : [];
 
@@ -1218,12 +1219,14 @@
     }
 
     setFormStatus(copy.formSending, "loading");
-    if (submitButton) submitButton.disabled = true;
+    if (submitButton) { submitButton.disabled = true; submitButton.textContent = copy.formSending; }
+    quoteForm.setAttribute("aria-busy", "true");
 
     try {
       const response = await fetch(endpoint, {
         method: "POST",
         body: new FormData(quoteForm),
+        signal: AbortSignal.timeout(30000),
         headers: {
           Accept: "application/json"
         }
@@ -1234,14 +1237,15 @@
         throw new Error(result.message || copy.formError);
       }
 
-      setFormStatus(result.message || copy.formSuccess, "success");
+      setFormStatus(activeCopy().formSuccess, "success");
       quoteForm.reset();
       updateFileSummary([]);
       updateWhatsappHref();
     } catch (error) {
-      setFormStatus(error.message || copy.formError, "error");
+      setFormStatus(activeCopy().formError, "error");
     } finally {
-      if (submitButton) submitButton.disabled = false;
+      quoteForm.removeAttribute("aria-busy");
+      if (submitButton) { submitButton.disabled = false; submitButton.textContent = activeCopy().formSend; }
     }
   });
 
